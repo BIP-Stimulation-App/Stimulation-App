@@ -19,7 +19,7 @@ export class BluetoothConnector{
         this.manager.stopDeviceScan();
     }
 
-    static connectDevice(deviceId){
+    static connectDevice(deviceId:string){
         let device = this.foundBracelets.find((device)=> device.id === deviceId);
         if(!device){
             return "Nothing found";
