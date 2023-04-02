@@ -1,8 +1,10 @@
+
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './screens/LoginScreen'; // import the LoginScreen component
 import SignUp from './screens/SignUp';
+import ListScreen from './Bluetooth/BluetoothConnectionPage';
 
 
 const Stack = createStackNavigator();
@@ -24,7 +26,6 @@ const App = () => {
       </Stack.Navigator>
     </NavigationContainer>
   )
+
 }
-
-
-export default App;
+export default App();
