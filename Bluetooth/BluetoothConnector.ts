@@ -1,7 +1,8 @@
-import react from "react";
-import {BleManager, Device } from 'react-native-ble-plx';
 
+import {BleManager, Device } from 'react-native-ble-plx';
+import { Signal } from './Signal';
 export class BluetoothConnector{
+    public static onConnected = new Signal<BluetoothConnector, Device>
     static manager = new BleManager();
     static foundBracelets = new  Array<Device>;
 
@@ -10,9 +11,10 @@ export class BluetoothConnector{
             if(error){
                 return;
             }
-            if(device?.name?.includes('BIPSAB')){
+            //if(device?.name?.includes('BIPSAB')){
                 this.foundBracelets.push(device);
-            }       
+                this.onConnected.trigger(this, device);
+            //}       
         })
     }
     static stopDeviceScan(){
@@ -30,9 +32,12 @@ export class BluetoothConnector{
             return error
         }
     }
-    static disconnectDevice(deviceId){
+    static disconnectDevice(deviceId:string){
         this.manager.cancelDeviceConnection(deviceId).catch((error)=>{
             return error
         })
+    }
+    static get foundDeviceEvent():Signal<BluetoothConnector, Device>{
+        return this.onConnected;
     }
 }
