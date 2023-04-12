@@ -44,12 +44,11 @@ const SignupStyles = StyleSheet.create({
 
     },
     titel:{
-        textAlign: 'center',
-        paddingBottom: 20,
-        color: 'white',
-        fontWeight: 700,
-        fontSize: 40,
-        paddingTop: 20
+      textAlign: 'left',
+      paddingBottom: 40,
+      color: 'white',
+      fontWeight: 700,
+      fontSize: 40,
     },
     button:{
         width: '90%',

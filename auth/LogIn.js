@@ -35,13 +35,21 @@ class Login extends Component {
           
         />
         <TextInput
-          style={styles.input}
+          style={styles.input2}
           placeholder='password'
          // placeholderTextColor='grey'
           secureTextEntry={true}
           onChangeText={this.handlePassword}
           
         />
+        
+        <View>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('RestorePassword')}>
+            <Text style={styles.passwordlink}>Forgot Password?</Text>
+          </TouchableOpacity>
+        </View>
+
+
         <TouchableOpacity
           style={styles.button}
           onPress={() => this.login(this.state.email, this.state.password)}

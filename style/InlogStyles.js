@@ -10,6 +10,15 @@ const InlogStyles = StyleSheet.create({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
+    input2:{
+      width: '90%',
+      backgroundColor: '#ffffff',
+      padding: 25,
+      //marginBottom: 20,
+      borderRadius: 5,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
     button: {
       width: '90%',
       backgroundColor: 'limegreen', //#2980b9 - blauw
@@ -48,6 +57,13 @@ const InlogStyles = StyleSheet.create({
         fontSize: 20,
         textDecorationLine: 'underline',
         paddingTop: 5,
+    },
+    passwordlink:{
+      textAlign: 'center',
+      fontSize: 13,
+      textDecorationLine: 'underline',
+      marginTop: 5,
+      marginBottom: 10,
     }
   })
 
