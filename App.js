@@ -1,5 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
@@ -16,6 +14,11 @@ import HomeNav from './screens/HomeNav';
 
 // Drawer menu styling - later nog in aparte styling folder zetten
 //const Drawer = createDrawerNavigator();
+import RestorePassword from './auth/RestorePassword'
+
+
+// Drawer menu styling - later nog in aparte styling folder zetten
+const Drawer = createDrawerNavigator();
 const DrawerStyles = {
 /*  activeTintColor: '#fff',
   inactiveTintColor: '#c6c6c6',
@@ -52,11 +55,4 @@ function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
