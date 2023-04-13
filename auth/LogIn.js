@@ -54,7 +54,7 @@ class Login extends Component {
           style={styles.button}
           onPress={() => {
             this.login(this.state.username, this.state.password);
-            /*this.props.navigation.navigate('HomeNav');*/ //dit moet uit comments gehaald worden om naar de landing page te navigeren, maar homenav is nog niet gekend op de login branch en om problemen te vermijden staat dit hier in comments.
+            this.props.navigation.navigate('HomeNav');
           }}
         >
           <Text style={styles.buttonText}>LOGIN</Text>
