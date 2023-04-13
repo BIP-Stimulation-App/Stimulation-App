@@ -12,6 +12,7 @@ class SignUp extends Component{
           firstname: '',
           lastname: '',
           email: '',
+          username: '',
           password: '',
           confirmPassword: '',
         };
@@ -27,6 +28,10 @@ class SignUp extends Component{
       handleEmailChange = (email) => {
         this.setState({ email });
       };
+
+      handleEmailChange = (username) => {
+        this.setState({ username });
+      };
     
       handlePasswordChange = (password) => {
         this.setState({ password });
@@ -41,9 +46,10 @@ class SignUp extends Component{
         console.log('Firstname:'+ firstname);
         console.log('Lastname:'+ lastname);
         console.log('Email:'+ email);
+        console.log('username:'+ username);
         console.log('Password:'+ password);
         console.log('Confirm:'+ confirmPassword);
-    
+        //dit mag ook weg na insert logic
         // Validate email, password, and confirmPassword here
     
         // Make API call to sign up user here
@@ -66,6 +72,7 @@ render() {
             <TextInput 
             style={styles.inputnames}
             placeholder='first name'
+            placeholderTextColor= 'grey'
             value={firstname}
             onChangeText={this.handleFirstnameChange}
             />
@@ -73,6 +80,7 @@ render() {
             <TextInput 
             style={styles.inputnames}
             placeholder='last name'
+            placeholderTextColor= 'grey'
             value={lastname}
             onChangeText={this.handleLastnameChange}
             />
@@ -82,13 +90,25 @@ render() {
         <TextInput 
           style={styles.input}
           placeholder="email"
+          placeholderTextColor= 'grey'
           autoCapitalize="none"
           keyboardType="email-address"
           value={email}
           onChangeText={this.handleEmailChange}
         />
 
-        <Text style={styles.label}>Enter a password: </Text>
+        <Text style={styles.label}>Enter a username:</Text>
+        <TextInput
+          style={styles.input}
+          placeholder='example123'
+          placeholderTextColor= 'grey'
+          autoCapitalize="none"
+          secureTextEntry
+          value={password}
+          onChangeText={this.handlePasswordChange}
+        />
+
+        <Text style={styles.label}>Enter a password:</Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"

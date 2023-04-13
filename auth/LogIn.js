@@ -6,21 +6,21 @@ import styles from '../style/InlogStyles';
 
 class Login extends Component {
   state = {
-    email: '',
+    username: '',
     password: '',
   }
 
   handleEmail = (text) => {
-    this.setState({ email: text })
+    this.setState({ username: text })
   }
 
   handlePassword = (text) => {
     this.setState({ password: text })
   }
 
-  login = (email, password) => {
+  login = (username, password) => {
     // You can add your own login logic here, e.g. sending a request to an API
-    alert('email: ' + email + ' password: ' + password)
+    alert('username: ' + username + ' password: ' + password) //mag na insert logic ook weg
   }
 
   render() {
@@ -29,15 +29,15 @@ class Login extends Component {
         <Text style={ styles.welcomeMessage}> Welcome,</Text>
         <TextInput
           style={styles.input}
-          placeholder= "email"
-          //placeholderTextColor= 'grey'
+          placeholder= "username"
+          placeholderTextColor= 'grey'
           onChangeText={this.handleEmail}
           
         />
         <TextInput
           style={styles.input2}
           placeholder='password'
-         // placeholderTextColor='grey'
+          placeholderTextColor='grey'
           secureTextEntry={true}
           onChangeText={this.handlePassword}
           
@@ -52,7 +52,10 @@ class Login extends Component {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => this.login(this.state.email, this.state.password)}
+          onPress={() => {
+            this.login(this.state.username, this.state.password);
+            /*this.props.navigation.navigate('HomeNav');*/ //dit moet uit comments gehaald worden om naar de landing page te navigeren, maar homenav is nog niet gekend op de login branch en om problemen te vermijden staat dit hier in comments.
+          }}
         >
           <Text style={styles.buttonText}>LOGIN</Text>
         </TouchableOpacity>

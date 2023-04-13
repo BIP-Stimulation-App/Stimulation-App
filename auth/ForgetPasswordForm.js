@@ -66,7 +66,8 @@ const ForgetPasswordForm = () => {
       <Text style={restorePasswordStyles.Text}> Please enter the email of your existing account:</Text>
       <TextInput
         style={ restorePasswordStyles.input}
-        placeholder="Email"
+        placeholder="email"
+        placeholderTextColor= 'grey'
         value={email}
         onChangeText={setEmail}
       />
@@ -74,7 +75,8 @@ const ForgetPasswordForm = () => {
       {!showPasswordFields && (
         <TextInput
           style={ restorePasswordStyles.input}
-          placeholder="Code"
+          placeholder="code"
+          placeholderTextColor= 'grey'
           value={code}
           onChangeText={setCode}
         />
