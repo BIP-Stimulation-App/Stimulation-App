@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import stylebasics from '../style/StyleBasics';
 import styles from '../style/InlogStyles';
 
@@ -8,6 +8,7 @@ class Login extends Component {
   state = {
     username: '',
     password: '',
+    errorMessage: ''
   }
 
   handleEmail = (text) => {
@@ -20,7 +21,40 @@ class Login extends Component {
 
   login = (username, password) => {
     // You can add your own login logic here, e.g. sending a request to an API
-    alert('username: ' + username + ' password: ' + password) //mag na insert logic ook weg
+    try{
+      let request = new XMLHttpRequest();
+      request.open("POST","https://localhost:7022/api/Login");
+      request.setRequestHeader("Content-Type", "application/json");
+      request.addEventListener('error',(event) =>{})
+      var post = JSON.stringify({
+        username: username,
+        password: password
+      });          
+      console.log(post);
+      request.send(post);
+      request.onload = () =>{
+        if(request.status === 200){
+          Credential.username = username;
+          Credential.password = password;
+          Credential.token = request.response;
+          alert("logged in");
+          //this.props.navigation.navigate('Home');
+        }
+        if(request.status === 404){
+          console.log("Error 404:"+request.response)
+          this.errorMessage = request.response;
+        }
+        else{
+          console.log(request.status+ " " +request.response);
+        }
+      }
+      request.onerror = () =>{
+        this.setState({errorMessage: request.response});
+      }
+    }
+    catch(e){
+      console.log("error: " + e);
+    }
   }
 
   render() {
