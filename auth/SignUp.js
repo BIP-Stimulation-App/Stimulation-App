@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import styles from '../style/SignupStyles';
 import stylebasics from '../style/StyleBasics'
 import { View, TextInput, Button, Text, TouchableOpacity } from 'react-native';
+import { NewAccount } from './Models/NewAccount';
+import { event } from 'react-native-reanimated';
+
+
 
 
 class SignUp extends Component{
@@ -13,24 +17,51 @@ class SignUp extends Component{
           lastname: '',
           email: '',
           username: '',
+          usernameInUse:false,
+          errorMessage: '',
           password: '',
           confirmPassword: '',
         };
+        
       }
       handleFirstnameChange = (firstname) => {
         this.setState({ firstname });
       };
     
       handleLastnameChange = (lastname) => {
-        this.setState({ lastname });
+        this.setState({ lastname });        
       };
 
       handleEmailChange = (email) => {
         this.setState({ email });
       };
 
-      handleEmailChange = (username) => {
+      handleUsernameChange = (username) => {
         this.setState({ username });
+        if(username === "")return;
+        try{
+          let request = new XMLHttpRequest();
+          request.open("GET","https://localhost:7022/api/User/UsernameInUse/"+username);
+          request.send();
+          request.onload = () =>{
+            if(request.status === 200){ 
+              console.log(request.response);
+              this.usernameInUse = !request.response.includes("not");
+              if(this.usernameInUse){
+                this.setState({errorMessage:request.response});
+                return;
+              }
+              this.setState({errorMessage: ""});
+            }
+          }
+          
+          
+        }
+        catch(e){
+          //do nothing
+          console.log("error: " + e);
+        }        
+
       };
     
       handlePasswordChange = (password) => {
@@ -40,25 +71,63 @@ class SignUp extends Component{
       handleConfirmPasswordChange = (confirmPassword) => {
         this.setState({ confirmPassword });
       };
+      handleErrorMessageChange = (errorMessage) => {
+        this.setState({ errorMessage });
+      };
     
       handleSignUp = () => {
-        const { email, password, confirmPassword } = this.state;
-        console.log('Firstname:'+ firstname);
-        console.log('Lastname:'+ lastname);
-        console.log('Email:'+ email);
-        console.log('username:'+ username);
-        console.log('Password:'+ password);
-        console.log('Confirm:'+ confirmPassword);
-        //dit mag ook weg na insert logic
-        // Validate email, password, and confirmPassword here
-    
+        const { email, password, confirmPassword, username, usernameInUse,firstname,lastname } = this.state;
+        
+        if(usernameInUse){
+          this.setState({errorMessage:"Username is already in use."});
+          console.log(this.errorMessage);
+          return;
+        }
+        if(username === ""){
+          this.setState({errorMessage:"Username can not be empty."});
+          console.log(this.errorMessage);
+          return;
+        }
+        if(password != confirmPassword){
+          this.setState({errorMessage:"Passwords do not match."} );
+          console.log(this.errorMessage);
+          return;
+        }
+        if(!email.includes('@') || !email.includes('.')){
+          this.setState({errorMessage:"Email is invalid." });
+          
+          console.log(this.errorMessage);
+          return;
+        }
         // Make API call to sign up user here
-    
-        // Navigate to home screen or show error message here
+        let account = new NewAccount(username,firstname,lastname,email,password);
+        try{
+          let request = new XMLHttpRequest();
+          request.open("POST","https://localhost:7022/api/Login/Add");
+          request.setRequestHeader("Content-Type", "application/json");
+          request.addEventListener('error',(event) =>{})
+          var post = JSON.stringify(account);          
+          console.log(post);
+          request.send(post);
+          request.onload = () =>{
+            if(request.status === 200){               
+              this.props.navigation.navigate('LogIn');
+            }
+            if(request.status === 400){
+              console.log(request.response);
+            }
+          }
+          request.onerror = () =>{
+            this.setState({errorMessage: request.response});
+          }
+        }
+        catch(e){
+          console.log("error: " + e);
+        }
       };
 
 render() {
-    const {firstname, lastname, email, password, confirmPassword } = this.state;
+    const {firstname, lastname, email,username, errorMessage, password, confirmPassword } = this.state;
 
     return (
       <View style={stylebasics.container} >
@@ -103,9 +172,8 @@ render() {
           placeholder='example123'
           placeholderTextColor= 'grey'
           autoCapitalize="none"
-          secureTextEntry
-          value={password}
-          onChangeText={this.handlePasswordChange}
+          value={username}
+          onChangeText={this.handleUsernameChange}
         />
 
         <Text style={styles.label}>Enter a password:</Text>
@@ -126,8 +194,11 @@ render() {
           onChangeText={this.handleConfirmPasswordChange}
         />
 
+        {errorMessage ? <Text style={{color:'red'}}>{errorMessage}</Text>:null}
+
         <TouchableOpacity
           style={styles.button}
+          onPress={this.handleSignUp}
         >
           <Text style={styles.buttonText}>SIGN UP</Text>
         </TouchableOpacity>
