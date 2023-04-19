@@ -64,6 +64,14 @@ const InlogStyles = StyleSheet.create({
       textDecorationLine: 'underline',
       marginTop: 5,
       marginBottom: 10,
+    },
+    errorMessageText:{
+      color: 'red', 
+      textAlign: 'center',
+      fontWeight: 'bold',
+      fontSize: 16,      
+      marginTop: 10,
+      marginBottom: 5,
     }
   })
 

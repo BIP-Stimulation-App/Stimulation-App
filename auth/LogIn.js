@@ -21,6 +21,16 @@ class Login extends Component {
 
   login = (username, password) => {
     // You can add your own login logic here, e.g. sending a request to an API
+    if(username === "" || username === " "){
+      this.setState({errorMessage: "Username can not be empty."});
+      return;
+    }
+    if(password === ""){
+      this.setState({errorMessage: "Password can not be empty."});
+      return;
+    }
+    this.setState({errorMessage: ""})
+
     try{
       let request = new XMLHttpRequest();
       request.open("POST","https://localhost:7022/api/Login");
@@ -40,12 +50,15 @@ class Login extends Component {
           alert("logged in");
           //this.props.navigation.navigate('Home');
         }
-        if(request.status === 404){
-          console.log("Error 404:"+request.response)
-          this.errorMessage = request.response;
+        else if(request.status === 404){
+          this.setState({errorMessage: request.response})
+        }
+        else if(request.status === 401){
+          this.setState({errorMessage: request.response})
         }
         else{
           console.log(request.status+ " " +request.response);
+          this.setState({errorMessage: request.response})
         }
       }
       request.onerror = () =>{
@@ -58,6 +71,7 @@ class Login extends Component {
   }
 
   render() {
+    const {errorMessage} = this.state;
     return (
       <View style={stylebasics.container}>
         <Text style={ styles.welcomeMessage}> Welcome,</Text>
@@ -76,6 +90,7 @@ class Login extends Component {
           onChangeText={this.handlePassword}
           
         />
+        {errorMessage ? <Text style={styles.errorMessageText}>{errorMessage}</Text>:null}
         
         <View>
           <TouchableOpacity onPress={() => this.props.navigation.navigate('RestorePassword')}>
@@ -83,6 +98,7 @@ class Login extends Component {
           </TouchableOpacity>
         </View>
 
+        
 
         <TouchableOpacity
           style={styles.button}
