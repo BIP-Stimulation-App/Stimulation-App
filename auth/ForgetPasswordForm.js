@@ -9,61 +9,130 @@ const ForgetPasswordForm = () => {
   const [newPassword, setNewPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [showPasswordFields, setShowPasswordFields] = useState(false);
+  const [showEmailField, setShowEmailField] = useState(false);
+  const [errorMessage, seterrorMessage] = useState('');
+
+  const handleEmailrequest= async () => {
+    if(!email.includes('@') ||!email.includes('.')){
+      seterrorMessage("Email is invalid");
+      return;
+    }
+    seterrorMessage("");
+    try{
+      let request = new XMLHttpRequest();
+      request.open("POST","https://localhost:7022/api/Login/Reset");
+      console.log("email: " + email)
+      request.setRequestHeader("email", email);
+      request.addEventListener('error',() =>{})
+      request.send();
+      request.onload = () =>{
+        if(request.status === 200){
+          console.log("succes");
+          setShowEmailField(true);          
+        }
+        if(request.status === 404){
+          console.log("Error 404:"+request.response)
+          seterrorMessage(request.response);
+        }
+        else{
+          console.log(request.status+ " " +request.response);
+        }
+      }
+      request.onerror = () =>{        
+        console.log(request.status+ " " +request.response);
+      }
+    }
+    catch(e){
+      console.log("error: " + e);
+    }
+  };
 
   const handleVerify = async () => {
-   /* try {
-      // Send email and code to server for verification
-      const response = await fetch('https://example.com/verify', {
-        method: 'POST',
-        body: JSON.stringify({ email, code }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+    if(token.length != 5){
+      seterrorMessage("Token is invalid!");
+      return;
+    }
+    seterrorMessage("");
 
-      if (!response.ok) {
-        throw new Error('Verification failed');
+    try{
+      let request = new XMLHttpRequest();
+      request.open("POST","https://localhost:7022/api/Login/ResetWithToken");
+      console.log("resetToken: " + code)
+      request.setRequestHeader("resetToken", code);
+      request.addEventListener('error',() =>{})
+      request.send();
+      request.onload = () =>{
+        if(request.status === 200){
+          console.log("succes");
+          setShowEmailField(false);  
+          setShowPasswordFields(true);   
+          Credential.token = request.response;    
+        }
+        else{
+          console.log(request.status+ " " +request.response);
+        }
       }
-
-      setShowPasswordFields(true);
-    } catch (error) {
-      Alert.alert('Error', error.message);
-    }*/
+      request.onerror = () =>{        
+        console.log(request.status+ " " +request.response);
+      }
+    }
+    catch(e){
+      console.log("error: " + e);
+    }
   };
 
   const handleUpdatePassword = async () => {
-   /* try {
-      // Update user's password
-      const response = await fetch('https://example.com/update-password', {
-        method: 'POST',
-        body: JSON.stringify({ email, newPassword }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error('Password update failed');
+    try{
+      if(newPassword != repeatPassword){
+        seterrorMessage("Passwords do not match");
+        return;
       }
-
-      Alert.alert('Success', 'Your password has been updated');
-    } catch (error) {
-      Alert.alert('Error', error.message);
-    }*/
+      else if(newPassword.length<8 ){
+        seterrorMessage("Password must be at least 8 characters long");
+        return;
+      }
+      seterrorMessage("");
+      let request = new XMLHttpRequest();
+      request.open("POST","https://localhost:7022/api/Login/ChangePassword/"+ email);
+      request.setRequestHeader("password", code,"Authorization", "Bearer " + Credential.token);
+      request.addEventListener('error',() =>{})
+      request.send();
+      request.onload = () =>{
+        if(request.status === 200){
+          console.log("succes"); 
+          Credential.password = newPassword;    
+          this.props.navigation.navigate('LogIn');
+        }
+        else{
+          console.log(request.status+ " " +request.response);
+        }
+      }
+      request.onerror = () =>{        
+        console.log(request.status+ " " +request.response);
+      }
+    }
+    catch(e){
+      console.log("error: " + e);
+    }
   };
 
   const handleSubmit = () => {
     if (showPasswordFields) {
       handleUpdatePassword();
-    } else {
+    } else if(showEmailField) {
       handleVerify();
+    }
+    else{
+      handleEmailrequest();
     }
   };
 
   return (
     <View>
       <Text style={restorePasswordStyles.title}>Reset your password,</Text>
-      <Text style={restorePasswordStyles.Text}> Please enter the email of your existing account:</Text>
+      {!showEmailField && !showPasswordFields && (
+        <>
+        <Text style={restorePasswordStyles.Text}> Please enter the email of your existing account:</Text>
       <TextInput
         style={ restorePasswordStyles.input}
         placeholder="email"
@@ -71,8 +140,11 @@ const ForgetPasswordForm = () => {
         value={email}
         onChangeText={setEmail}
       />
-      <Text style={restorePasswordStyles.Text}>Enter the received code (please check your spam): </Text>
-      {!showPasswordFields && (
+        </>
+      )}
+      {showEmailField && !showPasswordFields && (
+        <>
+        <Text style={restorePasswordStyles.Text}>Enter the received code (please check your spam): </Text>
         <TextInput
           style={ restorePasswordStyles.input}
           placeholder="code"
@@ -80,6 +152,7 @@ const ForgetPasswordForm = () => {
           value={code}
           onChangeText={setCode}
         />
+        </>
       )}
       {showPasswordFields && (
         <>
@@ -101,6 +174,7 @@ const ForgetPasswordForm = () => {
           />
         </>
       )}
+      {errorMessage ? <Text style={restorePasswordStyles.errorMessageText}>{errorMessage}</Text>:null}
 
         <TouchableOpacity style={restorePasswordStyles.button1} onPress={handleSubmit}>
           <Text style={restorePasswordStyles.buttonTitle}>SUBMIT</Text>
