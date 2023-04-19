@@ -61,7 +61,7 @@ const ForgetPasswordForm = () => {
   };
 
   return (
-    <View>
+    <View style={restorePasswordStyles.container}>
       <Text style={restorePasswordStyles.title}>Reset your password,</Text>
       <Text style={restorePasswordStyles.Text}> Please enter the email of your existing account:</Text>
       <TextInput

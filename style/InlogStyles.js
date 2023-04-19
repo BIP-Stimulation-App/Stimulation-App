@@ -40,6 +40,8 @@ const InlogStyles = StyleSheet.create({
          color: 'white',
          fontWeight: 700,
          fontSize: 40,
+         paddingLeft:10,
+         
 
     },
     createAccountView:{

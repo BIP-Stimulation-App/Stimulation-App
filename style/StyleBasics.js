@@ -6,7 +6,7 @@ const stylebasics = StyleSheet.create({
         justifyContent: 'center',
         //alignItems: 'center',
         backgroundColor: 'lightgreen', //#3498db - lichtblauw
-        padding: 20,
+        //padding: 20,
     }
 });
 

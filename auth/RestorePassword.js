@@ -8,7 +8,7 @@ import restorePasswordStyles from '../style/RestorePasswordStyles';
 
 const RestorePassword = () => {
     return (
-        <View style={stylebasics.container}>
+        <View style={restorePasswordStyles.container}>
             <ForgetPasswordForm  />
         </View>
     )

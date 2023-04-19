@@ -2,6 +2,13 @@ import { StyleSheet } from 'react-native'
 
 
 const SignupStyles = StyleSheet.create({
+  container:{
+    flex: 1,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 20,
+    backgroundColor: 'lightgreen',
+  },
     containerNames:{
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -14,7 +21,7 @@ const SignupStyles = StyleSheet.create({
     input:{
       height: 40,
       marginVertical: 10,
-      padding: 25,
+      padding: 20,
       borderWidth: 1,
       borderColor: 'white',
       backgroundColor: 'white',
@@ -26,7 +33,7 @@ const SignupStyles = StyleSheet.create({
       height: 40,
       width: '40vw',
       marginVertical: 10,
-      padding: 25,
+      padding: 20,
       borderWidth: 1,
       borderColor: 'white',
       backgroundColor: 'white',
@@ -36,7 +43,7 @@ const SignupStyles = StyleSheet.create({
     
     label:{
         textAlign: 'left',
-        fontSize: 15,
+        fontSize: 10,
         marginRight: 95,
         fontWeight:500,
     },
@@ -45,10 +52,10 @@ const SignupStyles = StyleSheet.create({
     },
     titel:{
       textAlign: 'left',
-      paddingBottom: 40,
+      paddingBottom: 10,
       color: 'white',
       fontWeight: 700,
-      fontSize: 40,
+      fontSize: 30,
     },
     button:{
         width: '90%',
@@ -56,7 +63,7 @@ const SignupStyles = StyleSheet.create({
       padding: 20,
       borderRadius: 30,
       alignItems: 'center',
-      marginTop: 10,
+      marginTop: 5,
       marginLeft: 'auto',
       marginRight: 'auto',
     },

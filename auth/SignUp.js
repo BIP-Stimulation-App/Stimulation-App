@@ -15,6 +15,7 @@ class SignUp extends Component{
           username: '',
           password: '',
           confirmPassword: '',
+          errorMessage: ''
         };
       }
       handleFirstnameChange = (firstname) => {
@@ -40,15 +41,26 @@ class SignUp extends Component{
       handleConfirmPasswordChange = (confirmPassword) => {
         this.setState({ confirmPassword });
       };
+
+      handleErrorMessage = (errorMessage) => {
+        this.setState({ errorMessage })
+      };
     
       handleSignUp = () => {
-        const { email, password, confirmPassword } = this.state;
+        const { firstname, lastname, email, username, password, confirmPassword } = this.state;
         console.log('Firstname:'+ firstname);
         console.log('Lastname:'+ lastname);
         console.log('Email:'+ email);
-        console.log('username:'+ username);
+        console.log('Username:'+ username);
         console.log('Password:'+ password);
         console.log('Confirm:'+ confirmPassword);
+
+       /* if(firstname == 'Yana'){
+          this.setState({ errorMessage: 'You typed the right name'})
+        }
+        else{
+          this.setState({ errorMessage: 'You have not filled all the inputfields'})
+        }*/
         //dit mag ook weg na insert logic
         // Validate email, password, and confirmPassword here
     
@@ -58,10 +70,10 @@ class SignUp extends Component{
       };
 
 render() {
-    const {firstname, lastname, email, password, confirmPassword } = this.state;
+    const {firstname, lastname, email, password, confirmPassword, errorMessage } = this.state;
 
     return (
-      <View style={stylebasics.container} >
+      <View style={styles.container} >
         <View style={styles.containerTitel}>
           <Text style={styles.titel} >Who are you?</Text>
         </View>
@@ -126,8 +138,11 @@ render() {
           onChangeText={this.handleConfirmPasswordChange}
         />
 
+        {errorMessage ? <Text style={{color: 'red'}}>{errorMessage}</Text> : null}
+
         <TouchableOpacity
           style={styles.button}
+          onPress={this.handleSignUp}
         >
           <Text style={styles.buttonText}>SIGN UP</Text>
         </TouchableOpacity>

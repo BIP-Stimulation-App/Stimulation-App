@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import styles from '../style/HomeStyles'
 
 import Home from './Home';
 import Health from './Health';
@@ -22,7 +21,7 @@ const HomeNav = () => {
         headerTitleAlign: 'center',
       }}>
         <Stack.Screen name="Home" component={Home} options={{
-          headerLeft: null,
+          headerLeft: null, headerShown: false
         }}/>
         <Stack.Screen name="Health" component={Health} />
         <Stack.Screen name="Medicine" component={Medicine} />
