@@ -93,9 +93,24 @@ class SignUp extends Component{
           console.log(this.errorMessage);
           return;
         }
+        if(password.length<8){
+          this.setState({errorMessage:"Password must be at least 8 characters long"} );
+          console.log(this.errorMessage);
+          return;
+        }
         if(!email.includes('@') || !email.includes('.')){
           this.setState({errorMessage:"Email is invalid." });
           
+          console.log(this.errorMessage);
+          return;
+        }
+        if(firstname === ""){
+          this.setState({errorMessage:"First name can't be empty"} );
+          console.log(this.errorMessage);
+          return;
+        }
+        if(lastname === ""){
+          this.setState({errorMessage:"Last name can't be empty"} );
           console.log(this.errorMessage);
           return;
         }
@@ -194,7 +209,7 @@ render() {
           onChangeText={this.handleConfirmPasswordChange}
         />
 
-        {errorMessage ? <Text style={{color:'red'}}>{errorMessage}</Text>:null}
+        {errorMessage ? <Text style={styles.errorMessageText}>{errorMessage}</Text>:null}
 
         <TouchableOpacity
           style={styles.button}
