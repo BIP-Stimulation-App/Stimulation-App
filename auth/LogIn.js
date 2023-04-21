@@ -25,7 +25,7 @@ class Login extends Component {
 
   render() {
     return (
-      <ImageBackground source={require('../pictures/backgroundlogin.PNG')} style={{ flex: 1 }}>
+      <ImageBackground source={require('../pictures/backgroundlogin.png')} style={{ flex: 1 }}>
       <View style={stylebasics.container}>
         <Text style={ styles.welcomeMessage}> Welcome,</Text>
         <TextInput

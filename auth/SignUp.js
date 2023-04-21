@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styles from '../style/SignupStyles';
-import stylebasics from '../style/StyleBasics'
-import { View, TextInput, Button, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, TextInput, Text, TouchableOpacity, ImageBackground } from 'react-native';
 
 
 class SignUp extends Component{
