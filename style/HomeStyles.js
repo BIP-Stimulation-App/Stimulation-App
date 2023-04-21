@@ -18,7 +18,6 @@ const HomeStyles = StyleSheet.create({
         width:'auto',
         borderColor: 'black', 
         backgroundColor: '#CB5382',
-        //margin: 5,
         padding: 40,
         borderRadius: 40,
         
@@ -29,49 +28,46 @@ const HomeStyles = StyleSheet.create({
         height: '20%',
         marginBottom: 10,
         flex: 1,
+        alignItems: 'center'
     },
     smallbutton1:{
-       // borderColor: 'black', 
-        color: 'white',
         backgroundColor: '#46BC7E',
         width: '60%',
         height: '90%',
         borderRadius: 20,
         padding: 10,
         marginRight: 5,
+        justifyContent: 'center'
 
     },
     smallbutton2:{
-      //  borderColor: 'black', 
-        color: 'white',
         backgroundColor: '#5CC6C6',
         width: '60%',
         borderRadius: 20,
         padding: 10,
         height: '90%',
         marginLeft:5,
+        justifyContent: 'center'
 
     },
     smallbutton3:{
-      //  borderColor: 'black', 
-        color: 'white',
         backgroundColor: '#F9E076',
         width:'60%',
         borderRadius: 20,
         padding: 10,
         marginRight: 5,
         height:'90%',
+        justifyContent: 'center'
 
     },
     smallbutton4:{
-     //   borderColor: 'black', 
-        color: 'white',
         backgroundColor: '#BFBFBF',
         width: '60%',
         borderRadius: 20,
         padding: 10,
         marginLeft: 5,
         height:'90%',
+        justifyContent: 'center'
 
     },
     textHealth:{
@@ -86,7 +82,6 @@ const HomeStyles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white',
         textAlign: 'center',
-        paddingTop: '30%'
     },
 
 
