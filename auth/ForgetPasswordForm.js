@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Alert, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, Button, Alert, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import restorePasswordStyles from '../style/RestorePasswordStyles';
 
 
@@ -61,6 +61,8 @@ const ForgetPasswordForm = () => {
   };
 
   return (
+    <ImageBackground source={require('../pictures/backgroundlogin.png')} style={{ flex: 1 }}>
+
     <View style={restorePasswordStyles.container}>
       <Text style={restorePasswordStyles.title}>Reset your password,</Text>
       <Text style={restorePasswordStyles.Text}> Please enter the email of your existing account:</Text>
@@ -105,9 +107,8 @@ const ForgetPasswordForm = () => {
         <TouchableOpacity style={restorePasswordStyles.button1} onPress={handleSubmit}>
           <Text style={restorePasswordStyles.buttonTitle}>SUBMIT</Text>
         </TouchableOpacity>
-
-
     </View>
+    </ImageBackground>
   );
 };
 

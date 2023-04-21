@@ -6,8 +6,9 @@ const SignupStyles = StyleSheet.create({
     flex: 1,
     paddingLeft: 20,
     paddingRight: 20,
-    paddingBottom: 20,
-    backgroundColor: 'lightgreen',
+  //  paddingBottom: 20,
+    paddingTop: 50
+    //backgroundColor: 'lightgreen',
   },
     containerNames:{
         flexDirection: 'row',
@@ -43,7 +44,7 @@ const SignupStyles = StyleSheet.create({
     
     label:{
         textAlign: 'left',
-        fontSize: 10,
+        fontSize: 12,
         marginRight: 95,
         fontWeight:500,
     },
@@ -59,7 +60,7 @@ const SignupStyles = StyleSheet.create({
     },
     button:{
         width: '90%',
-      backgroundColor: 'limegreen', //#2980b9 - blauw
+      backgroundColor: '#388C77',
       padding: 20,
       borderRadius: 30,
       alignItems: 'center',

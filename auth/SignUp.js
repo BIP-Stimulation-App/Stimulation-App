@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from '../style/SignupStyles';
 import stylebasics from '../style/StyleBasics'
-import { View, TextInput, Button, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, Button, Text, TouchableOpacity, ImageBackground } from 'react-native';
 
 
 class SignUp extends Component{
@@ -73,6 +73,8 @@ render() {
     const {firstname, lastname, email, password, confirmPassword, errorMessage } = this.state;
 
     return (
+      <ImageBackground source={require('../pictures/backgroundlogin.png')} style={{ flex: 1 }}>
+
       <View style={styles.container} >
         <View style={styles.containerTitel}>
           <Text style={styles.titel} >Who are you?</Text>
@@ -148,6 +150,7 @@ render() {
         </TouchableOpacity>
 
       </View>
+      </ImageBackground>
     );
   }
 };

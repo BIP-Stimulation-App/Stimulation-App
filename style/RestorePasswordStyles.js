@@ -6,7 +6,7 @@ const restorePasswordStyles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight:20,
         paddingBottom: 20,
-        backgroundColor: 'lightgreen',
+        paddingTop: 50,
         
     },
     input:{
@@ -20,7 +20,7 @@ const restorePasswordStyles = StyleSheet.create({
     },
     button1:{
       width: '90%',
-      backgroundColor: 'limegreen', //#2980b9 - blauw
+      backgroundColor: '#388C77', 
       padding: 20,
       borderRadius: 90,
       alignItems: 'center',
@@ -43,7 +43,7 @@ const restorePasswordStyles = StyleSheet.create({
          paddingTop: 0,
     },
     Text:{
-        fontSize: 10,
+        fontSize: 12,
         fontWeight: 500,
         marginLeft: 10,
         marginBottom: 5,

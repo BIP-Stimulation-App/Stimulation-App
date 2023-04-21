@@ -30,8 +30,8 @@ function App() {
         }}
     >
       <Stack.Screen name="LogIn" component={LogIn} options={{ headerShown: false}} />
-      <Stack.Screen name="SignUp" component={SignUp} options={{headerTitle: ''}} />
-      <Stack.Screen name="RestorePassword" component={RestorePassword} options={{headerTitle: ''}} />
+      <Stack.Screen name="SignUp" component={SignUp} options={{headerTitle: '', headerTransparent: true}} />
+      <Stack.Screen name="RestorePassword" component={RestorePassword} options={{headerTitle: '', headerTransparent: true}} />
       <Stack.Screen name="HomeNav" component={HomeNav} options={{ headerShown: false}}/>
        
     </Stack.Navigator>

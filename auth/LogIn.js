@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
 import stylebasics from '../style/StyleBasics';
 import styles from '../style/InlogStyles';
 
@@ -25,6 +25,7 @@ class Login extends Component {
 
   render() {
     return (
+      <ImageBackground source={require('../pictures/backgroundlogin.PNG')} style={{ flex: 1 }}>
       <View style={stylebasics.container}>
         <Text style={ styles.welcomeMessage}> Welcome,</Text>
         <TextInput
@@ -67,6 +68,7 @@ class Login extends Component {
           </TouchableOpacity>
         </View>
       </View>
+      </ImageBackground>
     )
   }
 }
