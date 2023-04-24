@@ -33,7 +33,7 @@ render(){
       <br></br>
       <View style={styles.containerSmall}>
 
-        <TouchableOpacity style={styles.smallbutton1} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'Medicine'})}>
+        <TouchableOpacity style={styles.smallbutton1} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'MedicineNav'})}>
             <Text style={styles.text}>Medicine</Text>
         </TouchableOpacity>
 
