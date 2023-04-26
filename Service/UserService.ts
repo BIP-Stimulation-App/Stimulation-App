@@ -1,5 +1,5 @@
 export class UserService{
-static route = "http://localhost:5000/api/User"
+static route = "http://stimulationapp.com:5000/api/User"
 
 static UsernameInUse(username:string):string
 {
@@ -21,5 +21,4 @@ static UsernameInUse(username:string):string
         console.log("error: " + e);
       }
       return "";
-}
-}
+}}

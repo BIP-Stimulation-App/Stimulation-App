@@ -3,7 +3,7 @@ import { NewAccount } from "../auth/Models/NewAccount";
 import SignUp from "../auth/SignUp";
 
 export class LoginService {
-    static apiLoginlink:string = "http://localhost:5000/api/Login"
+    static apiLoginlink:string = "http://stimulationapp.com:5000/api/Login"
 
     static Login(username:string, password:string):string{
         if(username === "" || username === " "){
