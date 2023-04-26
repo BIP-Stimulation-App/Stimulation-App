@@ -6,11 +6,11 @@ container:{
     paddingLeft: 20,
     paddingRight: 20,
     justifyContent: 'center',
-    paddingTop: 20
+    paddingTop: 50
 },
 picture:{
-    width: 200,
-    height: 200,
+    width: '100px',
+    height: '100px',
     alignSelf: 'center',
     marginBottom: 5,
 },
@@ -50,6 +50,10 @@ saveText:{
     color: '#ffffff',
         fontWeight: '700',
         fontSize: 20
+},
+scroll:{
+    width: 'auto',
+    height: '80%'
 }
 })
 

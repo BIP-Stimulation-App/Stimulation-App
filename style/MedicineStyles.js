@@ -30,7 +30,7 @@ const MedicineStyles = StyleSheet.create({
  listContainer:{
   borderColor: '#388C77',
   borderWidth: 1,
-  borderRadius: 25,
+  borderRadius: 20,
   height: '70%',
   padding: 5
  },
@@ -40,32 +40,32 @@ const MedicineStyles = StyleSheet.create({
   backgroundColor: '#46A289',
   padding: 5,
   marginTop: 10,
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'center'
+
  },
  titelContainer:{
   flex: 1,
-  width: '50%',
- // paddingRight: 10
+  width: '100%',
  },
  titel:{
   fontSize: 15,
   fontWeight: 'bold',
   color: 'white',
   textAlign:'left',
-  
  },
  textContainer:{
   flex: 1,
-  flexDirection: 'row',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
   width: '50%',
  },
  text:{
   color: 'white',
-  paddingLeft: 5
+  paddingLeft: 20,
+  paddingTop: 2
+ },
+ description:{
+  color: 'white',
+  paddingLeft: 10,
+  paddingTop: 5,
+  fontWeight: 700
  },
  noListMessage:{
   textAlign: 'center',
@@ -74,18 +74,14 @@ const MedicineStyles = StyleSheet.create({
   marginTop: 20
  },
 delete:{
-  width: 30,
-  height: 30,
-  backgroundColor: 'transparent',
   color: 'black',
   textAlign: 'right',
   fontWeight: 'bold',
-  paddingTop: 5,
 },
 deleteButton:{
-  borderRadius: 50,
-  width: 30,
-  height: 30,
+  width: 'auto',
+  paddingTop: 5,
+  alignSelf: 'flex-end'
 },
 explanation:{
   fontSize: 10,

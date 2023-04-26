@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import {  View, Text, TextInput, Picker, TouchableOpacity, ImageBackground, Image } from 'react-native';
+import {  View, Text, TextInput, Picker, TouchableOpacity, ImageBackground, Image, ScrollView } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import styles from '../style/AddMedicineStyles'
 
 
 const AddMedicine = () => {
+    const navigation = useNavigation();
+
     const [nameMedicine, setNameMedicine] = useState('');
     const [timestamp, setTimestamp] = useState('');
     const [frequency, setFrequency] = useState('');
+    const [day, setDay] = useState('');
 
 
     const handleTimeChange = (value) => {
@@ -17,21 +21,32 @@ const AddMedicine = () => {
         setFrequency(value);
     }
 
+    const handleDayChange = (value) => {
+        setDay(value);
+    }
+
     const handleSave = () => {
         //insert logic to save to the database
         alert(`name: ${nameMedicine}, timestamp: ${timestamp}, frequency: ${frequency}`);
+        navigation.navigate('MedicineNav', {screen: 'medicine'} )
     }
 
     return(
         <ImageBackground source={require('../pictures/background2.png')} style={{ flex: 1 }}>
 
         <View style={styles.container}>
+            
             <Image
                 source={require('../pictures/medicine.png')}
                 style={styles.picture}
             />
+            <ScrollView style={styles.scroll}>
             <Text style={styles.text}>medicine name:</Text>
             <TextInput onChangeText={setNameMedicine} style={styles.inputMedicineName} placeholder="name" placeholderTextColor="grey"></TextInput>
+
+            <Text style={styles.text}>Description:</Text>
+            <TextInput onChangeText={setNameMedicine} style={styles.inputMedicineName} placeholder="amount of pills - example" placeholderTextColor="grey"></TextInput>
+
 
             <Text style={styles.text}>time: </Text>
             <Picker 
@@ -94,17 +109,36 @@ const AddMedicine = () => {
             <Picker
                 selectedValue={frequency}
                 onValueChange={handleFrequencyChange}
-               style={styles.picker}
+                style={styles.picker}
             >
                 <Picker.Item label="only today" value="once"/>
                 <Picker.Item label="repeat every day" value="daily" />
                 <Picker.Item label="repeat once every week" value="weekly" />
             </Picker>
+            
+            {frequency === 'weekly' && (
+                <View>
+                    <Text style={styles.text}>Which day?</Text>
+                <Picker
+                    selectedValue={day}
+                    onValueChange={handleDayChange}
+                    style={styles.picker}
+                >
+                    <Picker.Item label="Monday" value="monday" />
+                    <Picker.Item label="Tuesday" value="tuesday" />
+                    <Picker.Item label="Wednessday" value="wednessday" />
+                    <Picker.Item label="Thursday" value="thursday" />
+                    <Picker.Item label="Friday" value="friday" />
+                    <Picker.Item label="Saturday" value="saturday" />
+                    <Picker.Item label="Sunday" value="sunday" />
+                </Picker>
+                </View>
+            )}
 
             <TouchableOpacity onPress={handleSave} style={styles.saveButton}>
                 <Text style={styles.saveText}>SAVE</Text>
             </TouchableOpacity>
-           
+           </ScrollView>
          
         </View>
         </ImageBackground>

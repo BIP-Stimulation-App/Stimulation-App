@@ -9,6 +9,7 @@ const Medicine = () => {
     {
         id: 1,
         nameMedicine: 'Aspirin',
+        description: '2 pils',
         timestamp: '10:00 AM',
         frequency: 'daily'
       },
@@ -21,43 +22,45 @@ const Medicine = () => {
       {
         id: 3,
         nameMedicine: 'Paracetamol',
+        description: '2 pils',
         timestamp: '08:00 AM',
         frequency: 'daily'
       },
       {
         id: 4,
         nameMedicine: 'Antihistamine',
-        timestamp: '22:00 PM',
+        timestamp: '10:00 PM',
         frequency: 'weekly'
       },
       {
         id: 5,
         nameMedicine: 'Antihistamine',
-        timestamp: '22:00 PM',
+        timestamp: '10:00 PM',
         frequency: 'weekly'
       },
       {
         id: 6,
         nameMedicine: 'Antihistamine',
-        timestamp: '22:00 PM',
+        timestamp: '10:00 PM',
         frequency: 'weekly'
       },
       {
         id: 7,
         nameMedicine: 'Antihistamine',
-        timestamp: '22:00 PM',
+        description: '2 pils',
+        timestamp: '10:00 PM',
         frequency: 'weekly'
       },
       {
         id: 8,
         nameMedicine: 'Antihistamine',
-        timestamp: '22:00 PM',
+        timestamp: '10:00 PM',
         frequency: 'weekly'
       },
       {
         id: 9,
         nameMedicine: 'Antihistamine',
-        timestamp: '22:00 PM',
+        timestamp: '10:00 PM',
         frequency: 'weekly'
       },
 ]);    
@@ -94,13 +97,15 @@ const renderItem = ({item}) => (
         </View>
            
         <View style={styles.textContainer}>
+            <Text style={styles.description}>{item.description}</Text>
             <Text style={styles.text}>{item.timestamp}</Text>
             <Text style={styles.text}>{item.frequency}</Text>
+  
         </View>
-
         <TouchableOpacity onPress={() => handleDelete(item.id)} style={styles.deleteButton}>
-                <Text style={styles.delete}>X</Text>
+                <Text style={styles.delete}>DELETE</Text>
         </TouchableOpacity>
+      
     </View>
 );
 
