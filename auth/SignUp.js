@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import styles from "../style/SignupStyles";
-import { View, TextInput, Button, Text, TouchableOpacity } from "react-native";
+import { View, TextInput, Button, Text, TouchableOpacity,ImageBackground } from "react-native";
 import { LoginService } from "../Service/LoginService";
 import { UserService } from "../Service/UserService";
-import React, { Component } from 'react';
-import styles from '../style/SignupStyles';
-import { View, TextInput, Text, TouchableOpacity, ImageBackground } from 'react-native';
 
 class SignUp extends Component {
   constructor(props) {
