@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import stylebasics from '../style/StyleBasics';
 import styles from '../style/InlogStyles';
+import { LoginService } from '../Service/LoginService';
 
 
 class Login extends Component {
@@ -21,53 +22,12 @@ class Login extends Component {
 
   login = (username, password) => {
     // You can add your own login logic here, e.g. sending a request to an API
-    if(username === "" || username === " "){
-      this.setState({errorMessage: "Username can not be empty."});
-      return;
-    }
-    if(password === ""){
-      this.setState({errorMessage: "Password can not be empty."});
-      return;
-    }
-    this.setState({errorMessage: ""})
-
-    try{
-      let request = new XMLHttpRequest();
-      request.open("POST","https://localhost:7022/api/Login");
-      request.setRequestHeader("Content-Type", "application/json");
-      request.addEventListener('error',(event) =>{})
-      var post = JSON.stringify({
-        username: username,
-        password: password
-      });          
-      console.log(post);
-      request.send(post);
-      request.onload = () =>{
-        if(request.status === 200){
-          Credential.username = username;
-          Credential.password = password;
-          Credential.token = request.response;
-          alert("logged in");
-          //this.props.navigation.navigate('Home');
-        }
-        else if(request.status === 404){
-          this.setState({errorMessage: request.response})
-        }
-        else if(request.status === 401){
-          this.setState({errorMessage: request.response})
-        }
-        else{
-          console.log(request.status+ " " +request.response);
-          this.setState({errorMessage: request.response})
-        }
-      }
-      request.onerror = () =>{
-        this.setState({errorMessage: request.response});
-      }
-    }
-    catch(e){
-      console.log("error: " + e);
-    }
+    var result = LoginService.Login(username,password);
+    this.setState({errorMessage: result})
+    if(result === ""){
+      alert("sucess");
+      //navigeer hier
+    }    
   }
 
   render() {

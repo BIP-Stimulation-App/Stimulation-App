@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, Text, TouchableOpacity } from 'react-native';
+import { LoginService } from '../Service/LoginService';
 import restorePasswordStyles from '../style/RestorePasswordStyles';
 
 
@@ -9,128 +10,52 @@ const ForgetPasswordForm = () => {
   const [newPassword, setNewPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [showPasswordFields, setShowPasswordFields] = useState(false);
-  const [showEmailField, setShowEmailField] = useState(false);
+  const [showTokenField, setShowTokenField] = useState(false);
   const [errorMessage, seterrorMessage] = useState('');
 
-  const handleEmailrequest= async () => {
-    if(!email.includes('@') ||!email.includes('.')){
-      seterrorMessage("Email is invalid");
-      return;
-    }
-    seterrorMessage("");
-    try{
-      let request = new XMLHttpRequest();
-      request.open("POST","https://localhost:7022/api/Login/Reset");
-      console.log("email: " + email)
-      request.setRequestHeader("email", email);
-      request.addEventListener('error',() =>{})
-      request.send();
-      request.onload = () =>{
-        if(request.status === 200){
-          console.log("succes");
-          setShowEmailField(true);          
-        }
-        if(request.status === 404){
-          console.log("Error 404:"+request.response)
-          seterrorMessage(request.response);
-        }
-        else{
-          console.log(request.status+ " " +request.response);
-        }
-      }
-      request.onerror = () =>{        
-        console.log(request.status+ " " +request.response);
-      }
-    }
-    catch(e){
-      console.log("error: " + e);
+  const ValidateEmail= async () => {
+    var result =LoginService.ValidateEmail(email);
+    seterrorMessage(result);
+    if(result === ""){
+      setShowTokenField(true);
     }
   };
 
-  const handleVerify = async () => {
-    if(token.length != 5){
-      seterrorMessage("Token is invalid!");
-      return;
-    }
-    seterrorMessage("");
-
-    try{
-      let request = new XMLHttpRequest();
-      request.open("POST","https://localhost:7022/api/Login/ResetWithToken");
-      console.log("resetToken: " + code)
-      request.setRequestHeader("resetToken", code);
-      request.addEventListener('error',() =>{})
-      request.send();
-      request.onload = () =>{
-        if(request.status === 200){
-          console.log("succes");
-          setShowEmailField(false);  
-          setShowPasswordFields(true);   
-          Credential.token = request.response;    
-        }
-        else{
-          console.log(request.status+ " " +request.response);
-        }
-      }
-      request.onerror = () =>{        
-        console.log(request.status+ " " +request.response);
-      }
-    }
-    catch(e){
-      console.log("error: " + e);
+  const ValidateCode = async () => {
+    var result = LoginService.ValidateCode(code);
+    seterrorMessage(result);
+    if(result === ""){      
+      setShowEmailField(false);  
+      setShowPasswordFields(true);   
+      Credential.token = request.response;  
     }
   };
 
-  const handleUpdatePassword = async () => {
-    try{
-      if(newPassword != repeatPassword){
-        seterrorMessage("Passwords do not match");
-        return;
-      }
-      else if(newPassword.length<8 ){
-        seterrorMessage("Password must be at least 8 characters long");
-        return;
-      }
-      seterrorMessage("");
-      let request = new XMLHttpRequest();
-      request.open("POST","https://localhost:7022/api/Login/ChangePassword/"+ email);
-      request.setRequestHeader("password", code,"Authorization", "Bearer " + Credential.token);
-      request.addEventListener('error',() =>{})
-      request.send();
-      request.onload = () =>{
-        if(request.status === 200){
-          console.log("succes"); 
-          Credential.password = newPassword;    
-          this.props.navigation.navigate('LogIn');
-        }
-        else{
-          console.log(request.status+ " " +request.response);
-        }
-      }
-      request.onerror = () =>{        
-        console.log(request.status+ " " +request.response);
-      }
-    }
-    catch(e){
-      console.log("error: " + e);
+  const UpdatePassword = async () => {
+    var result = LoginService.UpdatePassword(newPassword,repeatPassword,email);
+    seterrorMessage(result);
+    if(result === ""){      
+      console.log("succes"); 
+      Credential.password = newPassword;    
+      this.props.navigation.navigate('LogIn');
     }
   };
 
   const handleSubmit = () => {
     if (showPasswordFields) {
-      handleUpdatePassword();
-    } else if(showEmailField) {
-      handleVerify();
+      UpdatePassword();
+    } else if(showTokenField) {
+      ValidateCode();      
     }
-    else{
-      handleEmailrequest();
+    else{      
+      ValidateEmail();
     }
   };
 
   return (
     <View>
       <Text style={restorePasswordStyles.title}>Reset your password,</Text>
-      {!showEmailField && !showPasswordFields && (
+      {!showTokenField && !showPasswordFields && (
         <>
         <Text style={restorePasswordStyles.Text}> Please enter the email of your existing account:</Text>
       <TextInput
@@ -142,7 +67,7 @@ const ForgetPasswordForm = () => {
       />
         </>
       )}
-      {showEmailField && !showPasswordFields && (
+      {showTokenField && !showPasswordFields && (
         <>
         <Text style={restorePasswordStyles.Text}>Enter the received code (please check your spam): </Text>
         <TextInput
