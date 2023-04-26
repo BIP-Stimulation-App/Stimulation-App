@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import medicine from './Medicine';
-import addMedicine from '../screens/AddMedicine';
+import addMedicine from './AddMedicine';
 
 
 const Stack = createStackNavigator();

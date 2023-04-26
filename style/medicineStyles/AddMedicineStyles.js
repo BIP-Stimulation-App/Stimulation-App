@@ -42,7 +42,7 @@ saveButton:{
     padding: 20,
     borderRadius: 90,
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 5,
     marginLeft: 'auto',
     marginRight: 'auto',
 },
@@ -50,10 +50,6 @@ saveText:{
     color: '#ffffff',
         fontWeight: '700',
         fontSize: 20
-},
-scroll:{
-    width: 'auto',
-    height: '80%'
 }
 })
 

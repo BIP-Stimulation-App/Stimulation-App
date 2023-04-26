@@ -4,7 +4,7 @@ import styles from '../style/HomeStyles'
 
 import Home from './Home';
 import Health from './Health';
-import MedicineNav from './MedicineNav';
+import MedicineNav from './medicineScreens/MedicineNav';
 import Move from './Move';
 import LeaderBoard from './LeaderBoard';
 import Profile from './Profile';
