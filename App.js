@@ -8,19 +8,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 // Screens
 import LogIn from './auth/LogIn';
 import SignUp from './auth/SignUp';
-import RestorePassword from './auth/RestorePassword'
-
-
-// Drawer menu styling - later nog in aparte styling folder zetten
-const Drawer = createDrawerNavigator();
-const DrawerStyles = {
-/*  activeTintColor: '#fff',
-  inactiveTintColor: '#c6c6c6',
-  activeBackgroundColor: '#2196f3',
-  itemStyle: { marginVertical: 5 },
-  labelStyle: { fontSize: 18, fontWeight: 'bold' },
-  drawerStyle: { backgroundColor: '#3f51b5' }*/
-}
+import RestorePassword from './auth/RestorePassword';
+import HomeNav from './screens/HomeNav';
 
 
 
@@ -41,8 +30,9 @@ function App() {
         }}
     >
       <Stack.Screen name="LogIn" component={LogIn} options={{ headerShown: false}} />
-      <Stack.Screen name="SignUp" component={SignUp} options={{headerTitle: ''}} />
-      <Stack.Screen name="RestorePassword" component={RestorePassword} options={{headerTitle: ''}} />
+      <Stack.Screen name="SignUp" component={SignUp} options={{headerTitle: '', headerTransparent: true}} />
+      <Stack.Screen name="RestorePassword" component={RestorePassword} options={{headerTitle: '', headerTransparent: true}} />
+      <Stack.Screen name="HomeNav" component={HomeNav} options={{ headerShown: false}}/>
        
     </Stack.Navigator>
   </NavigationContainer>

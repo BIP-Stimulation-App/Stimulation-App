@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Alert, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, Button, Alert, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import { LoginService } from '../Service/LoginService';
 import restorePasswordStyles from '../style/RestorePasswordStyles';
 
@@ -14,31 +14,34 @@ const ForgetPasswordForm = () => {
   const [errorMessage, seterrorMessage] = useState('');
 
   const ValidateEmail= async () => {
-    var result =LoginService.ValidateEmail(email);
-    seterrorMessage(result);
-    if(result === ""){
-      setShowTokenField(true);
-    }
+    LoginService.ValidateEmail(email).then((result) => {
+      seterrorMessage(result);
+      if(result === ""){
+        setShowTokenField(true);
+      }
+    });    
   };
 
   const ValidateCode = async () => {
-    var result = LoginService.ValidateCode(code);
-    seterrorMessage(result);
-    if(result === ""){      
-      setShowEmailField(false);  
-      setShowPasswordFields(true);   
-      Credential.token = request.response;  
-    }
+    LoginService.ValidateCode(code).then((result) => {
+      seterrorMessage(result);
+      if(result === ""){      
+        setShowEmailField(false);  
+        setShowPasswordFields(true);   
+        Credential.token = request.response;  
+      }
+    });    
   };
 
   const UpdatePassword = async () => {
-    var result = LoginService.UpdatePassword(newPassword,repeatPassword,email);
-    seterrorMessage(result);
-    if(result === ""){      
-      console.log("succes"); 
-      Credential.password = newPassword;    
-      this.props.navigation.navigate('LogIn');
-    }
+    LoginService.UpdatePassword(newPassword,repeatPassword,email).then((result)=>{
+      seterrorMessage(result);
+      if(result === ""){      
+        console.log("succes"); 
+        Credential.password = newPassword;    
+        this.props.navigation.navigate('LogIn');
+      }
+    });    
   };
 
   const handleSubmit = () => {
@@ -53,7 +56,9 @@ const ForgetPasswordForm = () => {
   };
 
   return (
-    <View>
+    <ImageBackground source={require('../pictures/backgroundlogin.png')} style={{ flex: 1 }}>
+
+    <View style={restorePasswordStyles.container}>
       <Text style={restorePasswordStyles.title}>Reset your password,</Text>
       {!showTokenField && !showPasswordFields && (
         <>
@@ -104,9 +109,8 @@ const ForgetPasswordForm = () => {
         <TouchableOpacity style={restorePasswordStyles.button1} onPress={handleSubmit}>
           <Text style={restorePasswordStyles.buttonTitle}>SUBMIT</Text>
         </TouchableOpacity>
-
-
     </View>
+    </ImageBackground>
   );
 };
 

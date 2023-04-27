@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ImageBackground, Alert, AppRegistry } from 'react-native';
 import stylebasics from '../style/StyleBasics';
 import styles from '../style/InlogStyles';
 import { LoginService } from '../Service/LoginService';
@@ -9,7 +9,8 @@ class Login extends Component {
   state = {
     username: '',
     password: '',
-    errorMessage: ''
+    errorMessage: '',
+    disableButton: false
   }
 
   handleEmail = (text) => {
@@ -20,19 +21,23 @@ class Login extends Component {
     this.setState({ password: text })
   }
 
-  login = (username, password) => {
-    // You can add your own login logic here, e.g. sending a request to an API
-    var result = LoginService.Login(username,password);
+  login = async (username, password) => {
+    this.setState({disableButton:true})
+   LoginService.Login(username,password).then((result) =>{
     this.setState({errorMessage: result})
+    console.log(result);
     if(result === ""){
-      alert("sucess");
-      //navigeer hier
-    }    
+      this.props.navigation.navigate('HomeNav');
+    }
+    this.setState({disableButton:false})
+   })
+     
   }
 
   render() {
     const {errorMessage} = this.state;
     return (
+      <ImageBackground source={require('../pictures/backgroundlogin.png')} style={{ flex: 1 }}>
       <View style={stylebasics.container}>
         <Text style={ styles.welcomeMessage}> Welcome,</Text>
         <TextInput
@@ -62,9 +67,9 @@ class Login extends Component {
 
         <TouchableOpacity
           style={styles.button}
+          disabled = {this.disableButton}
           onPress={() => {
-            this.login(this.state.username, this.state.password);
-            /*this.props.navigation.navigate('HomeNav');*/ //dit moet uit comments gehaald worden om naar de landing page te navigeren, maar homenav is nog niet gekend op de login branch en om problemen te vermijden staat dit hier in comments.
+            this.login(this.state.username, this.state.password);            
           }}
         >
           <Text style={styles.buttonText}>LOGIN</Text>
@@ -77,6 +82,7 @@ class Login extends Component {
           </TouchableOpacity>
         </View>
       </View>
+      </ImageBackground>
     )
   }
 }
