@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ImageBackground, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ImageBackground, Alert, AppRegistry } from 'react-native';
 import stylebasics from '../style/StyleBasics';
 import styles from '../style/InlogStyles';
 import { LoginService } from '../Service/LoginService';
@@ -9,7 +9,8 @@ class Login extends Component {
   state = {
     username: '',
     password: '',
-    errorMessage: ''
+    errorMessage: '',
+    disableButton: false
   }
 
   handleEmail = (text) => {
@@ -20,13 +21,17 @@ class Login extends Component {
     this.setState({ password: text })
   }
 
-  login = (username, password) => {
-    var result = LoginService.Login(username,password);
+  login = async (username, password) => {
+    this.setState({disableButton:true})
+   LoginService.Login(username,password).then((result) =>{
     this.setState({errorMessage: result})
-    if(result === ""){   
-      alert("great succes") ;;
+    console.log(result);
+    if(result === ""){
       this.props.navigation.navigate('HomeNav');
-    }    
+    }
+    this.setState({disableButton:false})
+   })
+     
   }
 
   render() {
@@ -62,6 +67,7 @@ class Login extends Component {
 
         <TouchableOpacity
           style={styles.button}
+          disabled = {this.disableButton}
           onPress={() => {
             this.login(this.state.username, this.state.password);            
           }}

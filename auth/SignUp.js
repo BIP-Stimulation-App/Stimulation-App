@@ -34,13 +34,15 @@ class SignUp extends Component {
   handleUsernameChange = (username) => {
     this.setState({ username });
     if (username === "") return;
-    var result = UserService.UsernameInUse(username);
-    if(result.includes("not")){
-      this.setState({ errorMessage: "" });
+    UserService.UsernameInUse(username).then((result)=>{
+      if(result.includes("not")){
+        this.setState({ errorMessage: "" });
+        return;
+      }
+      this.setState({ errorMessage: result });
       return;
-    }
-    this.setState({ errorMessage: result });
-    return;
+    });
+    
   };
 
   handlePasswordChange = (password) => {
@@ -55,11 +57,12 @@ class SignUp extends Component {
   };
 
   handleSignUp = () => {
-    var result = LoginService.AddLogin(this.state);
-    this.setState({ errorMessage: result });
-    if (result === "") {
-      this.props.navigation.navigate("LogIn");
-    }
+    LoginService.AddLogin(this.state).then((result)=>{
+      this.setState({ errorMessage: result });
+      if (result === "") {
+        this.props.navigation.navigate("LogIn");
+      }
+    });    
   };
 
   render() {
