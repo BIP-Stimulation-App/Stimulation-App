@@ -69,7 +69,7 @@ class Login extends Component {
           style={styles.button}
           disabled = {this.disableButton}
           onPress={() => {
-            this.login(this.state.username, this.state.password);            
+            this.login(this.state.username, this.state.password); 
           }}
         >
           <Text style={styles.buttonText}>LOGIN</Text>
