@@ -7,7 +7,7 @@ import Health from './Health';
 import Medicine from './Medicine';
 import Move from './Move';
 import LeaderBoard from './LeaderBoard';
-import Profile from './Profile';
+import ProfileNav from './profileScreens/ProfileNav';
 
 const Stack = createStackNavigator();
 
@@ -27,7 +27,7 @@ const HomeNav = () => {
         <Stack.Screen name="Medicine" component={Medicine} />
         <Stack.Screen name="Move" component={Move} />
         <Stack.Screen name="LeaderBoard" component={LeaderBoard} />
-        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="ProfileNav" component={ProfileNav} />
       </Stack.Navigator>
     )
 }
