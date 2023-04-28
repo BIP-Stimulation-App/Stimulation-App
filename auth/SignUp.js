@@ -60,6 +60,7 @@ class SignUp extends Component {
     LoginService.AddLogin(this.state).then((result)=>{
       this.setState({ errorMessage: result });
       if (result === "") {
+        alert('Account created with succes!')
         this.props.navigation.navigate("LogIn");
       }
     });    
