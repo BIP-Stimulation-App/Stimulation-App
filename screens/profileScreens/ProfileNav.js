@@ -15,9 +15,9 @@ const ProfileNav = () => {
                 headerTitleStyle: {fontSize: 24},
                 headerTitleAlign: 'center', 
                 headerTransparent: true
+                
             }}/>
-           
-        </Stack.Navigator>
+        </Stack.Navigator>   
     )
 
 }

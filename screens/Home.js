@@ -47,7 +47,7 @@ render(){
            <Text style={styles.text}>Compete</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.smallbutton4} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'Profile'})}>
+      <TouchableOpacity style={styles.smallbutton4} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'ProfileNav'})}>
            <Text style={styles.text}>Profile</Text>
       </TouchableOpacity>
       </View>

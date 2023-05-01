@@ -27,7 +27,7 @@ const HomeNav = () => {
         <Stack.Screen name="Medicine" component={Medicine} />
         <Stack.Screen name="Move" component={Move} />
         <Stack.Screen name="LeaderBoard" component={LeaderBoard} />
-        <Stack.Screen name="ProfileNav" component={ProfileNav} />
+        <Stack.Screen name="ProfileNav" component={ProfileNav} options={{headerShown: false}}/>
       </Stack.Navigator>
     )
 }
