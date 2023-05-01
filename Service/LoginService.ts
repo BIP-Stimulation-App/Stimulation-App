@@ -107,7 +107,7 @@ export class LoginService {
               return "Password must be at least 8 characters long";
             }
             let request = new XMLHttpRequest();
-            request.open("POST",this.apiLoginlink+"/ChangePassword/"+ email);
+            request.open("POST",this.apiLoginlink+"/ChangePassword");
             console.log("resetting password");
             request.setRequestHeader("password", newPassword);       
             request.setRequestHeader("Authorization", "Bearer " + Credential.token) 
