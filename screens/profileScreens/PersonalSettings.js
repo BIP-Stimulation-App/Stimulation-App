@@ -10,6 +10,7 @@ const PersonalSettings = ({userId}) => {
     const[username, setUsername] = useState('');
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
+    const[deviceName, setDeviceName] = useState('testDeviceName');
     const[userNameVisible, setUsernameVisible] = useState('');
     const[errorMessage, setErrorMessage] = useState('');
 
@@ -21,6 +22,7 @@ const PersonalSettings = ({userId}) => {
         setUsername(userData.username);
         setEmail(userData.email);
         setPassword(userData.password);
+        setDeviceName(userData.deviceName);
         setUsernameVisible(userData.userNameVisible);
     })*/
 
@@ -50,6 +52,11 @@ const PersonalSettings = ({userId}) => {
         setPassword(text);
     }
 
+    const handleDeviceNameChange = (text) => {
+        setDeviceName(text);
+        //beperkingen hier opleggen
+    }
+
     const handleUsernameVisibleChange = (text) => {
         setUsernameVisible(text)
     }
@@ -62,7 +69,7 @@ const PersonalSettings = ({userId}) => {
         <ImageBackground source={require('../../pictures/background3.png')} style={{ flex: 1 }}>
             <View style={styles.container}>
 
-                <Text style={styles.text}>username:</Text>
+                <Text style={styles.text}>change username:</Text>
                 <TextInput
                     style={styles.input}
                     value={username}
@@ -79,20 +86,32 @@ const PersonalSettings = ({userId}) => {
                     <Picker.Item label="No" value="no" />
                 </Picker>
 
-                <Text style={styles.text}>email:</Text>
+                <Text style={styles.text}>change email:</Text>
                 <TextInput
                     style={styles.input}
                     value={email}
                     onChangeText={handleEmailChange}
                 />
 
-                <Text style={styles.text}>password:</Text>
+                <Text style={styles.text}>change password:</Text>
                 <TextInput
                     style={styles.input}
                     value={password}
                     onChangeText={handlePasswordChange}
                     secureTextEntry={true}
                 />
+
+                {deviceName !== "none" && (
+                    <View>
+                        <Text style={styles.text}>change bracelet name:</Text>
+                        <TextInput
+                            style={styles.input}
+                            value={deviceName}
+                            onChangeText={handleDeviceNameChange}
+                        />
+                    </View>
+                )}
+                
 
                 {errorMessage ? <Text style={styles.errorMessageText}>{errorMessage}</Text> : null}
 
