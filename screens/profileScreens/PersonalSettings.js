@@ -55,16 +55,18 @@ const PersonalSettings = ({userId}) => {
 
     return(
         <ImageBackground source={require('../../pictures/background3.png')} style={{ flex: 1 }}>
-            <View>
+            <View style={styles.container}>
 
-                <Text>username:</Text>
+                <Text style={styles.text}>username:</Text>
                 <TextInput
+                    style={styles.input}
                     value={username}
                     onChangeText={handleUsernameChange}
                 />
 
-                <Text>Show username in leaderboard?</Text>
+                <Text style={styles.text}>Show username in leaderboard?</Text>
                 <Picker
+                    style={styles.picker}
                     selectedValue={userNameVisible}
                     onValueChange={handleUsernameVisibleChange}
                 >
@@ -72,16 +74,19 @@ const PersonalSettings = ({userId}) => {
                     <Picker.Item label="No" value="no" />
                 </Picker>
 
-                <Text>email:</Text>
+                <Text style={styles.text}>email:</Text>
                 <TextInput
+                    style={styles.input}
                     value={email}
                     onChangeText={handleEmailChange}
                 />
 
-                <Text>password:</Text>
+                <Text style={styles.text}>password:</Text>
                 <TextInput
-                value={password}
-                onChangeText={handlePasswordChange}
+                    style={styles.input}
+                    value={password}
+                    onChangeText={handlePasswordChange}
+                    secureTextEntry={true}
                 />
 
                 <TouchableOpacity style={styles.button} onPress={() => {
