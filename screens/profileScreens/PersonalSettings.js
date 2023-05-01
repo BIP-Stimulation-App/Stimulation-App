@@ -11,6 +11,7 @@ const PersonalSettings = ({userId}) => {
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
     const[userNameVisible, setUsernameVisible] = useState('');
+    const[errorMessage, setErrorMessage] = useState('');
 
     /*useEffect(() => {
         //fetch user data from database
@@ -53,6 +54,10 @@ const PersonalSettings = ({userId}) => {
         setUsernameVisible(text)
     }
 
+    const handleErrorMessage = (message) => {
+        setErrorMessage(message)
+    }
+
     return(
         <ImageBackground source={require('../../pictures/background3.png')} style={{ flex: 1 }}>
             <View style={styles.container}>
@@ -88,6 +93,9 @@ const PersonalSettings = ({userId}) => {
                     onChangeText={handlePasswordChange}
                     secureTextEntry={true}
                 />
+
+                {errorMessage ? <Text style={styles.errorMessageText}>{errorMessage}</Text> : null}
+
 
                 <TouchableOpacity style={styles.button} onPress={() => {
                     navigation.navigate('ProfileNav', {screen: 'profile'});
