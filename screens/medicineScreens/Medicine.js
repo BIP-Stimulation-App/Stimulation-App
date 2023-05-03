@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ImageBackground, FlatList, Image, ScrollView} from 'react-native';
 import styles from '../../style/medicineStyles/MedicineStyles';
 import {useNavigation} from '@react-navigation/native';
+import { MedicationService } from '../../Service/MedicationService';
+import Medication from '../../Models/Medication';
 
 const Medicine = () => {
     const navigation = useNavigation();
@@ -63,16 +65,24 @@ const Medicine = () => {
         timestamp: '10:00 PM',
         frequency: 'weekly'
       },
-]);    
-//const [medicines, setMedcines] = useState([]);
+])
 
-/*useEffect(() => {
+const [medications,setMedications] = useState([]);
+
+useEffect(() => {
     fetchMedicines();
 }, []);
 
 const fetchMedicines = async () => {
-    //insert logic to get the list from the database
-};*/
+    //insert logic to get the list from the database    
+  MedicationService.getMedications()
+  .then((result) => {
+    setMedications(result)
+  })
+  ;
+};
+
+fetchMedicines(); 
 
 const handleNavigate = () => {
     navigation.navigate('MedicineNav', {screen:'addMed'})
@@ -86,8 +96,11 @@ const renderEmpty = () => (
 );
 
 const handleDelete = (id) => {
-    const updatedList = testList.filter(item => item.id !== id); //testList moet vervangen worden door medicines (na implementatie logica)
-    setTestList(updatedList); //setTestList moet vervangen worden door setMedicines (na implementatie logica)
+    const index = testList.findIndex(item => item.id === id);
+    if(MedicationService.removeMedications(index))
+    MedicationService.getMedications().then((result) => {
+      setMedications(result)
+    });
 }
 
 const renderItem = ({item}) => (
@@ -120,7 +133,7 @@ return(
     </View>
     <View style={styles.listContainer}>
         <FlatList 
-            data={testList} //needs to be replaced with medicines property, after implementation the testlist may be deleted
+            data={medications}
             renderItem={renderItem} 
             ListEmptyComponent={renderEmpty}
             keyExtractor={(item) => item.id.toString()}
