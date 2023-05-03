@@ -73,6 +73,14 @@ const SignupStyles = StyleSheet.create({
         fontWeight: '700',
         fontSize: 20
       },
+    errorMessageText:{
+        color: 'red', 
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 16,      
+        marginTop: 10,
+        marginBottom: 5,
+      }
   });
 
   export default SignupStyles;

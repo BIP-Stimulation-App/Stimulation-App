@@ -48,7 +48,15 @@ const restorePasswordStyles = StyleSheet.create({
         marginLeft: 10,
         marginBottom: 5,
         
-    }
+    },
+    errorMessageText:{
+        color: 'red', 
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 16,      
+        marginTop: 5,
+        marginBottom: 10,
+      }
 
 })
 

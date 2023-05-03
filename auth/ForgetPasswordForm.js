@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import { LoginService } from '../Service/LoginService';
 import restorePasswordStyles from '../style/RestorePasswordStyles';
 
 
@@ -9,54 +10,48 @@ const ForgetPasswordForm = () => {
   const [newPassword, setNewPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [showPasswordFields, setShowPasswordFields] = useState(false);
+  const [showTokenField, setShowTokenField] = useState(false);
+  const [errorMessage, seterrorMessage] = useState('');
 
-  const handleVerify = async () => {
-   /* try {
-      // Send email and code to server for verification
-      const response = await fetch('https://example.com/verify', {
-        method: 'POST',
-        body: JSON.stringify({ email, code }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error('Verification failed');
+  const ValidateEmail= async () => {
+    LoginService.ValidateEmail(email).then((result) => {
+      seterrorMessage(result);
+      if(result === ""){
+        setShowTokenField(true);
       }
-
-      setShowPasswordFields(true);
-    } catch (error) {
-      Alert.alert('Error', error.message);
-    }*/
+    });    
   };
 
-  const handleUpdatePassword = async () => {
-   /* try {
-      // Update user's password
-      const response = await fetch('https://example.com/update-password', {
-        method: 'POST',
-        body: JSON.stringify({ email, newPassword }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error('Password update failed');
+  const ValidateCode = async () => {
+    LoginService.ValidateCode(code).then((result) => {
+      seterrorMessage(result);
+      if(result === ""){      
+        setShowEmailField(false);  
+        setShowPasswordFields(true);   
+        Credential.token = request.response;  
       }
+    });    
+  };
 
-      Alert.alert('Success', 'Your password has been updated');
-    } catch (error) {
-      Alert.alert('Error', error.message);
-    }*/
+  const UpdatePassword = async () => {
+    LoginService.UpdatePassword(newPassword,repeatPassword,email).then((result)=>{
+      seterrorMessage(result);
+      if(result === ""){      
+        console.log("succes"); 
+        Credential.password = newPassword;    
+        this.props.navigation.navigate('LogIn');
+      }
+    });    
   };
 
   const handleSubmit = () => {
     if (showPasswordFields) {
-      handleUpdatePassword();
-    } else {
-      handleVerify();
+      UpdatePassword();
+    } else if(showTokenField) {
+      ValidateCode();      
+    }
+    else{      
+      ValidateEmail();
     }
   };
 
@@ -65,7 +60,9 @@ const ForgetPasswordForm = () => {
 
     <View style={restorePasswordStyles.container}>
       <Text style={restorePasswordStyles.title}>Reset your password,</Text>
-      <Text style={restorePasswordStyles.Text}> Please enter the email of your existing account:</Text>
+      {!showTokenField && !showPasswordFields && (
+        <>
+        <Text style={restorePasswordStyles.Text}> Please enter the email of your existing account:</Text>
       <TextInput
         style={ restorePasswordStyles.input}
         placeholder="email"
@@ -73,8 +70,11 @@ const ForgetPasswordForm = () => {
         value={email}
         onChangeText={setEmail}
       />
-      <Text style={restorePasswordStyles.Text}>Enter the received code (please check your spam): </Text>
-      {!showPasswordFields && (
+        </>
+      )}
+      {showTokenField && !showPasswordFields && (
+        <>
+        <Text style={restorePasswordStyles.Text}>Enter the received code (please check your spam): </Text>
         <TextInput
           style={ restorePasswordStyles.input}
           placeholder="code"
@@ -82,6 +82,7 @@ const ForgetPasswordForm = () => {
           value={code}
           onChangeText={setCode}
         />
+        </>
       )}
       {showPasswordFields && (
         <>
@@ -103,6 +104,7 @@ const ForgetPasswordForm = () => {
           />
         </>
       )}
+      {errorMessage ? <Text style={restorePasswordStyles.errorMessageText}>{errorMessage}</Text>:null}
 
         <TouchableOpacity style={restorePasswordStyles.button1} onPress={handleSubmit}>
           <Text style={restorePasswordStyles.buttonTitle}>SUBMIT</Text>

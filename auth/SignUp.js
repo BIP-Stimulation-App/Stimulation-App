@@ -1,109 +1,111 @@
-import React, { Component } from 'react';
-import styles from '../style/SignupStyles';
-import { View, TextInput, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import React, { Component } from "react";
+import styles from "../style/SignupStyles";
+import { View, TextInput, Button, Text, TouchableOpacity,ImageBackground } from "react-native";
+import { LoginService } from "../Service/LoginService";
+import { UserService } from "../Service/UserService";
 
+class SignUp extends Component {
+  constructor(props) {
+    super(props);
 
-class SignUp extends Component{
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-          firstname: '',
-          lastname: '',
-          email: '',
-          username: '',
-          password: '',
-          confirmPassword: '',
-          errorMessage: ''
-        };
+    this.state = {
+      firstname: "",
+      lastname: "",
+      email: "",
+      username: "",
+      usernameInUse: false,
+      errorMessage: "",
+      password: "",
+      confirmPassword: "",
+    };
+  }
+  handleFirstnameChange = (firstname) => {
+    this.setState({ firstname });
+  };
+
+  handleLastnameChange = (lastname) => {
+    this.setState({ lastname });
+  };
+
+  handleEmailChange = (email) => {
+    this.setState({ email });
+  };
+
+  handleUsernameChange = (username) => {
+    this.setState({ username });
+    if (username === "") return;
+    UserService.UsernameInUse(username).then((result)=>{
+      if(result.includes("not")){
+        this.setState({ errorMessage: "" });
+        return;
       }
-      handleFirstnameChange = (firstname) => {
-        this.setState({ firstname });
-      };
+      this.setState({ errorMessage: result });
+      return;
+    });
     
-      handleLastnameChange = (lastname) => {
-        this.setState({ lastname });
-      };
+  };
 
-      handleEmailChange = (email) => {
-        this.setState({ email });
-      };
+  handlePasswordChange = (password) => {
+    this.setState({ password });
+  };
 
-      handleEmailChange = (username) => {
-        this.setState({ username });
-      };
-    
-      handlePasswordChange = (password) => {
-        this.setState({ password });
-      };
-    
-      handleConfirmPasswordChange = (confirmPassword) => {
-        this.setState({ confirmPassword });
-      };
+  handleConfirmPasswordChange = (confirmPassword) => {
+    this.setState({ confirmPassword });
+  };
+  handleErrorMessageChange = (errorMessage) => {
+    this.setState({ errorMessage });
+  };
 
-      handleErrorMessage = (errorMessage) => {
-        this.setState({ errorMessage })
-      };
-    
-      handleSignUp = () => {
-        const { firstname, lastname, email, username, password, confirmPassword } = this.state;
-        console.log('Firstname:'+ firstname);
-        console.log('Lastname:'+ lastname);
-        console.log('Email:'+ email);
-        console.log('Username:'+ username);
-        console.log('Password:'+ password);
-        console.log('Confirm:'+ confirmPassword);
+  handleSignUp = () => {
+    LoginService.AddLogin(this.state).then((result)=>{
+      this.setState({ errorMessage: result });
+      if (result === "") {
+        this.props.navigation.navigate("LogIn");
+      }
+    });    
+  };
 
-       /* if(firstname == 'Yana'){
-          this.setState({ errorMessage: 'You typed the right name'})
-        }
-        else{
-          this.setState({ errorMessage: 'You have not filled all the inputfields'})
-        }*/
-        //dit mag ook weg na insert logic
-        // Validate email, password, and confirmPassword here
-    
-        // Make API call to sign up user here
-    
-        // Navigate to home screen or show error message here
-      };
-
-render() {
-    const {firstname, lastname, email, password, confirmPassword, errorMessage } = this.state;
+  render() {
+    const {
+      firstname,
+      lastname,
+      email,
+      username,
+      errorMessage,
+      password,
+      confirmPassword,
+    } = this.state;
 
     return (
       <ImageBackground source={require('../pictures/backgroundlogin.png')} style={{ flex: 1 }}>
 
       <View style={styles.container} >
         <View style={styles.containerTitel}>
-          <Text style={styles.titel} >Who are you?</Text>
+          <Text style={styles.titel}>Who are you?</Text>
         </View>
-        
 
         <View style={styles.containerNames}>
-    
-            <TextInput 
+          <TextInput
             style={styles.inputnames}
-            placeholder='first name'
-            placeholderTextColor= 'grey'
+            placeholder="first name"
+            placeholderTextColor="grey"
             value={firstname}
             onChangeText={this.handleFirstnameChange}
-            />
-        
-            <TextInput 
+          />
+
+          <TextInput
             style={styles.inputnames}
-            placeholder='last name'
-            placeholderTextColor= 'grey'
+            placeholder="last name"
+            placeholderTextColor="grey"
             value={lastname}
             onChangeText={this.handleLastnameChange}
-            />
-        
+          />
         </View>
-       
-        <TextInput 
+
+        <TextInput
           style={styles.input}
           placeholder="email"
-          placeholderTextColor= 'grey'
+          placeholderTextColor="grey"
           autoCapitalize="none"
           keyboardType="email-address"
           value={email}
@@ -113,12 +115,11 @@ render() {
         <Text style={styles.label}>Enter a username:</Text>
         <TextInput
           style={styles.input}
-          placeholder='example123'
-          placeholderTextColor= 'grey'
+          placeholder="example123"
+          placeholderTextColor="grey"
           autoCapitalize="none"
-          secureTextEntry
-          value={password}
-          onChangeText={this.handlePasswordChange}
+          value={username}
+          onChangeText={this.handleUsernameChange}
         />
 
         <Text style={styles.label}>Enter a password:</Text>
@@ -131,7 +132,7 @@ render() {
         />
 
         <Text style={styles.label}>Repeat your password: </Text>
-        <TextInput 
+        <TextInput
           style={styles.input}
           autoCapitalize="none"
           secureTextEntry
@@ -141,17 +142,17 @@ render() {
 
         {errorMessage ? <Text style={{color: 'red'}}>{errorMessage}</Text> : null}
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={this.handleSignUp}
-        >
+        {errorMessage ? (
+          <Text style={styles.errorMessageText}>{errorMessage}</Text>
+        ) : null}
+
+        <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
           <Text style={styles.buttonText}>SIGN UP</Text>
         </TouchableOpacity>
-
       </View>
       </ImageBackground>
     );
   }
-};
+}
 
 export default SignUp;
