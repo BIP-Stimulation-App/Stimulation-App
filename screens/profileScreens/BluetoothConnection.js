@@ -41,7 +41,7 @@ const BluetoothConnection = ({userId}) => {
     }
 
     return(
-        <ImageBackground source={require('../../pictures/background3.png')} style={{ flex: 1 }}>
+        <ImageBackground source={require('../../assets/background3.png')} style={{ flex: 1 }}>
             <View style={styles.container}>
                 <Text style={styles.text}>Already connected medicine bracelet:</Text>
                 <Text style={styles.deviceName}>{device}</Text>

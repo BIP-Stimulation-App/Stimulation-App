@@ -66,7 +66,7 @@ const PersonalSettings = ({userId}) => {
     }
 
     return(
-        <ImageBackground source={require('../../pictures/background3.png')} style={{ flex: 1 }}>
+        <ImageBackground source={require('../../assets/background3.png')} style={{ flex: 1 }}>
             <View style={styles.container}>
 
                 <Text style={styles.text}>change username:</Text>
@@ -100,6 +100,15 @@ const PersonalSettings = ({userId}) => {
                     onChangeText={handlePasswordChange}
                     secureTextEntry={true}
                 />
+
+                <Text style={styles.text}>old password:</Text>
+                <TextInput
+                    style={styles.input}
+                    value={password}
+                    onChangeText={handlePasswordChange}
+                    secureTextEntry={true}
+                />
+                
 
                 {deviceName !== "none" && (
                     <View>

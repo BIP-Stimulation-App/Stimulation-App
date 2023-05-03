@@ -56,7 +56,7 @@ const ForgetPasswordForm = () => {
   };
 
   return (
-    <ImageBackground source={require('../pictures/backgroundlogin.png')} style={{ flex: 1 }}>
+    <ImageBackground source={require('../assets/backgroundlogin.png')} style={{ flex: 1 }}>
 
     <View style={restorePasswordStyles.container}>
       <Text style={restorePasswordStyles.title}>Reset your password,</Text>

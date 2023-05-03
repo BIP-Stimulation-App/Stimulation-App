@@ -10,10 +10,12 @@ const Profile = () => {
     const handleLogOff = () =>{
         //navigation to be added (make a navigator from the auth pages, and then ref. navigation.navigate('authNav', {screen: ... }))
         //add the logic with the token
+
+        navigation.navigate('AuthNav',{screen:'login'})
     }
 
     return(
-        <ImageBackground source={require('../../pictures/background2.png')} style={{flex: 1}}> 
+        <ImageBackground source={require('../../assets/background2.png')} style={{flex: 1}}> 
         <View style={styles.container}>
             <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('personalSettings')}}>
                 <Text style={styles.textButton}>Personal settings</Text>
