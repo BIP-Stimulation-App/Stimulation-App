@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, ImageBackground, Picker } from 'react-nat
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../style/profileStyles/NotificationsStyles';
 
-const Notifications = ({userId}) => {
+const Notifications = ({username}) => {
     const navigation = useNavigation();
 
     const [receiveForMedicine, setReceiveForMedicine] = useState('yes'); //def yes
@@ -29,7 +29,7 @@ const Notifications = ({userId}) => {
 
     const handleSave = () => {
         //add logic to update the user data in database
-        updateUserData(userId, {receiveForMedicine, receive1HourBefore, receiveGames, receiveWarning, participation})
+        updateUserData(username, {receiveForMedicine, receive1HourBefore, receiveGames, receiveWarning, participation})
     }
 
     const updateUserData = () => {

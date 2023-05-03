@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import styles from '../../style/profileStyles/BluetoothStyles'
 import { ScrollView } from 'react-native-gesture-handler';
 
-const BluetoothConnection = ({userId}) => {
+const BluetoothConnection = ({username}) => {
 
     const[device, setDevice] = useState('testNameDevice'); //must be empty, just for testing frontend
 
@@ -30,13 +30,13 @@ const BluetoothConnection = ({userId}) => {
     const handleConnect = () => {
         //add logic
         setDevice('testNameDevice') //to be replaced
-        updateUserData(userId, {device})
+        updateUserData(username, {device})
                 //add logic to update the user data in database
     }
 
     const handleDisconnect = () => {
         setDevice('none')
-        updateUserData(userId, {device})
+        updateUserData(username, {device})
                 //add logic to update the user data in database
     }
 

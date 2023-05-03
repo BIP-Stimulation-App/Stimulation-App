@@ -1,0 +1,131 @@
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, ImageBackground, TextInput, Picker } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import styles from '../../style/profileStyles/AddExerciseStyle'
+
+
+const AddExercise = () => {
+    const navigation = useNavigation();
+    
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [duration, setDuration] = useState('');
+    const [images, setImages] = useState('');
+    const [difficulty, setDifficulty] = useState('');
+    const [reward, setReward] = useState('');
+    const [category, setCategory] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleName = (text) => {
+        setName(text);
+    }
+
+    const handleDescription = (text) => {
+        setDescription(text);
+    }
+
+    const handleDuration = (text) => {
+        setDuration(text);
+    }
+
+    const handleImages = (text) => {
+        setImages(text)
+    }
+
+    const handleDifficulty = (text) => {
+        setDifficulty(text);
+    }
+
+    const handleReward = (nr) => {
+        setReward(nr);
+    }
+
+    const handleCategory = (text) => {
+        setCategory(text);
+    }
+
+    const handleError = (text) => {
+        setErrorMessage(text);
+    }
+
+    const handleSave = () => {
+        //add logic to update the user data in database
+        //indien succes
+        alert('Exercise added with succes');
+        navigation.navigate('ProfileNav', {screen:'adminAdd'})
+    }
+
+
+    return(
+        <ImageBackground source={require('../../assets/background3.png')} style={{ flex: 1 }}>
+            <View style={styles.container}>
+
+                <Text style={styles.text}>name:</Text>
+                <TextInput
+                    style={styles.input}
+                    value={name}
+                    onChangeText={handleName}
+                />
+
+                <Text style={styles.text}>description:</Text>
+                <TextInput
+                    style={styles.input}
+                    value={description}
+                    onChangeText={handleDescription}
+                />
+
+                <Text style={styles.text}>duration (hh:mm:ss):</Text>
+                <TextInput
+                    style={styles.input}
+                    value={duration}
+                    onChangeText={handleDuration}
+                />    
+
+                <Text style={styles.text}>images:</Text>
+                <TextInput
+                    style={styles.input}
+                    value={images}
+                    onChangeText={handleImages}
+                />
+
+                <Text style={styles.text}>difficulty:</Text>
+                <TextInput
+                    style={styles.input}
+                    value={difficulty}
+                    onChangeText={handleDifficulty}
+                />
+
+                <Text style={styles.text}>reward:</Text>
+                <TextInput
+                    style={styles.input}
+                    value={reward}
+                    onChangeText={handleReward}
+                />
+
+                <Text style={styles.text}>category:</Text>
+                <Picker
+                    style={styles.picker}
+                    selectedValue={category}
+                    onValueChange={handleCategory}
+                >
+                    <Picker.Item label="Strength" value="strength" />
+                    <Picker.Item label="Cardio" value="cardio" />
+                    <Picker.Item label="Yoga/Stretching" value="yoga" />
+                    <Picker.Item label="Coördination" value="coördination" />
+                    <Picker.Item label="Walking" value="walking" />
+
+                </Picker>
+
+                {errorMessage ? <Text style={styles.errorMessageText}>{errorMessage}</Text> : null}
+
+
+                <TouchableOpacity style={styles.button} onPress={handleSave}>
+                    <Text style={styles.textButton}>SAVE</Text>
+                </TouchableOpacity>
+            </View>
+        </ImageBackground>
+    )
+
+}
+
+export default AddExercise;

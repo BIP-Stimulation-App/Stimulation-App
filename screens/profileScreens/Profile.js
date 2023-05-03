@@ -29,6 +29,10 @@ const Profile = () => {
                 <Text style={styles.textButton}>Notifications</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('adminAdd')}}>
+                <Text style={styles.textButton}>Add Exercise</Text>
+            </TouchableOpacity>
+
             <View style={styles.container2}>
             <TouchableOpacity style={styles.logOffContainer} onPress={handleLogOff}>
             <Text style={styles.logOff}>Log off</Text>

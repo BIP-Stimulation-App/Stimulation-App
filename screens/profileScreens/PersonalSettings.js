@@ -4,10 +4,10 @@ import { useNavigation } from '@react-navigation/native';
 import styles from '../../style/profileStyles/PersonalSettingsStyles'
 
 
-const PersonalSettings = ({userId}) => {
+const PersonalSettings = ({username}) => {
     const navigation = useNavigation();
 
-    const[username, setUsername] = useState('');
+   // const[username, setUsername] = useState('');
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
     const[deviceName, setDeviceName] = useState('testDeviceName');
@@ -32,7 +32,7 @@ const PersonalSettings = ({userId}) => {
 
     const handleSave = () => {
         //add logic to update the user data in database
-        updateUserData(userId, {username, email, password, userNameVisible})
+        updateUserData(username, {username, email, password, userNameVisible})
     }
 
     const updateUserData = () => {
