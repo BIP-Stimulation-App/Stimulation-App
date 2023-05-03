@@ -134,8 +134,6 @@ export class LoginService {
     }
     // Make API call to sign up user here
     let account = new NewAccount(object.username,object.firstname,object.lastname,object.email,object.password);
-
-
     try {
       const response = await fetch(this.apiLoginlink + "/Add", {
         method: 'POST',
