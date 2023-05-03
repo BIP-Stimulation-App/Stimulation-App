@@ -21,7 +21,7 @@ const InlogStyles = StyleSheet.create({
     },
     button: {
       width: '90%',
-      backgroundColor: 'limegreen', //#2980b9 - blauw
+      backgroundColor: '#388C77',
       padding: 20,
       borderRadius: 30,
       alignItems: 'center',
@@ -40,6 +40,8 @@ const InlogStyles = StyleSheet.create({
          color: 'white',
          fontWeight: 700,
          fontSize: 40,
+         paddingLeft:10,
+         
 
     },
     createAccountView:{
