@@ -33,6 +33,11 @@ const PersonalSettings = ({username}) => {
     const handleSave = () => {
         //add logic to update the user data in database
         updateUserData(username, {username, email, password, userNameVisible})
+
+        //indien ok
+        alert('changes saved');
+        navigation.navigate('ProfileNav', {screen: 'profile'});
+
     }
 
     const updateUserData = () => {
@@ -125,10 +130,7 @@ const PersonalSettings = ({username}) => {
                 {errorMessage ? <Text style={styles.errorMessageText}>{errorMessage}</Text> : null}
 
 
-                <TouchableOpacity style={styles.button} onPress={() => {
-                    navigation.navigate('ProfileNav', {screen: 'profile'});
-                    alert('clicked the save button'); //must be replaced with the 'handleSave' - function
-                }}>
+                <TouchableOpacity style={styles.button} onPress={handleSave}>
                     <Text style={styles.textButton}>SAVE</Text>
                 </TouchableOpacity>
             </View>

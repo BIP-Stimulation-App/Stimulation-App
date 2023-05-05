@@ -9,9 +9,9 @@ const PersonalSettingsStyles = StyleSheet.create({
         paddingTop: 50
     },
     text:{
-        fontSize: 15,
+        fontSize: 12,
         fontWeight: 'bold',
-        paddingBottom: 5
+        paddingBottom: 5,
     },
     input:{
         height: 30,
@@ -22,6 +22,50 @@ const PersonalSettingsStyles = StyleSheet.create({
         borderRadius: 5,
         marginBottom: 20
     },
+    description:{
+        height: 60,
+        padding: 20,
+        borderWidth: 2,
+        borderColor: '#388C77',
+        backgroundColor: 'white',
+        borderRadius: 5,
+        marginBottom: 20
+
+    },
+    doubleText:{
+        flexDirection: 'row',
+    },
+    textReward:{
+        fontSize: 12,
+        fontWeight: 'bold',
+        paddingBottom: 5,
+        marginLeft: '35%'
+    },
+    
+    doubleInput:{
+        flexDirection: 'row',
+    },
+    difficultyPicker:{
+        width: '50%',
+        marginRight: 5,
+        backgroundColor: 'white',
+        borderWidth: 2,
+        borderColor: '#388C77',
+        padding: 10,
+        borderRadius: 5,
+        marginBottom: 20,
+    },
+    inputReward:{
+        width: '50%',
+        height: 30,
+        padding: 20,
+        borderWidth: 2,
+        borderColor: '#388C77',
+        backgroundColor: 'white',
+        borderRadius: 5,
+        marginBottom: 20
+    },
+    
     picker:{
         backgroundColor: 'white',
         borderWidth: 2,
@@ -29,6 +73,12 @@ const PersonalSettingsStyles = StyleSheet.create({
         padding: 10,
         borderRadius: 5,
         marginBottom: 20,
+    },
+    browse:{
+        height: 30,
+        width: 'auto',
+        marginLeft: 5,
+        marginTop: 6
     },
     button:{
         width: '90%',

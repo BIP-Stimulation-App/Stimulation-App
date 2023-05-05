@@ -9,7 +9,7 @@ const PersonalSettingsStyles = StyleSheet.create({
         paddingTop: 50
     },
     text:{
-        fontSize: 15,
+        fontSize: 12,
         fontWeight: 'bold',
         paddingBottom: 5
     },
@@ -36,7 +36,7 @@ const PersonalSettingsStyles = StyleSheet.create({
         padding: 20,
         borderRadius: 30,
         alignItems: 'center',
-        marginTop: 25,
+        marginTop: 10,
         marginLeft: 'auto',
         marginRight: 'auto',
     

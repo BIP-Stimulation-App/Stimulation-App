@@ -33,11 +33,13 @@ const Profile = () => {
                 <Text style={styles.textButton}>Add Exercise</Text>
             </TouchableOpacity>
 
-            <View style={styles.container2}>
+            <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('showExercises')}}>
+                <Text style={styles.textButton}>Show Exercises</Text>
+            </TouchableOpacity>
+
             <TouchableOpacity style={styles.logOffContainer} onPress={handleLogOff}>
             <Text style={styles.logOff}>Log off</Text>
             </TouchableOpacity>
-            </View>
         </View>
         </ImageBackground>
     )

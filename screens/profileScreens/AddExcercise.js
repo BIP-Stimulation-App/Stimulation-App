@@ -49,7 +49,7 @@ const AddExercise = () => {
     }
 
     const handleSave = () => {
-        //add logic to update the user data in database
+        //add logic to insert the data in database
         //indien succes
         alert('Exercise added with succes');
         navigation.navigate('ProfileNav', {screen:'adminAdd'})
@@ -66,53 +66,62 @@ const AddExercise = () => {
                     value={name}
                     onChangeText={handleName}
                 />
-
                 <Text style={styles.text}>description:</Text>
                 <TextInput
-                    style={styles.input}
+                    style={styles.description}
                     value={description}
                     onChangeText={handleDescription}
                 />
-
+            
                 <Text style={styles.text}>duration (hh:mm:ss):</Text>
                 <TextInput
                     style={styles.input}
                     value={duration}
                     onChangeText={handleDuration}
                 />    
-
+                
                 <Text style={styles.text}>images:</Text>
+
+            <View style={styles.doubleInput}>
                 <TextInput
                     style={styles.input}
                     value={images}
                     onChangeText={handleImages}
                 />
-
+                <button style={styles.browse}>Browse</button>
+            </View>
+            <View style={styles.doubleText}>
                 <Text style={styles.text}>difficulty:</Text>
-                <TextInput
-                    style={styles.input}
-                    value={difficulty}
-                    onChangeText={handleDifficulty}
-                />
+                <Text style={styles.textReward}>reward:</Text>
+            </View>
+            <View style={styles.doubleInput}>
+                <Picker
+                    style={styles.difficultyPicker}
+                    selectedValue={difficulty}
+                    onValueChange={handleDifficulty}
+                >
+                    <Picker.Item label="easy" value="easy" />
+                    <Picker.Item label="normal" value="normal" />
+                    <Picker.Item label="hard" value="hard" />
+                </Picker>
 
-                <Text style={styles.text}>reward:</Text>
                 <TextInput
-                    style={styles.input}
+                    style={styles.inputReward}
                     value={reward}
                     onChangeText={handleReward}
                 />
-
+            </View>
                 <Text style={styles.text}>category:</Text>
                 <Picker
                     style={styles.picker}
                     selectedValue={category}
                     onValueChange={handleCategory}
                 >
-                    <Picker.Item label="Strength" value="strength" />
-                    <Picker.Item label="Cardio" value="cardio" />
-                    <Picker.Item label="Yoga/Stretching" value="yoga" />
-                    <Picker.Item label="Coördination" value="coördination" />
-                    <Picker.Item label="Walking" value="walking" />
+                    <Picker.Item label="strength" value="strength" />
+                    <Picker.Item label="cardio" value="cardio" />
+                    <Picker.Item label="yoga/stretching" value="yoga" />
+                    <Picker.Item label="coördination" value="coördination" />
+                    <Picker.Item label="walking" value="walking" />
 
                 </Picker>
 

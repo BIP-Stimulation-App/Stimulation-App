@@ -6,6 +6,7 @@ import personalSettings from './PersonalSettings';
 import notifications from './Notifications';
 import bluetooth from './BluetoothConnection';
 import addExercise from './AddExcercise';
+import showExercises from './ShowExercises';
 
 
 const Stack = createStackNavigator();
@@ -41,6 +42,12 @@ const ProfileNav = () => {
             }}/>
             <Stack.Screen name='adminAdd' component={addExercise} options={{
                 headerTitle: 'Add Exercise',
+                headerTitleStyle: {fontSize: 24},
+                headerTitleAlign: 'center', 
+                 headerTransparent: true
+            }}/>
+            <Stack.Screen name='showExercises' component={showExercises} options={{
+                headerTitle: 'Added Exercises',
                 headerTitleStyle: {fontSize: 24},
                 headerTitleAlign: 'center', 
                  headerTransparent: true
