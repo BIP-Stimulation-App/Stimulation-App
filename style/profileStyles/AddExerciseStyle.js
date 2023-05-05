@@ -15,7 +15,7 @@ const PersonalSettingsStyles = StyleSheet.create({
     },
     input:{
         height: 30,
-        padding: 20,
+        padding: 10,
         borderWidth: 2,
         borderColor: '#388C77',
         backgroundColor: 'white',
@@ -78,7 +78,6 @@ const PersonalSettingsStyles = StyleSheet.create({
         height: 30,
         width: 'auto',
         marginLeft: 5,
-        marginTop: 6
     },
     button:{
         width: '90%',

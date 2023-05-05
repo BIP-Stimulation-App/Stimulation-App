@@ -47,7 +47,7 @@ const ProfileNav = () => {
                  headerTransparent: true
             }}/>
             <Stack.Screen name='showExercises' component={showExercises} options={{
-                headerTitle: 'Added Exercises',
+                headerTitle: 'Overview Exercises',
                 headerTitleStyle: {fontSize: 24},
                 headerTitleAlign: 'center', 
                  headerTransparent: true
