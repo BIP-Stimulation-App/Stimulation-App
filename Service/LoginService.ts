@@ -12,7 +12,6 @@ export class LoginService {
     if(password === ""){
       return "Password can not be empty.";
     }
-  return '';
     try {
       const response = await fetch(this.apiLoginlink, {
         method: 'POST',
@@ -27,8 +26,9 @@ export class LoginService {
       if (response.ok) {
         Credential.username = username;
         Credential.password = password;
-        const token = await response.text(); // Extract the response body as text
-        Credential.token = token;
+        await response.json().then(data => {
+          Credential.token = "Bearer " + data.token;
+        });
         return '';
       } else {
         console.log(response.status + ' ' + response.statusText);
@@ -53,8 +53,9 @@ export class LoginService {
         })
       });
       if (response.ok) {
-        const token = await response.text(); // Extract the response body as text
-        Credential.token = token;
+        await response.json().then(data => {
+          Credential.token = "Bearer " + data.token;
+        }); // Extract the response body as text
         return '';
       } else {
         console.log(response.status + ' ' + response.statusText);
@@ -123,7 +124,7 @@ export class LoginService {
         method: 'POST',
           headers: {
               'password': newPassword,
-              'Authorization': "Bearer " + Credential.token
+              'Authorization': Credential.token
             },
       })
       if (response.ok) {
