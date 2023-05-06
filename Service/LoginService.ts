@@ -1,6 +1,6 @@
 import { acc } from "react-native-reanimated";
-import Credential from "../auth/Models/Credentials"
-import { NewAccount } from "../auth/Models/NewAccount";
+import Credential from "../Models/Credentials"
+import { NewAccount } from "../Models/NewAccount";
 
 export class LoginService {
   static apiLoginlink:string = "http://stimulationapp.com:5000/api/Login"
@@ -12,7 +12,6 @@ export class LoginService {
     if(password === ""){
       return "Password can not be empty.";
     }
-  
     try {
       const response = await fetch(this.apiLoginlink, {
         method: 'POST',
@@ -27,8 +26,9 @@ export class LoginService {
       if (response.ok) {
         Credential.username = username;
         Credential.password = password;
-        const token = await response.text(); // Extract the response body as text
-        Credential.token = token;
+        await response.json().then(data => {
+          Credential.token = "Bearer " + data.token;
+        });
         return '';
       } else {
         console.log(response.status + ' ' + response.statusText);
@@ -39,6 +39,34 @@ export class LoginService {
       return 'An error happened, please try again';
     }
   }
+
+  static async ReLogIn(){
+    try {
+      const response = await fetch(this.apiLoginlink, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: Credential.username,
+          password: Credential.password
+        })
+      });
+      if (response.ok) {
+        await response.json().then(data => {
+          Credential.token = "Bearer " + data.token;
+        }); // Extract the response body as text
+        return '';
+      } else {
+        console.log(response.status + ' ' + response.statusText);
+        return response.statusText;
+      }
+    } catch (error) {
+      console.log(error);
+      return 'An error happened, please try again';
+    }
+  }
+  
 
   static async ValidateEmail(email:string):Promise<string>{
     if(!email.includes('@') ||!email.includes('.')){
@@ -96,7 +124,7 @@ export class LoginService {
         method: 'POST',
           headers: {
               'password': newPassword,
-              'Authorization': "Bearer " + Credential.token
+              'Authorization': Credential.token
             },
       })
       if (response.ok) {
