@@ -77,7 +77,7 @@ class SignUp extends Component {
     } = this.state;
 
     return (
-      <ImageBackground source={require('../pictures/backgroundlogin.png')} style={{ flex: 1 }}>
+      <ImageBackground source={require('../assets/backgroundlogin.png')} style={{ flex: 1 }}>
 
       <View style={styles.container} >
         <View style={styles.containerTitel}>

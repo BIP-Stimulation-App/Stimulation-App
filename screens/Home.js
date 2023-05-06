@@ -23,7 +23,7 @@ class Home extends Component {
 render(){
   const {firstName} = this.state;
   return(
-    <ImageBackground source={require('../pictures/background1.png')} style={{ flex: 1 }}>
+    <ImageBackground source={require('../assets/background1.png')} style={{ flex: 1 }}>
     <View style={styles.container}>
       <Text style={styles.hello}>Hello {firstName}!</Text>
 
@@ -47,7 +47,7 @@ render(){
            <Text style={styles.text}>Compete</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.smallbutton4} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'Profile'})}>
+      <TouchableOpacity style={styles.smallbutton4} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'ProfileNav'})}>
            <Text style={styles.text}>Profile</Text>
       </TouchableOpacity>
       </View>
