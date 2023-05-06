@@ -1,8 +1,11 @@
+
 import React, { Component } from 'react';
-import { Text, View, TextInput, TouchableOpacity, ImageBackground, Alert, AppRegistry } from 'react-native';
+import { StyleSheet,Text, View, TextInput, TouchableOpacity, ImageBackground, Alert, AppRegistry } from 'react-native';
 import stylebasics from '../style/StyleBasics';
 import styles from '../style/InlogStyles';
 import { LoginService } from '../Service/LoginService';
+import Credentials from '../Models/Credentials';
+import React, { Component } from 'react';
 
 
 class Login extends Component {

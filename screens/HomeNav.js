@@ -4,10 +4,11 @@ import styles from '../style/HomeStyles'
 
 import Home from './Home';
 import Health from './Health';
-import Medicine from './Medicine';
+import MedicineNav from './medicineScreens/MedicineNav';
 import Move from './Move';
 import LeaderBoard from './LeaderBoard';
 import ProfileNav from './profileScreens/ProfileNav';
+
 
 const Stack = createStackNavigator();
 
@@ -24,13 +25,15 @@ const HomeNav = () => {
           headerLeft: null, headerShown: false
         }}/>
         <Stack.Screen name="Health" component={Health} />
-        <Stack.Screen name="Medicine" component={Medicine} />
+        <Stack.Screen name="MedicineNav" component={MedicineNav} options={{headerShown: false}} />
         <Stack.Screen name="Move" component={Move} />
         <Stack.Screen name="LeaderBoard" component={LeaderBoard} />
         <Stack.Screen name="ProfileNav" component={ProfileNav} options={{headerShown: false}}/>
       </Stack.Navigator>
     )
 }
+
+
 
 
 export default HomeNav;
