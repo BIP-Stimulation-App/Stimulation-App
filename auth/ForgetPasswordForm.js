@@ -59,7 +59,6 @@ const ForgetPasswordForm = () => {
     <ImageBackground source={require('../assets/backgroundlogin.png')} style={{ flex: 1 }}>
 
     <View style={restorePasswordStyles.container}>
-      <Text style={restorePasswordStyles.title}>Reset your password,</Text>
       {!showTokenField && !showPasswordFields && (
         <>
         <Text style={restorePasswordStyles.Text}> Please enter the email of your existing account:</Text>

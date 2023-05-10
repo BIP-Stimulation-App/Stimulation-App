@@ -3,12 +3,12 @@ import {
   View,
   Text,
   TextInput,
-  Picker,
   TouchableOpacity,
   ImageBackground,
   Image,
   ScrollView,
 } from "react-native";
+import {Picker} from '@react-native-picker/picker';
 import { useNavigation } from "@react-navigation/native";
 import styles from "../../style/medicineStyles/AddMedicineStyles";
 import { MedicationService } from "../../Service/MedicationService";
@@ -68,12 +68,12 @@ const AddMedicine = () => {
 
   return (
     <ImageBackground
-      source={require("../../pictures/background2.png")}
+      source={require("../../assets/background2.png")}
       style={{ flex: 1 }}
     >
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Image
-          source={require("../../pictures/medicine.png")}
+          source={require("../../assets/medicine.png")}
           style={styles.picture}
         />
         <Text style={styles.text}>medicine name:</Text>
@@ -181,7 +181,7 @@ const AddMedicine = () => {
         <TouchableOpacity onPress={handleSave} style={styles.saveButton}>
           <Text style={styles.saveText}>SAVE</Text>
         </TouchableOpacity>
-      </View>
+      </ScrollView>
     </ImageBackground>
   );
 };

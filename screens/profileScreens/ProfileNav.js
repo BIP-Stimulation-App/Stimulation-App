@@ -7,6 +7,7 @@ import notifications from './Notifications';
 import bluetooth from './BluetoothConnection';
 import addExercise from './AddExcercise';
 import showExercises from './ShowExercises';
+import changeExercise from './ChangeExercise';
 
 
 const Stack = createStackNavigator();
@@ -48,6 +49,12 @@ const ProfileNav = () => {
             }}/>
             <Stack.Screen name='showExercises' component={showExercises} options={{
                 headerTitle: 'Overview Exercises',
+                headerTitleStyle: {fontSize: 24},
+                headerTitleAlign: 'center', 
+                 headerTransparent: true
+            }}/>
+            <Stack.Screen name='changeExercise' component={changeExercise} options={{
+                headerTitle: 'Change Exercise',
                 headerTitleStyle: {fontSize: 24},
                 headerTitleAlign: 'center', 
                  headerTransparent: true

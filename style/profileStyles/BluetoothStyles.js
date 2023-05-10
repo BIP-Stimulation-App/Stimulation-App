@@ -31,7 +31,7 @@ const BluetoothStyles = StyleSheet.create({
     },
     scroll:{
         width: 'auto',
-        height: '150px',
+        height: 150,
         borderWidth: 1,
         borderColor: '#388C77'
     },

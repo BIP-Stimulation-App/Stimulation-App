@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, ImageBackground, TextInput, Picker } from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground, TextInput,ScrollView} from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../style/profileStyles/PersonalSettingsStyles'
 
@@ -72,7 +73,7 @@ const PersonalSettings = ({username}) => {
 
     return(
         <ImageBackground source={require('../../assets/background3.png')} style={{ flex: 1 }}>
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
 
                 <Text style={styles.text}>change username:</Text>
                 <TextInput
@@ -133,7 +134,7 @@ const PersonalSettings = ({username}) => {
                 <TouchableOpacity style={styles.button} onPress={handleSave}>
                     <Text style={styles.textButton}>SAVE</Text>
                 </TouchableOpacity>
-            </View>
+            </ScrollView>
         </ImageBackground>
     )
 

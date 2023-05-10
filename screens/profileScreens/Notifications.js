@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, ImageBackground, Picker } from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground,ScrollView} from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../style/profileStyles/NotificationsStyles';
 
@@ -59,7 +60,7 @@ const Notifications = ({username}) => {
 
     return(
         <ImageBackground source={require('../../assets/background3.png')} style={{ flex: 1 }}>
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
             <Text style={styles.text}>Receive notification for medicine?</Text>
                 <Picker
                     style={styles.picker}
@@ -121,7 +122,7 @@ const Notifications = ({username}) => {
                     <Text style={styles.textButton}>SAVE</Text>
                 </TouchableOpacity>
             
-            </View>
+            </ScrollView>
         </ImageBackground>
     )
 }

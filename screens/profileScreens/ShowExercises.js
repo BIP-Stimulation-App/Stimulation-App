@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ImageBackground, FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import styles from '../../style/profileStyles/ShowExercisesStyles'
 
 const ShowExercises = () => {
+    const navigation = useNavigation();
+
     const[testList, setTestList]=useState([ //to be deleted
        {
             id:1,
@@ -92,6 +96,7 @@ const ShowExercises = () => {
     
     const renderItem = ({item}) => (
         <View style={styles.listComponent}>
+            <TouchableOpacity onPress={ () => {navigation.navigate('ProfileNav', {screen: 'changeExercise'})}}>
             <Text style={styles.titel}>{item.nameExercise}</Text>
             <Text style={styles.text}>{item.description}</Text>
             <Text style={styles.text}>duration: {item.duration}</Text>
@@ -100,6 +105,7 @@ const ShowExercises = () => {
             <Text style={styles.text}>{item.reward} coins</Text>
             <TouchableOpacity onPress={()=> handleDelete(item.id)} style={styles.deleteButton}>
                 <Text style={styles.delete}>DELETE</Text>
+            </TouchableOpacity>
             </TouchableOpacity>
         </View>
     )

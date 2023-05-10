@@ -79,7 +79,7 @@ const Medicine = () => {
 
   
   return(
-      <ImageBackground source={require('../../pictures/background2.png')} style={{ flex: 1 }}>
+      <ImageBackground source={require('../../assets/background2.png')} style={{ flex: 1 }}>
       <View style={styles.container}>
       <View style={styles.buttonView}>
           <TouchableOpacity style={styles.addButton} onPress={handleNavigate}>
@@ -96,7 +96,7 @@ const Medicine = () => {
               showsVerticalScrollIndicator={false}
           />
       </View>
-      <Text style={styles.explanation}>By adding medicine, <br/> a notification on your phone will appear on the selected time.</Text>
+      <Text style={styles.explanation}>By adding medicine, a notification on your phone will appear on the selected time.</Text>
       </View>    
       </ImageBackground>
   )

@@ -10,7 +10,6 @@ const HomeStyles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 24,
         marginBottom: 40,
-        display: 'block',
         marginTop: 20,
     },
     widebutton:{

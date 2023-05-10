@@ -86,7 +86,6 @@ deleteButton:{
 explanation:{
   fontSize: 10,
   textAlign: 'center',
-  marginTop: 10
 }
 
 });

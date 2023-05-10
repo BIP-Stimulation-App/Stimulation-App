@@ -20,8 +20,17 @@ const AuthNav = () => {
         headerBackTitleStyle: { fontWeight: 'bold'}
       }}>
         <Stack.Screen name="login" component={login} options={{headerShown: false}}/>
-        <Stack.Screen name="signup" component={signup} options={{headerTitle: '', headerTransparent: true}} />
-        <Stack.Screen name="resetPassword" component={resetPassword} options={{headerTitle: '', headerTransparent: true}} />
+        <Stack.Screen name="signup" component={signup} options={{
+          headerTitle: 'Who are you?', 
+          headerTransparent: true, 
+          headerTitleStyle: {fontSize: 24, fontWeight:'bold'},
+          headerTitleAlign: 'center', 
+}} />
+        <Stack.Screen name="resetPassword" component={resetPassword} options={{headerTitle: 'Reset Password', 
+        headerTransparent: true, 
+        headerTitleStyle: {fontSize: 24, fontWeight:'bold'},
+        headerTitleAlign: 'center', 
+      }} />
       </Stack.Navigator>
     )
 }

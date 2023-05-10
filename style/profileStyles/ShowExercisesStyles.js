@@ -5,7 +5,7 @@ const ShowExercisesStyles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         paddingBottom: 20,
-        marginTop: 60,
+        marginTop: 100,
         alignContent: 'center',
         flex: 1
     },
