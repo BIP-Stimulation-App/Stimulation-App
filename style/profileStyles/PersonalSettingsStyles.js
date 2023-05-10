@@ -2,11 +2,11 @@ import { StyleSheet } from 'react-native'
 
 const PersonalSettingsStyles = StyleSheet.create({
     container:{
-        flex:1,
+        //flex:1,
         paddingLeft: 20,
         paddingRight: 20,
-        justifyContent: 'center',
-        paddingTop: 50
+        //justifyContent: 'center',
+        paddingTop: 100
     },
     text:{
         fontSize: 12,

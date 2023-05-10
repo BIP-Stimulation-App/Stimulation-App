@@ -80,9 +80,6 @@ class SignUp extends Component {
       <ImageBackground source={require('../assets/backgroundlogin.png')} style={{ flex: 1 }}>
 
       <View style={styles.container} >
-        <View style={styles.containerTitel}>
-          <Text style={styles.titel}>Who are you?</Text>
-        </View>
 
         <View style={styles.containerNames}>
           <TextInput

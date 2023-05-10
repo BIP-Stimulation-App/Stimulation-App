@@ -2,15 +2,14 @@ import { StyleSheet } from 'react-native'
 
 const AddMedicineStyles = StyleSheet.create({
 container:{
-    flex:1,
     paddingLeft: 20,
     paddingRight: 20,
-    justifyContent: 'center',
-    paddingTop: 50
+    //justifyContent: 'center',
+    paddingTop: 100
 },
 picture:{
-    width: '100px',
-    height: '100px',
+    width: 100,
+    height: 100,
     alignSelf: 'center',
     marginBottom: 5,
 },
@@ -29,6 +28,7 @@ inputMedicineName:{
     marginBottom: 20
 },
 picker:{
+    height:'auto',
     backgroundColor: 'white',
     borderWidth: 2,
     borderColor: '#388C77',
@@ -42,7 +42,7 @@ saveButton:{
     padding: 20,
     borderRadius: 90,
     alignItems: 'center',
-    marginTop: 5,
+    //marginTop: 5,
     marginLeft: 'auto',
     marginRight: 'auto',
 },

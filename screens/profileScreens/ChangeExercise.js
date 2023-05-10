@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ImageBackground, TextInput, ScrollView} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../style/profileStyles/AddExerciseStyle'
 
 
-const AddExercise = () => {
+const ChangeExercise = () => {
     const navigation = useNavigation();
     
     const [name, setName] = useState('');
@@ -53,7 +53,7 @@ const AddExercise = () => {
         //add logic to insert the data in database
         //indien succes
         alert('Exercise added with succes');
-        navigation.navigate('ProfileNav', {screen:'adminAdd'})
+        navigation.navigate('ProfileNav', {screen:'showExercises'})
     }
 
 
@@ -92,7 +92,6 @@ const AddExercise = () => {
                 <TouchableOpacity style={styles.browse}>
                     <Text>Browse</Text>
                 </TouchableOpacity>
-                
                 
             </View>
             <View style={styles.doubleText}>
@@ -142,4 +141,4 @@ const AddExercise = () => {
 
 }
 
-export default AddExercise;
+export default ChangeExercise;

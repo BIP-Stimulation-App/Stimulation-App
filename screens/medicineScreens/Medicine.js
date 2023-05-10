@@ -95,7 +95,7 @@ const Medicine = () => {
               showsVerticalScrollIndicator={false}
           />
       </View>
-      <Text style={styles.explanation}>By adding medicine, <br/> a notification on your phone will appear on the selected time.</Text>
+      <Text style={styles.explanation}>By adding medicine, a notification on your phone will appear on the selected time.</Text>
       </View>    
       </ImageBackground>
   )
