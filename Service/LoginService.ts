@@ -1,4 +1,3 @@
-import { acc } from "react-native-reanimated";
 import Credential from "../Models/Credentials"
 import { NewAccount } from "../Models/NewAccount";
 

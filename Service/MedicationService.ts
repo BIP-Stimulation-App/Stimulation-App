@@ -1,7 +1,6 @@
 import Medication from "../Models/Medication";
 import { LoginService } from "./LoginService";
 import Credential from "../Models/Credentials"
-import { Alert } from "react-native";
 
 export class MedicationService{
     static api = "http://stimulationapp.com:5000/api/Medication"

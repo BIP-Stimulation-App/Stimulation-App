@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ImageBackground, TextInput, Picker } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../style/profileStyles/AddExerciseStyle'

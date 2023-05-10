@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   ImageBackground,
   Image,
-  ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "../../style/medicineStyles/AddMedicineStyles";
@@ -68,12 +67,12 @@ const AddMedicine = () => {
 
   return (
     <ImageBackground
-      source={require("../../pictures/background2.png")}
+      source={require("../../assets/background2.png")}
       style={{ flex: 1 }}
     >
       <View style={styles.container}>
         <Image
-          source={require("../../pictures/medicine.png")}
+          source={require("../../assets/medicine.png")}
           style={styles.picture}
         />
         <Text style={styles.text}>medicine name:</Text>

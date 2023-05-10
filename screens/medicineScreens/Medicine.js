@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, ImageBackground, FlatList, Image, ScrollView} from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground, FlatList} from 'react-native';
 import styles from '../../style/medicineStyles/MedicineStyles';
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import { useNavigation} from '@react-navigation/native';
 import { MedicationService } from '../../Service/MedicationService';
-import Medication from '../../Models/Medication';
 
 const Medicine = () => {
   const navigation = useNavigation();
@@ -79,7 +78,7 @@ const Medicine = () => {
 
   
   return(
-      <ImageBackground source={require('../../pictures/background2.png')} style={{ flex: 1 }}>
+      <ImageBackground source={require('../../assets/background2.png')} style={{ flex: 1 }}>
       <View style={styles.container}>
       <View style={styles.buttonView}>
           <TouchableOpacity style={styles.addButton} onPress={handleNavigate}>

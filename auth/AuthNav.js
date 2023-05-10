@@ -1,6 +1,5 @@
 import React, { } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-
 import login from './LogIn';
 import signup from './SignUp';
 import resetPassword from './ForgetPasswordForm';
