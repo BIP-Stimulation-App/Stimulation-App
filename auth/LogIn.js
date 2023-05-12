@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Text, View, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
 import stylebasics from '../style/StyleBasics';
 import styles from '../style/InlogStyles';
+import { LoginService } from '../Service/LoginService';
 
 
 class Login extends Component {
@@ -23,14 +24,14 @@ class Login extends Component {
 
   login = async (username, password) => {
     this.setState({disableButton:true})
-   /*LoginService.Login(username,password).then((result) =>{
+    LoginService.Login(username,password).then((result) =>{
     this.setState({errorMessage: result})
     console.log(result);
     if(result === ""){
       this.props.navigation.navigate('HomeNav');
     }
     this.setState({disableButton:false})
-   })*/
+   })
      
   }
 

@@ -1,6 +1,5 @@
-import Credential from "../Models/Credentials"
 import { NewAccount } from "../Models/NewAccount";
-
+import { saveLoginCredentials, getLoginCredentials, saveApiToken, getApiToken } from '../DataContext';
 export class LoginService {
   static apiLoginlink:string = "http://stimulationapp.com:5000/api/Login"
 
@@ -23,10 +22,9 @@ export class LoginService {
         })
       });
       if (response.ok) {
-        Credential.username = username;
-        Credential.password = password;
-        await response.json().then(data => {
-          Credential.token = "Bearer " + data.token;
+        saveLoginCredentials(username,password);
+        await response.json().then(async data => {
+           saveApiToken("Bearer " + data.token);
         });
         return '';
       } else {
@@ -39,21 +37,22 @@ export class LoginService {
     }
   }
 
-  static async ReLogIn(){
+  static async ReLogIn(){    
     try {
+      var login = await getLoginCredentials()
       const response = await fetch(this.apiLoginlink, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          username: Credential.username,
-          password: Credential.password
+          username: login.username,
+          password: login.password
         })
       });
       if (response.ok) {
         await response.json().then(data => {
-          Credential.token = "Bearer " + data.token;
+         saveApiToken("Bearer " + data.token);
         }); // Extract the response body as text
         return '';
       } else {
@@ -117,13 +116,13 @@ export class LoginService {
     else if(newPassword.length<8 ){
       return "Password must be at least 8 characters long";
     }
-
     try{
+      var token = await getApiToken();
       const response = await fetch(this.apiLoginlink+"/ChangePassword/"+ email,{
         method: 'POST',
           headers: {
               'password': newPassword,
-              'Authorization': Credential.token
+              'Authorization': token
             },
       })
       if (response.ok) {
@@ -180,5 +179,4 @@ export class LoginService {
       return 'An error happened, please try again';
     }
   }
-
 }

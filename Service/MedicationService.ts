@@ -1,25 +1,27 @@
+import { useContext } from "react";
 import Medication from "../Models/Medication";
 import { LoginService } from "./LoginService";
-import Credential from "../Models/Credentials"
-
+import { getApiToken } from '../DataContext';
 export class MedicationService{
     static api = "http://stimulationapp.com:5000/api/Medication"
     static reAttempt = false;
+    
     /**
      * getMedications
      */
     public static async getMedications():Promise<Medication[]> {
+        var token = await getApiToken();
         const response = await fetch(MedicationService.api,{
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Authorization': Credential.token
+                'Authorization': token
                 }
         });
         if(response.ok){
             this.reAttempt = false;
-            var data = await response.json()
-            const medicationArray: Medication[] = await data.map((medication: any) => new Medication(medication.id,medication.name, medication.description, medication.time, medication.frequency))
+            var responseData = await response.json()
+            const medicationArray: Medication[] = await responseData.map((medication: any) => new Medication(medication.id,medication.name, medication.description, medication.time, medication.frequency))
             medicationArray.forEach(med => console.log(med));
             return medicationArray;
         } 
@@ -33,11 +35,12 @@ export class MedicationService{
         }
     }
     public static async getMedication(id:number):Promise<Medication> {
+        var token = await getApiToken();
         const response = await fetch(MedicationService.api+"/"+id,{
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Authorization': Credential.token
+                'Authorization': token
                 }
         })
         if(response.ok){
@@ -53,10 +56,11 @@ export class MedicationService{
         }
     }
     public static async removeMedications(id:number):Promise<boolean> {
+        var token = await getApiToken();
         const response = await fetch(MedicationService.api + "/" + id,{
             method: 'DELETE',
             headers:{                
-                'Authorization': Credential.token
+                'Authorization': token
             }
         })
         if(response.ok){
@@ -79,11 +83,12 @@ export class MedicationService{
         if(medication.name === ""){
             return "Name can not be empty";
         }
+        var token = await getApiToken();
         const response = await fetch(MedicationService.api,{
             method:"POST",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': Credential.token
+                'Authorization': token
             },
             body: JSON.stringify(medication)
         }) 
