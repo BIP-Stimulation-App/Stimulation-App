@@ -37,7 +37,7 @@ render(){
             <Text style={styles.text}>Medicine</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.smallbutton2} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'Move'})}>
+        <TouchableOpacity style={styles.smallbutton2} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'MoveNav'})}>
            <Text style={styles.text}>Let's Move!</Text>
         </TouchableOpacity>
       </View>

@@ -1,11 +1,10 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import styles from '../style/HomeStyles'
 
 import Home from './Home';
 import Health from './Health';
 import MedicineNav from './medicineScreens/MedicineNav';
-import Move from './Move';
+import MoveNav from './moveScreens/MoveNav'
 import LeaderBoard from './LeaderBoard';
 import ProfileNav from './profileScreens/ProfileNav';
 
@@ -26,7 +25,7 @@ const HomeNav = () => {
         }}/>
         <Stack.Screen name="Health" component={Health} />
         <Stack.Screen name="MedicineNav" component={MedicineNav} options={{headerShown: false}} />
-        <Stack.Screen name="Move" component={Move} />
+        <Stack.Screen name="MoveNav" component={MoveNav} options={{headerShown: false}}/>
         <Stack.Screen name="LeaderBoard" component={LeaderBoard} />
         <Stack.Screen name="ProfileNav" component={ProfileNav} options={{headerShown: false}}/>
       </Stack.Navigator>
