@@ -2,14 +2,13 @@ import { StyleSheet } from 'react-native'
 
 const NotificationsStyles = StyleSheet.create({
     container:{
-        //flex:1,
+        flex:1,
         paddingLeft: 20,
         paddingRight: 20,
-        //justifyContent: 'center',
-        paddingTop: 100
+        justifyContent: 'center',
     },
     text:{
-        fontSize: 12,
+        fontSize: 15,
         fontWeight: 'bold',
         paddingBottom: 5
     },
@@ -21,6 +20,14 @@ const NotificationsStyles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 5,
         marginBottom: 20
+    },
+    switch:{
+        flexDirection: 'row',
+        alignItems:'center',
+        marginBottom: 20
+    },
+    switchText:{
+        marginLeft: 10
     },
     picker:{
         backgroundColor: 'white',

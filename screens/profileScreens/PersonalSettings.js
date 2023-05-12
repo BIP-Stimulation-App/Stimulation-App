@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, ImageBackground, TextInput,ScrollView} from 'react-native';
-import {Picker} from '@react-native-picker/picker';
+import { View, Text, TouchableOpacity, ImageBackground, TextInput, Switch} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../style/profileStyles/PersonalSettingsStyles'
 
@@ -12,7 +11,7 @@ const PersonalSettings = ({username}) => {
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
     const[deviceName, setDeviceName] = useState('testDeviceName');
-    const[userNameVisible, setUsernameVisible] = useState('');
+    const[userNameVisible, setUsernameVisible] = useState(true);
     const[errorMessage, setErrorMessage] = useState('');
 
     /*useEffect(() => {
@@ -63,8 +62,8 @@ const PersonalSettings = ({username}) => {
         //beperkingen hier opleggen
     }
 
-    const handleUsernameVisibleChange = (text) => {
-        setUsernameVisible(text)
+    const handleUsernameVisibleChange = () => {
+        setUsernameVisible(previousState => !previousState);
     }
 
     const handleErrorMessage = (message) => {
@@ -73,33 +72,34 @@ const PersonalSettings = ({username}) => {
 
     return(
         <ImageBackground source={require('../../assets/background3.png')} style={{ flex: 1 }}>
-            <ScrollView style={styles.container}>
+            <View style={styles.container}>
 
-                <Text style={styles.text}>change username:</Text>
+                <Text style={styles.text}>Change username:</Text>
                 <TextInput
                     style={styles.input}
                     value={username}
                     onChangeText={handleUsernameChange}
                 />
-
-                <Text style={styles.text}>Show username in leaderboard?</Text>
-                <Picker
-                    style={styles.picker}
-                    selectedValue={userNameVisible}
+            <Text style={styles.text}>Show username in leaderboard?</Text>
+            <View style={styles.switch}>
+                <Switch 
+                    trackColor={{ false: '#767577', true: '#BFE4C0' }}
+                    thumbColor={userNameVisible ? '#388C77' : '#f4f3f4'}
+                    ios_backgroundColor="#3e3e3e"
                     onValueChange={handleUsernameVisibleChange}
-                >
-                    <Picker.Item label="Yes" value="yes" />
-                    <Picker.Item label="No" value="no" />
-                </Picker>
+                    value={userNameVisible}
+                />
+                <Text style={styles.switchText}>{userNameVisible ? 'On' : 'Off'}</Text>
+            </View>
 
-                <Text style={styles.text}>change email:</Text>
+                <Text style={styles.text}>Change email:</Text>
                 <TextInput
                     style={styles.input}
                     value={email}
                     onChangeText={handleEmailChange}
                 />
 
-                <Text style={styles.text}>change password:</Text>
+                <Text style={styles.text}>Change password:</Text>
                 <TextInput
                     style={styles.input}
                     value={password}
@@ -107,7 +107,7 @@ const PersonalSettings = ({username}) => {
                     secureTextEntry={true}
                 />
 
-                <Text style={styles.text}>old password:</Text>
+                <Text style={styles.text}>Old password:</Text>
                 <TextInput
                     style={styles.input}
                     value={password}
@@ -118,7 +118,7 @@ const PersonalSettings = ({username}) => {
 
                 {deviceName !== "none" && (
                     <View>
-                        <Text style={styles.text}>change bracelet name:</Text>
+                        <Text style={styles.text}>Change bracelet name:</Text>
                         <TextInput
                             style={styles.input}
                             value={deviceName}
@@ -134,7 +134,7 @@ const PersonalSettings = ({username}) => {
                 <TouchableOpacity style={styles.button} onPress={handleSave}>
                     <Text style={styles.textButton}>SAVE</Text>
                 </TouchableOpacity>
-            </ScrollView>
+            </View>
         </ImageBackground>
     )
 

@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, ImageBackground,ScrollView} from 'react-native';
-import {Picker} from '@react-native-picker/picker';
+import { View, Text, TouchableOpacity, ImageBackground,Switch} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../style/profileStyles/NotificationsStyles';
 
 const Notifications = ({username}) => {
     const navigation = useNavigation();
 
-    const [receiveForMedicine, setReceiveForMedicine] = useState('yes'); //def yes
-    const [receive1HourBefore, setReceive1HourBefore] = useState(''); //def no
-    const [receiveGames, setReceiveGames] = useState(''); //def yes
-    const [receiveWarning, setReceiveWarning] = useState(''); //def yes
-    const [participation, setParticipation] = useState('');//def yes
+    const [receiveForMedicine, setReceiveForMedicine] = useState(true); //def yes
+    const [receive1HourBefore, setReceive1HourBefore] = useState(false); //def no
+    const [receiveGames, setReceiveGames] = useState(true); //def yes
+    const [receiveWarning, setReceiveWarning] = useState(true); //def yes
+    const [participation, setParticipation] = useState(true);//def yes
 
       /*useEffect(() => {
         //fetch user data from database
@@ -38,82 +37,91 @@ const Notifications = ({username}) => {
 
     }
 
-    const handleReceiveForMedicineChange = (itemValue) => {
-        setReceiveForMedicine(itemValue);
+    const handleReceiveForMedicineChange = () => {
+        setReceiveForMedicine(previousState => !previousState);
     }
 
-    const handleReceive1HourBeforeChange = (itemValue) => {
-        setReceive1HourBefore(itemValue);
+    const handleReceive1HourBeforeChange = () => {
+        setReceive1HourBefore(previousState => !previousState);
     }
 
-    const handleReceiveGamesChange = (itemValue) => {
-        setReceiveGames(itemValue);
+    const handleReceiveGamesChange = () => {
+        setReceiveGames(previousState => !previousState);
     }
 
-    const handleReceiveWarningChange = (itemValue) => {
-        setReceiveWarning(itemValue);
+    const handleReceiveWarningChange = () => {
+        setReceiveWarning(previousState => !previousState);
     }
 
-    const handleParticipationChange = (itemValue) => {
-        setParticipation(itemValue);
+    const handleParticipationChange = () => {
+        setParticipation(previousState => !previousState);
     }
 
     return(
         <ImageBackground source={require('../../assets/background3.png')} style={{ flex: 1 }}>
-            <ScrollView style={styles.container}>
+            <View style={styles.container}>
             <Text style={styles.text}>Receive notification for medicine?</Text>
-                <Picker
-                    style={styles.picker}
-                    selectedValue={receiveForMedicine}
+            <View style={styles.switch}>
+                <Switch 
+                    trackColor={{ false: '#767577', true: '#BFE4C0' }}
+                    thumbColor={receiveForMedicine ? '#388C77' : '#f4f3f4'}
+                    ios_backgroundColor="#3e3e3e"
                     onValueChange={handleReceiveForMedicineChange}
-                >
-                    <Picker.Item label="Yes" value="yes" />
-                    <Picker.Item label="No" value="no" />
-                </Picker>
-
-                {receiveForMedicine === 'yes' && (
+                    value={receiveForMedicine}
+                />
+                <Text style={styles.switchText}>{receiveForMedicine ? 'On' : 'Off'}</Text>
+            </View>
+                {receiveForMedicine === true && (
                     <View>
                         <Text style={styles.text}>Receive notification 1 hour before a medicine needs to be taken?</Text>
-                        <Picker
-                            style={styles.picker}
-                            selectedValue={receive1HourBefore}
+                        <View style={styles.switch}>
+                        <Switch 
+                            trackColor={{ false: '#767577', true: '#BFE4C0' }}
+                            thumbColor={receive1HourBefore ? '#388C77' : '#f4f3f4'}
+                            ios_backgroundColor="#3e3e3e"
                             onValueChange={handleReceive1HourBeforeChange}
-                        >
-                            <Picker.Item label="No" value="no" />
-                            <Picker.Item label="Yes" value="yes" />
-                        </Picker>
+                            value={receive1HourBefore}
+                        />
+                        <Text style={styles.switchText}>{receive1HourBefore ? 'On' : 'Off'}</Text>
+                        </View>
                     </View>
                 )}
                 
                 <Text style={styles.text}>Receive a daily reminder for exercises/puzzels?</Text>
-                <Picker
-                    style={styles.picker}
-                    selectedValue={receiveGames}
-                    onValueChange={handleReceiveGamesChange}
-                >
-                    <Picker.Item label="Yes" value="yes" />
-                    <Picker.Item label="No" value="no" />
-                </Picker>
+                <View style={styles.switch}>
+                        <Switch 
+                            trackColor={{ false: '#767577', true: '#BFE4C0' }}
+                            thumbColor={receiveGames ? '#388C77' : '#f4f3f4'}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={handleReceiveGamesChange}
+                            value={receiveGames}
+                        />
+                        <Text style={styles.switchText}>{receiveGames ? 'On' : 'Off'}</Text>
+                </View>
 
                 <Text style={styles.text}>Receive a warning when one of your physical measured parameters are dangerously high/low?</Text>
-                <Picker
-                    style={styles.picker}
-                    selectedValue={receiveWarning}
-                    onValueChange={handleReceiveWarningChange}
-                >
-                    <Picker.Item label="Yes" value="yes" />
-                    <Picker.Item label="No" value="no" />
-                </Picker>
+                <View style={styles.switch}>
+                        <Switch 
+                            trackColor={{ false: '#767577', true: '#BFE4C0' }}
+                            thumbColor={receiveWarning ? '#388C77' : '#f4f3f4'}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={handleReceiveWarningChange}
+                            value={receiveWarning}
+                        />
+                        <Text style={styles.switchText}>{receiveWarning ? 'On' : 'Off'}</Text>
+                </View>
 
                 <Text style={styles.text}>Participate in the online leaderboard?</Text>
-                <Picker
-                    style={styles.picker}
-                    selectedValue={participation}
-                    onValueChange={handleParticipationChange}
-                >
-                    <Picker.Item label="Yes" value="yes" />
-                    <Picker.Item label="No" value="no" />
-                </Picker>
+                <View style={styles.switch}>
+                        <Switch 
+                            trackColor={{ false: '#767577', true: '#BFE4C0' }}
+                            thumbColor={participation ? '#388C77' : '#f4f3f4'}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={handleParticipationChange}
+                            value={participation}
+                        />
+                        <Text style={styles.switchText}>{participation ? 'On' : 'Off'}</Text>
+                </View>
 
                 <TouchableOpacity style={styles.button} onPress={() => {
                     navigation.navigate('ProfileNav', {screen: 'profile'});
@@ -122,7 +130,7 @@ const Notifications = ({username}) => {
                     <Text style={styles.textButton}>SAVE</Text>
                 </TouchableOpacity>
             
-            </ScrollView>
+            </View>
         </ImageBackground>
     )
 }

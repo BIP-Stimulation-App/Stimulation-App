@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, } from 'react-native'
 
 const PersonalSettingsStyles = StyleSheet.create({
     container:{
@@ -7,12 +7,14 @@ const PersonalSettingsStyles = StyleSheet.create({
         paddingRight: 20,
         //justifyContent: 'center',
         paddingTop: 100,
-        paddingBottom: 20
+        marginBottom: '20%',
+
     },
     text:{
-        fontSize: 12,
+        fontSize: 15,
         fontWeight: 'bold',
         paddingBottom: 5,
+        paddingTop: 5
     },
     input:{
         height: 30,
@@ -33,28 +35,14 @@ const PersonalSettingsStyles = StyleSheet.create({
         marginBottom: 20
 
     },
-    doubleText:{
-        flexDirection: 'row',
-    },
-    textReward:{
-        fontSize: 12,
-        fontWeight: 'bold',
-        paddingBottom: 5,
-        marginLeft: '35%'
-    },
-    
-    doubleInput:{
-        flexDirection: 'row',
-    },
-    difficultyPicker:{
-        width: '50%',
-        marginRight: 5,
-        backgroundColor: 'white',
+    pickerContainer:{
         borderWidth: 2,
         borderColor: '#388C77',
-        padding: 10,
-        borderRadius: 5,
-        marginBottom: 20,
+    },
+    picker: {
+        height: '20%',
+        width: '100%',
+        backgroundColor: '#fff',
     },
     inputReward:{
         width: '50%',
@@ -66,15 +54,7 @@ const PersonalSettingsStyles = StyleSheet.create({
         borderRadius: 5,
         marginBottom: 20
     },
-    
-    picker:{
-        backgroundColor: 'white',
-        borderWidth: 2,
-        borderColor: '#388C77',
-        padding: 10,
-        borderRadius: 5,
-        marginBottom: 20,
-    },
+   
     browse:{
         height: 30,
         width: 'auto',
@@ -86,10 +66,9 @@ const PersonalSettingsStyles = StyleSheet.create({
         padding: 20,
         borderRadius: 30,
         alignItems: 'center',
-        
         marginLeft: 'auto',
         marginRight: 'auto',
-    
+        marginTop: 10
     },
     textButton:{
         color: '#ffffff',
