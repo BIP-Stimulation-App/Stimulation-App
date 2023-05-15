@@ -2,12 +2,11 @@ import { StyleSheet, } from 'react-native'
 
 const PersonalSettingsStyles = StyleSheet.create({
     container:{
-        //flex:1,
+        flex:1,
         paddingLeft: 20,
         paddingRight: 20,
         //justifyContent: 'center',
         paddingTop: 100,
-        marginBottom: '20%',
 
     },
     text:{
@@ -17,7 +16,7 @@ const PersonalSettingsStyles = StyleSheet.create({
         paddingTop: 5
     },
     input:{
-        height: 30,
+        height: 40,
         padding: 10,
         borderWidth: 2,
         borderColor: '#388C77',
@@ -38,9 +37,10 @@ const PersonalSettingsStyles = StyleSheet.create({
     pickerContainer:{
         borderWidth: 2,
         borderColor: '#388C77',
+        height: '20%'
     },
     picker: {
-        height: '20%',
+        height: '100%',
         width: '100%',
         backgroundColor: '#fff',
     },

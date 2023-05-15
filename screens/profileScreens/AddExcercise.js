@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ImageBackground, TextInput, Platform, ScrollView, FlatList} from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground, TextInput, Platform, ScrollView,} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../style/profileStyles/AddExerciseStyle'
@@ -11,7 +11,6 @@ const AddExercise = () => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [duration, setDuration] = useState('');
-    const [images, setImages] = useState('');
     const [difficulty, setDifficulty] = useState('easy');
     const [reward, setReward] = useState('');
     const [category, setCategory] = useState('');
@@ -55,14 +54,15 @@ const AddExercise = () => {
         alert('Exercise added with succes');
         navigation.navigate('ProfileNav', {screen:'adminAdd'})
     }
-
+    
    
 
 
     return(
         <ImageBackground source={require('../../assets/background3.png')} style={{ flex: 1 }}>
             
-            <ScrollView style={styles.container}>
+            <ScrollView >
+            <View style={styles.container}>    
                 <Text style={styles.text}>name:</Text>
                 <TextInput
                     style={styles.input}
@@ -83,38 +83,25 @@ const AddExercise = () => {
                     onChangeText={handleDuration}
                 />    
                 
-                <Text style={styles.text}>images:</Text>
+                <Text style={styles.text}>difficulty:</Text>
+                <View style={styles.pickerContainer}>
+                <Picker
+                    mode={Platform.OS === 'ios' ? 'dropdown' : undefined} //doesn't work in IOS, keeps being a wheel
+                    style={styles.picker}
+                    selectedValue={difficulty}
+                    onValueChange={handleDifficultyChange}
+                >
+                    <Picker.Item label="easy" value="easy" />
+                    <Picker.Item label="normal" value="normal" />
+                    <Picker.Item label="hard" value="hard" />
+                </Picker>
+                </View>
 
-            <View style={styles.doubleInput}>
+                <Text style={styles.text}>reward:</Text>
                 <TextInput
-                    style={styles.input}
-                    value={images}
-                    onChangeText={handleImages}
-                />
-                <TouchableOpacity style={styles.browse}>
-                    <Text>Browse</Text>
-                </TouchableOpacity>
-            </View>
-
-            <Text style={styles.text}>difficulty:</Text>
-            <View style={styles.pickerContainer}>
-            <Picker
-                mode={Platform.OS === 'ios' ? 'dropdown' : undefined} //doesn't work in IOS, keeps being a wheel
-                style={styles.picker}
-                selectedValue={difficulty}
-                onValueChange={handleDifficultyChange}
-            >
-            <Picker.Item label="easy" value="easy" />
-            <Picker.Item label="normal" value="normal" />
-            <Picker.Item label="hard" value="hard" />
-            </Picker>
-            </View>
-
-            <Text style={styles.text}>reward:</Text>
-               <TextInput
-                   style={styles.inputReward}
-                   value={reward}
-                   onChangeText={handleReward}
+                    style={styles.inputReward}
+                    value={reward}
+                    onChangeText={handleReward}
                 />
                 
                 <Text style={styles.text}>category:</Text>
@@ -137,10 +124,11 @@ const AddExercise = () => {
                 <TouchableOpacity style={styles.button} onPress={handleSave}>
                     <Text style={styles.textButton}>SAVE</Text>
                 </TouchableOpacity>
+            </View>
             </ScrollView>
         </ImageBackground>
     )
+    }
 
-}
 
 export default AddExercise;
