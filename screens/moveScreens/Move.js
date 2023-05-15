@@ -14,8 +14,8 @@ const Move = () => {
         { // to be deleted
             id: 1,
             name: "situp",
-            duration: "00:01:00",
-            difficulty:"normal",
+            duration: "00:00:15",
+            difficulty:"easy",
             reward: 10
         },
         {
