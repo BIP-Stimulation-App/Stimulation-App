@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from './Home';
-import Health from './Health';
+import HealthNav from './healthScreens/HealthNav';
 import MedicineNav from './medicineScreens/MedicineNav';
 import MoveNav from './moveScreens/MoveNav'
 import LeaderBoard from './LeaderBoard';
@@ -23,7 +23,7 @@ const HomeNav = () => {
         <Stack.Screen name="Home" component={Home} options={{
           headerLeft: null, headerShown: false
         }}/>
-        <Stack.Screen name="Health" component={Health} />
+        <Stack.Screen name="HealthNav" component={HealthNav} options={{headerShown: false}}/>
         <Stack.Screen name="MedicineNav" component={MedicineNav} options={{headerShown: false}} />
         <Stack.Screen name="MoveNav" component={MoveNav} options={{headerShown: false}}/>
         <Stack.Screen name="LeaderBoard" component={LeaderBoard} />

@@ -27,7 +27,7 @@ render(){
     <View style={styles.container}>
       <Text style={styles.hello}>Hello {firstName}!</Text>
 
-      <TouchableOpacity style={styles.widebutton} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'Health'})}>
+      <TouchableOpacity style={styles.widebutton} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'HealthNav'})}>
            <Text style={styles.textHealth}>My Health</Text>
       </TouchableOpacity>
 
