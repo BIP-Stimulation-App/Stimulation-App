@@ -29,8 +29,8 @@ export class LoginService {
         });
         return '';
       } else {
-        console.log(response.status + ' ' + response.statusText);
-        return response.statusText;
+        console.log("Error "+ response.status + ' ' + response.body);
+        return "Error "+ response.status + ' ' + response.body;
       }
     } catch (error) {
       console.log(error);

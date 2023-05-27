@@ -60,7 +60,7 @@ class SignUp extends Component {
     LoginService.AddLogin(this.state).then((result)=>{
       this.setState({ errorMessage: result });
       if (result === "") {
-        this.props.navigation.navigate("LogIn");
+        this.props.navigation.navigate("login");
       }
     });    
   };
