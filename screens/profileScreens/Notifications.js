@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ImageBackground,Switch} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../style/profileStyles/NotificationsStyles';
+import { getNotificationSettings, saveNotificationSettings } from '../../DataContext';
+import {NotificationSetting} from '../../Models/NotificationSetting'
 
 const Notifications = ({username}) => {
     const navigation = useNavigation();
@@ -11,30 +13,32 @@ const Notifications = ({username}) => {
     const [receiveGames, setReceiveGames] = useState(true); //def yes
     const [receiveWarning, setReceiveWarning] = useState(true); //def yes
     const [participation, setParticipation] = useState(true);//def yes
-
-      /*useEffect(() => {
+    const [firstLoad,setFirstLoad] = useState(true);
+      useEffect(()  => {
         //fetch user data from database
-        const userData = getUserData(userId);
+        if(firstLoad) getData();
+    })
 
+    const getData = async () => {
+        setFirstLoad(false);
+        var notifications = await getNotificationSettings();
+        console.log(notifications);
+        if(notifications == null){
+            saveNotificationSettings(new NotificationSetting(true,false,true,true,true));
+            console.log("saved");
+            return;
+        }
+        console.log("Setting values accordingly");
         //set state variables with user data
-        setReceiveForMedicine(userData.receiveForMedicine);
-        setReceive1HourBefore(userData.receive1HourBefore);
-        setReceiveGames(userData.receiveGames);
-        setReceiveWarning(userData.receiveWarning);
-        setParticipation(userData.participation)
-    })*/
-    const getUserData = () => {
-        //add logic to retrieve user data
+        setReceiveForMedicine(notifications.medecine);
+        setReceive1HourBefore(notifications.medecineEarly);
+        setReceiveGames(notifications.dailyReminder);
+        setReceiveWarning(notifications.dangerousParameters);
+        setParticipation(notifications.leaderboards);
     }
 
     const handleSave = () => {
-        //add logic to update the user data in database
-        updateUserData(username, {receiveForMedicine, receive1HourBefore, receiveGames, receiveWarning, participation})
-    }
-
-    const updateUserData = () => {
-        //add logic to update the user data in database
-
+        saveNotificationSettings(new NotificationSetting(receiveForMedicine,receive1HourBefore,receiveGames,receiveWarning,participation))
     }
 
     const handleReceiveForMedicineChange = () => {
@@ -124,8 +128,7 @@ const Notifications = ({username}) => {
                 </View>
 
                 <TouchableOpacity style={styles.button} onPress={() => {
-                    navigation.navigate('ProfileNav', {screen: 'profile'});
-                    alert('clicked the save button'); //must be replaced with the 'handleSave' - function
+                    handleSave();
                 }}>
                     <Text style={styles.textButton}>SAVE</Text>
                 </TouchableOpacity>

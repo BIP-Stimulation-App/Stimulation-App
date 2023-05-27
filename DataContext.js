@@ -39,3 +39,19 @@ export const getApiToken = async () => {
     console.log('Error retrieving API token: ', error);
   }
 };
+
+export const saveNotificationSettings = async(notifications) =>{
+  try {
+    await SecureStore.setItemAsync('notifications', JSON.stringify(notifications));
+  } catch (error) {
+    console.log('Error saving notifications: ', error);
+  }
+}
+export const getNotificationSettings = async () => {
+  try {
+    const token = await SecureStore.getItemAsync('notifications');
+    return JSON.parse(token);
+  } catch (error) {
+    console.log('Error retrieving API token: ', error);
+  }
+};
