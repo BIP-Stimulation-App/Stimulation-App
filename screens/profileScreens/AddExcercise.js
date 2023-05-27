@@ -3,6 +3,8 @@ import { View, Text, TouchableOpacity, ImageBackground, TextInput, Platform, Scr
 import {Picker} from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../style/profileStyles/AddExerciseStyle'
+import { ExerciseService } from '../../Service/ExerciseService';
+import { Exercise } from '../../Models/Excercise';
 
 
 const AddExercise = () => {
@@ -25,7 +27,20 @@ const AddExercise = () => {
     }
 
     const handleDuration = (text) => {
-        setDuration(text);
+        const numericInput = text.replace(/[^0-9]/g, '');
+
+        // Format the numeric input as HH:mm:ss
+        let formattedTime = '';
+        if (numericInput.length > 0) {
+          formattedTime += numericInput.substring(0, 2);
+        }
+        if (numericInput.length > 2) {
+          formattedTime += ':' + numericInput.substring(2, 4);
+        }
+        if (numericInput.length > 4) {
+          formattedTime += ':' + numericInput.substring(4, 6);
+        }
+        setDuration(formattedTime);
     }
 
     const handleImages = (text) => {
@@ -51,9 +66,15 @@ const AddExercise = () => {
     const handleSave = () => {
         //add logic to insert the data in database
         //indien succes
+        ExerciseService.addExcercise(new Exercise())
         alert('Exercise added with succes');
         navigation.navigate('ProfileNav', {screen:'adminAdd'})
     }
+    const validateTime = (text) => {
+        // Validate the time format
+        const regex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/;
+        return regex.test(text);
+      };
     
    
 
@@ -76,11 +97,15 @@ const AddExercise = () => {
                     onChangeText={handleDescription}
                 />
             
-                <Text style={styles.text}>duration (hh:mm:ss):</Text>
+                <Text style={styles.text}>duration (HH:mm:ss):</Text>
                 <TextInput
                     style={styles.input}
                     value={duration}
                     onChangeText={handleDuration}
+                    onEndEditing={(e) => {
+                    if (!validateTime(e.nativeEvent.text)) {
+                    }
+                    }}
                 />    
                 
                 <Text style={styles.text}>difficulty:</Text>
