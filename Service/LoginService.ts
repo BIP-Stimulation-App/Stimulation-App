@@ -22,6 +22,7 @@ export class LoginService {
         })
       });
       if (response.ok) {
+        console.debug("Logged in!")
         saveLoginCredentials(username,password);
         await response.json().then(async data => {
            saveApiToken("Bearer " + data.token);
@@ -35,6 +36,7 @@ export class LoginService {
       console.log(error);
       return 'An error happened, please try again';
     }
+    return "please wait";
   }
 
   static async ReLogIn(){    
@@ -109,16 +111,11 @@ export class LoginService {
       return e
     }
   }
-  static async UpdatePassword(newPassword: string, repeatPassword:string, email:string):Promise<string>{
-    if(newPassword != repeatPassword){
-      return "Passwords do not match";
-    }
-    else if(newPassword.length<8 ){
-      return "Password must be at least 8 characters long";
-    }
+  static async UpdatePassword(newPassword:string):Promise<string>{
+    
     try{
       var token = await getApiToken();
-      const response = await fetch(this.apiLoginlink+"/ChangePassword/"+ email,{
+      const response = await fetch(this.apiLoginlink+"/ChangePassword",{
         method: 'POST',
           headers: {
               'password': newPassword,

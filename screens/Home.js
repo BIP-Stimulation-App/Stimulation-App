@@ -1,24 +1,19 @@
-import React, { Component} from 'react';
+import React, { Component, useEffect} from 'react';
 import { View,Text, TouchableOpacity, ImageBackground } from 'react-native';
 import styles from '../style/HomeStyles'
+import { UserService } from '../Service/UserService';
 
 
 
 class Home extends Component {
  
   state={
-    firstName: 'Bob',
+    firstName: 'Test',
   }
 
   /*useEffect(() => {
-      axios.get('https://my-api.com/user/1') //nog aan te passen
-        .then(response => {
-          setFirstName(response.data.name);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    }, []);*/
+    this.firstName = UserService.GetUserData().firstName;
+  })*/
 
 render(){
   const {firstName} = this.state;

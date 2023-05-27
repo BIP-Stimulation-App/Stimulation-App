@@ -2,47 +2,59 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ImageBackground, TextInput, Switch} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../style/profileStyles/PersonalSettingsStyles'
+import { UserService } from '../../Service/UserService';
+import { saveLoginCredentials, getLoginCredentials} from '../../DataContext';
+import { LoginService } from '../../Service/LoginService';
 
 
-const PersonalSettings = ({username}) => {
-    const navigation = useNavigation();
-
-   // const[username, setUsername] = useState('');
+const PersonalSettings = () => {
+    const navigation = useNavigation();    
+    const[username, setUsername] = useState('');
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
+    const[oldPassword, setOldPassword] = useState('');
     const[deviceName, setDeviceName] = useState('testDeviceName');
     const[userNameVisible, setUsernameVisible] = useState(true);
     const[errorMessage, setErrorMessage] = useState('');
+    const[originalUser, setOriginalUser] = useState(null);
 
-    /*useEffect(() => {
-        //fetch user data from database
-        const userData = getUserData(userId);
+    useEffect(() => {
+        if(originalUser == null){
+            getUserData();
+        }
+        
+    })
 
-        //set state variables with user data
-        setUsername(userData.username);
-        setEmail(userData.email);
-        setPassword(userData.password);
-        setDeviceName(userData.deviceName);
-        setUsernameVisible(userData.userNameVisible);
-    })*/
-
-    const getUserData = () => {
+    async function getUserData() {
         //add logic to retrieve user data
+        
+        var data = await UserService.GetUserData();
+        console.log("User: " + data.userName + "name: "  + data.firstName[0]+ ". " + this.lastname);
+        setOriginalUser(data);
+        setEmail(data.email);
+        setUsername(data.userName);
+        setUsernameVisible(data.anonymous);        
     }
 
-    const handleSave = () => {
-        //add logic to update the user data in database
-        updateUserData(username, {username, email, password, userNameVisible})
-
-        //indien ok
+    const handleSave = async () => {
+        setErrorMessage("");
+        if(originalUser == null) return;
+        if(username != originalUser.username){
+            UserService.UpdateUsername(username);
+        }
+        if(email != originalUser.email){
+            UserService.UpdateEmail(email);
+        }
+        if(password != null){
+            if(oldPassword == null) return setErrorMessage("Please fill in your old password if you want to change it.");
+            if(oldPassword != (await getLoginCredentials).password) return setErrorMessage("Your old password is incorrect");
+            if(password.length <6) return setErrorMessage("Password must be at 6 characters long!");
+            await LoginService.UpdatePassword(password);
+        }
+        if(userNameVisible != originalUser.anonymous){
+            UserService.UpdatePrivacy(userNameVisible);
+        }
         alert('changes saved');
-        navigation.navigate('ProfileNav', {screen: 'profile'});
-
-    }
-
-    const updateUserData = () => {
-        //add logic to update the user data in database
-
     }
 
     const handleUsernameChange = (text) => {
@@ -56,18 +68,16 @@ const PersonalSettings = ({username}) => {
     const handlePasswordChange = (text) => {
         setPassword(text);
     }
+    const handleOldPasswordChange = (text) => {
+        setOldPassword(text);
+    }
 
     const handleDeviceNameChange = (text) => {
         setDeviceName(text);
-        //beperkingen hier opleggen
     }
 
     const handleUsernameVisibleChange = () => {
         setUsernameVisible(previousState => !previousState);
-    }
-
-    const handleErrorMessage = (message) => {
-        setErrorMessage(message)
     }
 
     return(
@@ -110,8 +120,8 @@ const PersonalSettings = ({username}) => {
                 <Text style={styles.text}>Old password:</Text>
                 <TextInput
                     style={styles.input}
-                    value={password}
-                    onChangeText={handlePasswordChange}
+                    value={oldPassword}
+                    onChangeText={handleOldPasswordChange}
                     secureTextEntry={true}
                 />
                 
