@@ -1,104 +1,92 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../style/SignupStyles";
 import { View, TextInput, Text, TouchableOpacity,ImageBackground } from "react-native";
 import { LoginService } from "../Service/LoginService";
 import { UserService } from "../Service/UserService";
+import { useNavigation } from '@react-navigation/native';
 
-class SignUp extends Component {
-  constructor(props) {
-    super(props);
+const SignUp = () => {
+  const navigation = useNavigation();
+ 
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [usernameInUse, setUsernameInUse] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-    this.state = {
-      firstname: "",
-      lastname: "",
-      email: "",
-      username: "",
-      usernameInUse: false,
-      errorMessage: "",
-      password: "",
-      confirmPassword: "",
-    };
-  }
-  handleFirstnameChange = (firstname) => {
-    this.setState({ firstname });
+  const handleFirstnameChange = (text) => {
+    setFirstname(text);
   };
 
-  handleLastnameChange = (lastname) => {
-    this.setState({ lastname });
+  const handleLastnameChange = (text) => {
+    setLastname(text)
   };
 
-  handleEmailChange = (email) => {
-    this.setState({ email });
+  const handleEmailChange = (text) => {
+    setEmail(text)
   };
 
-  handleUsernameChange = (username) => {
-    this.setState({ username });
+  const handleUsernameChange = (text) => {
+    setUsername(text);
     if (username === "") return;
     UserService.UsernameInUse(username).then((result)=>{
       if(result.includes("not")){
-        this.setState({ errorMessage: "" });
+        setErrorMessage("")
+        setUsernameInUse(false);
         return;
       }
-      this.setState({ errorMessage: result });
+      setUsernameInUse(true);
+      setErrorMessage(result)
       return;
     });
     
   };
 
-  handlePasswordChange = (password) => {
-    this.setState({ password });
+  const handlePasswordChange = (text) => {
+    setPassword(text)
   };
 
-  handleConfirmPasswordChange = (confirmPassword) => {
-    this.setState({ confirmPassword });
+  const handleConfirmPasswordChange = () => {
+    setConfirmPassword(true);
   };
-  handleErrorMessageChange = (errorMessage) => {
-    this.setState({ errorMessage });
+  
+  const handleErrorMessageChange = (text) => {
+    setErrorMessage(text);
   };
 
-  handleSignUp = () => {
-    LoginService.AddLogin(this.state).then((result)=>{
-      this.setState({ errorMessage: result });
+  const handleSignUp = () => {
+    var obj = {firstname: firstname, lastname: lastname, username: username, email: email, password: password, usernameInUse: usernameInUse }
+    LoginService.AddLogin(obj).then((result)=>{
+      setErrorMessage(result)
       if (result === "") {
-        this.props.navigation.navigate("LogIn");
+        navigation.navigate('AuthNav', {screen: 'login'});
       }
     });    
   };
 
-  render() {
-    const {
-      firstname,
-      lastname,
-      email,
-      username,
-      errorMessage,
-      password,
-      confirmPassword,
-    } = this.state;
+ 
+   
 
     return (
       <ImageBackground source={require('../assets/backgroundlogin.png')} style={{ flex: 1 }}>
 
       <View style={styles.container} >
-        <View style={styles.containerTitel}>
-          <Text style={styles.titel}>Who are you?</Text>
-        </View>
-
         <View style={styles.containerNames}>
           <TextInput
             style={styles.inputnames}
             placeholder="first name"
             placeholderTextColor="grey"
-            value={firstname}
-            onChangeText={this.handleFirstnameChange}
+            onChangeText={handleFirstnameChange}
           />
 
           <TextInput
             style={styles.inputnames}
             placeholder="last name"
             placeholderTextColor="grey"
-            value={lastname}
-            onChangeText={this.handleLastnameChange}
+            onChangeText={handleLastnameChange}
           />
         </View>
 
@@ -108,8 +96,7 @@ class SignUp extends Component {
           placeholderTextColor="grey"
           autoCapitalize="none"
           keyboardType="email-address"
-          value={email}
-          onChangeText={this.handleEmailChange}
+          onChangeText={handleEmailChange}
         />
 
         <Text style={styles.label}>Enter a username:</Text>
@@ -118,41 +105,36 @@ class SignUp extends Component {
           placeholder="example123"
           placeholderTextColor="grey"
           autoCapitalize="none"
-          value={username}
-          onChangeText={this.handleUsernameChange}
+          onChangeText={handleUsernameChange}
         />
 
         <Text style={styles.label}>Enter a password:</Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
-          secureTextEntry
-          value={password}
-          onChangeText={this.handlePasswordChange}
+          secureTextEntry={true}
+          onChangeText={handlePasswordChange}
         />
 
         <Text style={styles.label}>Repeat your password: </Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
-          secureTextEntry
-          value={confirmPassword}
-          onChangeText={this.handleConfirmPasswordChange}
+          secureTextEntry={true}
+          onChangeText={handleConfirmPasswordChange}
         />
-
-        {errorMessage ? <Text style={{color: 'red'}}>{errorMessage}</Text> : null}
 
         {errorMessage ? (
           <Text style={styles.errorMessageText}>{errorMessage}</Text>
         ) : null}
 
-        <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
+        <TouchableOpacity style={styles.button} onPress={handleSignUp}>
           <Text style={styles.buttonText}>SIGN UP</Text>
         </TouchableOpacity>
       </View>
       </ImageBackground>
     );
   }
-}
+
 
 export default SignUp;

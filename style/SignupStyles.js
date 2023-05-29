@@ -6,21 +6,16 @@ const SignupStyles = StyleSheet.create({
     flex: 1,
     paddingLeft: 20,
     paddingRight: 20,
-  //  paddingBottom: 20,
-    paddingTop: 50
-    //backgroundColor: 'lightgreen',
+    justifyContent:'center'
   },
     containerNames:{
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '80%',
-    },
-    containerLabels:{
-        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        width: '100%',
+        marginBottom: 10,
     },
     input:{
-      height: 40,
+      height: 60,
       marginVertical: 10,
       padding: 20,
       borderWidth: 1,
@@ -30,36 +25,27 @@ const SignupStyles = StyleSheet.create({
       borderRadius: 5,
       
     },
+
     inputnames:{
-      height: 40,
-      width: '40vw',
-      marginVertical: 10,
+      height: 60,
+      width: '47%',
       padding: 20,
       borderWidth: 1,
       borderColor: 'white',
-      backgroundColor: 'white',
+      backgroundColor: '#ffffff',
       marginRight: 10,
       borderRadius: 5,
     },
     
     label:{
-        textAlign: 'left',
-        fontSize: 12,
-        marginRight: 95,
-        fontWeight:500,
-    },
-    containerTitel:{
-
-    },
-    titel:{
       textAlign: 'left',
-      paddingBottom: 10,
-      color: 'white',
-      fontWeight: 700,
-      fontSize: 30,
+      fontSize: 15,
+      marginRight: 95,
+      fontWeight:500,
     },
+
     button:{
-        width: '90%',
+      width: '90%',
       backgroundColor: '#388C77',
       padding: 20,
       borderRadius: 30,
@@ -67,12 +53,15 @@ const SignupStyles = StyleSheet.create({
       marginTop: 5,
       marginLeft: 'auto',
       marginRight: 'auto',
+      marginTop: 10
     },
+
     buttonText: {
         color: '#ffffff',
         fontWeight: '700',
-        fontSize: 20
-      },
+        fontSize: 20,
+    },
+
     errorMessageText:{
         color: 'red', 
         textAlign: 'center',

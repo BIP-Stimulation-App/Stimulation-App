@@ -57,7 +57,7 @@ const Login = () =>{
           style={styles.input}
           placeholder= "username"
           placeholderTextColor= 'grey'
-          onChangeText={this.handleEmail}
+          onChangeText={handleUsername}
           
         />
         <TextInput
@@ -65,13 +65,13 @@ const Login = () =>{
           placeholder='password'
           placeholderTextColor='grey'
           secureTextEntry={true}
-          onChangeText={this.handlePassword}
+          onChangeText={handlePassword}
           
         />
         {errorMessage ? <Text style={styles.errorMessageText}>{errorMessage}</Text>:null}
         
         <View>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('RestorePassword')}>
+          <TouchableOpacity onPress={() => navigation.navigate('AuthNav', {screen:'resetPassword'})}>
             <Text style={styles.passwordlink}>Forgot Password?</Text>
           </TouchableOpacity>
         </View>
@@ -90,7 +90,7 @@ const Login = () =>{
 
         <View style={ styles.createAccountView}>
           <Text style={styles.createAccountText}>Don't have an account?</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+          <TouchableOpacity onPress={() => navigation.navigate('AuthNav', {screen:'signup'})}>
            <Text style={styles.signuplink}>Sign Up</Text>
           </TouchableOpacity>
         </View>

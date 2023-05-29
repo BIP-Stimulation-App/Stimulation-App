@@ -6,7 +6,7 @@ const restorePasswordStyles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight:20,
         paddingBottom: 20,
-        paddingTop: 50,
+        paddingTop: 100,
         
     },
     input:{
