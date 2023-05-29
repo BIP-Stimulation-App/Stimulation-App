@@ -32,12 +32,12 @@ const AddMedicine = () => {
     }
 
     return(
-        <ImageBackground source={require('../../pictures/background2.png')} style={{ flex: 1 }}>
+        <ImageBackground source={require('../../assets/background2.png')} style={{ flex: 1 }}>
 
         <View style={styles.container}>
             
             <Image
-                source={require('../../pictures/medicine.png')}
+                source={require('../../assets/medicine.png')}
                 style={styles.picture}
             />
             <Text style={styles.text}>medicine name:</Text>

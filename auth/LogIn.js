@@ -1,43 +1,56 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ImageBackground, Alert, AppRegistry } from 'react-native';
 import stylebasics from '../style/StyleBasics';
 import styles from '../style/InlogStyles';
 import { LoginService } from '../Service/LoginService';
+import { useNavigation } from '@react-navigation/native';
 
-
-class Login extends Component {
-  state = {
+const Login = () =>{
+  /*state = {
     username: '',
     password: '',
     errorMessage: '',
     disableButton: false
+  }*/
+  const navigation = useNavigation();
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, seterrorMessage] = useState('');
+  const [disableButton, setDisableButton] = useState(false);
+
+  
+
+  const handleUsername = (text) => {
+    //this.setState({ username: text })
+    setUsername(text);
+
   }
 
-  handleEmail = (text) => {
-    this.setState({ username: text })
+  const handlePassword = (text) => {
+    //this.setState({ password: text })
+    setPassword(text);
   }
 
-  handlePassword = (text) => {
-    this.setState({ password: text })
-  }
-
-  login = async (username, password) => {
-    this.setState({disableButton:true})
+  const login = async (username, password) => {
+    //this.setState({disableButton:true})
+    setDisableButton(true);
    LoginService.Login(username,password).then((result) =>{
-    this.setState({errorMessage: result})
+   //this.setState({errorMessage: result})
+    seterrorMessage(result)
     console.log(result);
     if(result === ""){
-      this.props.navigation.navigate('HomeNav');
+      navigation.navigate('HomeNav');
     }
-    this.setState({disableButton:false})
+    //this.setState({disableButton:false})
+    setDisableButton(false);
    })
      
   }
-
-  render() {
-    const {errorMessage} = this.state;
+  
+    //const {errorMessage} = this.state;
     return (
-      <ImageBackground source={require('../pictures/backgroundlogin.png')} style={{ flex: 1 }}>
+      <ImageBackground source={require('../assets/backgroundlogin.png')} style={{ flex: 1 }}>
       <View style={stylebasics.container}>
         <Text style={ styles.welcomeMessage}> Welcome,</Text>
         <TextInput
@@ -63,13 +76,13 @@ class Login extends Component {
           </TouchableOpacity>
         </View>
 
-        
 
         <TouchableOpacity
           style={styles.button}
-          disabled = {this.disableButton}
+          disabled = /*{this.disableButton}*/ {disableButton}
           onPress={() => {
-            this.login(this.state.username, this.state.password);            
+            //this.login(this.state.username, this.state.password);      
+            login(username, password);      
           }}
         >
           <Text style={styles.buttonText}>LOGIN</Text>
@@ -77,14 +90,14 @@ class Login extends Component {
 
         <View style={ styles.createAccountView}>
           <Text style={styles.createAccountText}>Don't have an account?</Text>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUp')}>
+          <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
            <Text style={styles.signuplink}>Sign Up</Text>
           </TouchableOpacity>
         </View>
       </View>
       </ImageBackground>
     )
-  }
+  
 }
 
 

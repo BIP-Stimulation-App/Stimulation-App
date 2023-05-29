@@ -23,7 +23,7 @@ class Home extends Component {
 render(){
   const {firstName} = this.state;
   return(
-    <ImageBackground source={require('../pictures/background1.png')} style={{ flex: 1 }}>
+    <ImageBackground source={require('../assets/background1.png')} style={{ flex: 1 }}>
     <View style={styles.container}>
       <Text style={styles.hello}>Hello {firstName}!</Text>
 
