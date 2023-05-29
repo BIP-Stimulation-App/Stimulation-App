@@ -1,5 +1,5 @@
 import { NewAccount } from "../Models/NewAccount";
-import { saveLoginCredentials, getLoginCredentials, saveApiToken, getApiToken } from '../DataContext';
+import { saveLoginCredentials, getLoginCredentials, saveApiToken, getApiToken, updatePassword } from '../DataContext';
 export class LoginService {
   static apiLoginlink:string = "http://stimulationapp.com:5000/api/Login"
 
@@ -123,6 +123,7 @@ export class LoginService {
             },
       })
       if (response.ok) {
+        updatePassword(newPassword);
         return "";  
       }
       return response.statusText;
