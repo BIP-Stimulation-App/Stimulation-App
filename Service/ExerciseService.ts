@@ -19,7 +19,7 @@ export class ExerciseService{
         });
         if(response.ok){ 
             var body =  (await response.json());
-            const exercise:Exercise =  body.map(((excercise: Exercise) => new Exercise(excercise.id, excercise.name, excercise.description, excercise.duration, excercise.difficulty,excercise.reward, excercise.category)));
+            const exercise:Exercise =  body.map(((excercise: Exercise) => new Exercise(excercise.id, excercise.name, excercise.description, excercise.setDuration, excercise.difficulty,excercise.reward, excercise.category)));
             return exercise;
         }
         else return "Error: " + response.status + response.body;
@@ -35,7 +35,7 @@ export class ExerciseService{
         });
         if(response.ok){ 
             var body =  (await response.json());
-            const exercises:Exercise[] =  body.map(((excercise: Exercise) => new Exercise(excercise.id, excercise.name, excercise.description, excercise.duration, excercise.difficulty,excercise.reward, excercise.category)))
+            const exercises:Exercise[] =  body.map(((excercise: Exercise) => new Exercise(excercise.id, excercise.name, excercise.description, excercise.setDuration, excercise.difficulty,excercise.reward, excercise.category)))
             return exercises;
         }
         else return "Error: " + response.status + response.body;
@@ -65,6 +65,7 @@ export class ExerciseService{
     }
 
     public static async addExcercise(exercise:Exercise):Promise<string> {
+        console.log("object: " + exercise.toString());
         if(exercise.name === ""){
             return "Name can not be empty!";
         }
@@ -74,29 +75,34 @@ export class ExerciseService{
         if(exercise.description === ""){
             return "Description can not be empty!";
         }
-        if(exercise.duration === "00:00:00"){
+        if(exercise.getDuration === "00:00:00"){
             return "duration can not be less than 0 seconds long!";
         }
         var token = await getApiToken();
+        
         const response = await fetch(this.route,{
             method:"POST",
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token
             },
-            body: JSON.stringify(exercise)
+            body: JSON.stringify(exercise.toApiPayload())
         }) 
-        if(response.status === 401 ){
+        if(response.status == 401 ){
             if(this.reAttempt){
                 this.reAttempt = false;
-                return null;
+                return "Can not log in.";
             }
             this.reAttempt = true;
             LoginService.ReLogIn().then(()=>{return this.addExcercise(exercise)});            
         }
-        if(response.status === 200){
+        if(response.status == 400) {
+            console.log("json: "+ JSON.stringify(exercise));
+            return "Error 400. see logs";
+        }
+        if(response.status == 200){
             return "";
         }
-        else return response.status.toString();
+        else return response.status.toString() + await response.json();
     }
 }
