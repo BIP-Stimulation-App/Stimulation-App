@@ -1,5 +1,5 @@
 import {getApiToken } from '../DataContext';
-import { Exercise } from '../Models/Excercise';
+import { Category, Difficulty, Exercise } from '../Models/Excercise';
 import { LoginService } from './LoginService';
 
 
@@ -19,7 +19,8 @@ export class ExerciseService{
         });
         if(response.ok){ 
             var body =  (await response.json());
-            const exercise:Exercise =  body.map(((excercise: Exercise) => new Exercise(excercise.id, excercise.name, excercise.description, excercise.setDuration, excercise.difficulty,excercise.reward, excercise.category)));
+            console.log(body);
+            const exercise:Exercise =  body.map(((excercise: Exercise) => new Exercise(excercise.id, excercise.name, excercise.description, excercise.duration, excercise.difficulty,excercise.reward, excercise.category)));
             return exercise;
         }
         else return "Error: " + response.status + response.body;
@@ -35,7 +36,9 @@ export class ExerciseService{
         });
         if(response.ok){ 
             var body =  (await response.json());
-            const exercises:Exercise[] =  body.map(((excercise: Exercise) => new Exercise(excercise.id, excercise.name, excercise.description, excercise.setDuration, excercise.difficulty,excercise.reward, excercise.category)))
+            console.log(body);
+            const exercises:Exercise[] =  body.map(((excercise: Exercise) => excercise));
+            
             return exercises;
         }
         else return "Error: " + response.status + response.body;
@@ -60,6 +63,7 @@ export class ExerciseService{
             LoginService.ReLogIn().then(()=>{return this.removeExercise(id)});            
         }
         else{
+            console.log(`Error: ${response.status}`);
             return false;
         }
     }
@@ -75,8 +79,8 @@ export class ExerciseService{
         if(exercise.description === ""){
             return "Description can not be empty!";
         }
-        if(exercise.getDuration === "00:00:00"){
-            return "duration can not be less than 0 seconds long!";
+        if(exercise.duration === "00:00:00"){
+            return "duration can not be less than 1 seconds long!";
         }
         var token = await getApiToken();
         
