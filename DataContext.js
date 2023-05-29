@@ -9,6 +9,13 @@ export const saveLoginCredentials = async (username, password) => {
     console.log('Error saving login credentials: ', error);
   }
 };
+export const updatePassword= async (password,) =>{
+  try {    
+    await SecureStore.setItemAsync('password', password);
+  } catch (error) {
+    console.log('Error updating password: ', error);
+  }
+}
 
 // Retrieve user's login credentials
 export const getLoginCredentials = async () => {
