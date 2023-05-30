@@ -3,8 +3,7 @@ import { StyleSheet } from 'react-native'
 const ProfileStyles = StyleSheet.create({ 
 container:{
     padding:20,
-    justifyContent: 'center',
-    marginTop: 50
+    marginTop: 100,
 },
 
 button:{

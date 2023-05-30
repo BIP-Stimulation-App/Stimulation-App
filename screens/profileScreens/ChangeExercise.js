@@ -59,8 +59,8 @@ const ChangeExercise = () => {
 
     return(
         <ImageBackground source={require('../../assets/background3.png')} style={{ flex: 1 }}>
-            <ScrollView style={styles.container}>
-
+            <ScrollView>
+            <View style={styles.container}>
                 <Text style={styles.text}>name:</Text>
                 <TextInput
                     style={styles.input}
@@ -135,6 +135,7 @@ const ChangeExercise = () => {
                 <TouchableOpacity style={styles.button} onPress={handleSave}>
                     <Text style={styles.textButton}>SAVE</Text>
                 </TouchableOpacity>
+            </View>
             </ScrollView>
         </ImageBackground>
     )

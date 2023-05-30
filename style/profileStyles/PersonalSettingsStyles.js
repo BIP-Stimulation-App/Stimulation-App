@@ -2,19 +2,19 @@ import { StyleSheet } from 'react-native'
 
 const PersonalSettingsStyles = StyleSheet.create({
     container:{
-        //flex:1,
+        flex:1,
         paddingLeft: 20,
         paddingRight: 20,
         //justifyContent: 'center',
-        paddingTop: 100
+        paddingTop: 40
     },
     text:{
-        fontSize: 12,
+        fontSize: 15,
         fontWeight: 'bold',
         paddingBottom: 5
     },
     input:{
-        height: 40,
+        height: 60,
         padding: 20,
         borderWidth: 2,
         borderColor: '#388C77',
@@ -39,6 +39,7 @@ const PersonalSettingsStyles = StyleSheet.create({
         marginTop: 10,
         marginLeft: 'auto',
         marginRight: 'auto',
+        marginBottom: 30
     
     },
     textButton:{

@@ -2,7 +2,7 @@ import React, {  } from 'react';
 import { View, Text} from 'react-native';
 
 
-const LeaderBoard = () => {
+const Leaderboard = () => {
 
     return(
         <View>
@@ -12,4 +12,4 @@ const LeaderBoard = () => {
 
 }
 
-export default LeaderBoard;
+export default Leaderboard;

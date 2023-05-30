@@ -60,7 +60,8 @@ const Notifications = ({username}) => {
 
     return(
         <ImageBackground source={require('../../assets/background3.png')} style={{ flex: 1 }}>
-            <ScrollView style={styles.container}>
+            <ScrollView>
+            <View style={styles.container}>
             <Text style={styles.text}>Receive notification for medicine?</Text>
                 <Picker
                     style={styles.picker}
@@ -121,7 +122,7 @@ const Notifications = ({username}) => {
                 }}>
                     <Text style={styles.textButton}>SAVE</Text>
                 </TouchableOpacity>
-            
+            </View>
             </ScrollView>
         </ImageBackground>
     )

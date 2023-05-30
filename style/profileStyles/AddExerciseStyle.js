@@ -6,16 +6,16 @@ const PersonalSettingsStyles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         //justifyContent: 'center',
-        paddingTop: 100,
+        paddingTop: 20,
         paddingBottom: 20
     },
     text:{
-        fontSize: 12,
+        fontSize: 15,
         fontWeight: 'bold',
         paddingBottom: 5,
     },
     input:{
-        height: 30,
+        height: 60,
         padding: 10,
         borderWidth: 2,
         borderColor: '#388C77',
@@ -24,7 +24,7 @@ const PersonalSettingsStyles = StyleSheet.create({
         marginBottom: 20
     },
     description:{
-        height: 60,
+        height: 200,
         padding: 20,
         borderWidth: 2,
         borderColor: '#388C77',
@@ -37,7 +37,7 @@ const PersonalSettingsStyles = StyleSheet.create({
         flexDirection: 'row',
     },
     textReward:{
-        fontSize: 12,
+        fontSize: 15,
         fontWeight: 'bold',
         paddingBottom: 5,
         marginLeft: '35%'

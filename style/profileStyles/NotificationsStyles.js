@@ -6,10 +6,10 @@ const NotificationsStyles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         //justifyContent: 'center',
-        paddingTop: 100
+        paddingTop: 40
     },
     text:{
-        fontSize: 12,
+        fontSize: 15,
         fontWeight: 'bold',
         paddingBottom: 5
     },
@@ -39,6 +39,7 @@ const NotificationsStyles = StyleSheet.create({
         marginTop: 10,
         marginLeft: 'auto',
         marginRight: 'auto',
+        marginBottom: 30
     
     },
     textButton:{
