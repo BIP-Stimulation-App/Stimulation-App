@@ -1,5 +1,5 @@
-import { NewAccount } from "../Models/NewAccount";
 import { saveLoginCredentials, getLoginCredentials, saveApiToken, getApiToken, updatePassword } from '../DataContext';
+import { NewAccount } from '../Models/NewAccount';
 export class LoginService {
   static apiLoginlink:string = "http://stimulationapp.com:8080/api/Login"
 

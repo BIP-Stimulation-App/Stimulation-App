@@ -3,6 +3,7 @@ import { View, Text, ImageBackground, Image, } from 'react-native';
 import styles from '../../style/moveStyles/ExerciseStyles';
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ExerciseService } from '../../Service/ExerciseService';
 
 
 
@@ -23,6 +24,7 @@ const Exercise = () => {
     
     useEffect(() => {
         //logic to pull the exercise from the database
+        
     }, []);
 
  

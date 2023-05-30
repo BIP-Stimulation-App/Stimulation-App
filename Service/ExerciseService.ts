@@ -25,7 +25,7 @@ export class ExerciseService{
         }
         else return "Error: " + response.status + response.body;
     }
-    public static async getExercises():Promise<Exercise[]|string>{
+    public static async getExercises(category=""):Promise<Exercise[]|string>{
         var token = await getApiToken();
         const response = await fetch(this.route,{
             method: 'GET',
@@ -38,8 +38,12 @@ export class ExerciseService{
             var body =  (await response.json());
             console.log(body);
             const exercises:Exercise[] =  body.map(((excercise: Exercise) => excercise));
-            
-            return exercises;
+            var filteredExercises = exercises;
+            if(category != "") {
+                console.log(category);
+                return filteredExercises = exercises.filter(exercise => exercise.category == Category[category]);
+            }
+            return filteredExercises;
         }
         else return "Error: " + response.status + response.body;
     }
