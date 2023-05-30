@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native'
 
 const InlogStyles = StyleSheet.create({
+
     input: {
       width: '90%',
       backgroundColor: '#ffffff',

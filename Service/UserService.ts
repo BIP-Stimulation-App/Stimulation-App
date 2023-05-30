@@ -2,7 +2,7 @@ import { User } from "../Models/User";
 import { getApiToken } from '../DataContext';
 
 export class UserService{
-static route = "http://stimulationapp.com:5000/api/User"
+static route = "http://stimulationapp.com:8080/api/User"
 
 static async UsernameInUse(username:string):Promise<string>
 {

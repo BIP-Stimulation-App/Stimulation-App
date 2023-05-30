@@ -5,7 +5,7 @@ import { LoginService } from './LoginService';
 
 
 export class ExerciseService{
-    public static route = "http://stimulationapp.com:5000/api/Exercise";
+    public static route = "http://stimulationapp.com:8080/api/Exercise";
     static reAttempt = false;
     
     public static async getExercise(id:number):Promise<Exercise|string>{

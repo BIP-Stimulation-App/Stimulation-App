@@ -3,7 +3,7 @@ import Medication from "../Models/Medication";
 import { LoginService } from "./LoginService";
 import { getApiToken } from '../DataContext';
 export class MedicationService{
-    static api = "http://stimulationapp.com:5000/api/Medication"
+    static api = "http://stimulationapp.com:8080/api/Medication"
     static reAttempt = false;
     
     /**
