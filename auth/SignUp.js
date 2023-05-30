@@ -35,10 +35,10 @@ const SignUp = () => {
     UserService.UsernameInUse(username).then((result)=>{
       if(result.includes("not")){
         setErrorMessage("")
-        setUsernameInUse(false);
+        setUsernameInUse(true);
         return;
       }
-      setUsernameInUse(true);
+      setUsernameInUse(false);
       setErrorMessage(result)
       return;
     });
@@ -66,9 +66,6 @@ const SignUp = () => {
       }
     });    
   };
-
- 
-   
 
     return (
       <ImageBackground source={require('../assets/backgroundlogin.png')} style={{ flex: 1 }}>
