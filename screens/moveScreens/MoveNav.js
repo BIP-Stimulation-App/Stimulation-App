@@ -6,6 +6,7 @@ const Stack = createStackNavigator();
 //screens
 import move from './Move';
 import exercise from './Exercise';
+import progress from './Progress';
 
 const MoveNav = () => {
 
@@ -17,8 +18,14 @@ const MoveNav = () => {
                 headerTitleAlign: 'center', 
                 headerTransparent: true
             }}/>
-              <Stack.Screen name='exercise' component={exercise} options={{
+            <Stack.Screen name='exercise' component={exercise} options={{
                 headerTitle: "Exercise", 
+                headerTitleStyle: {fontSize: 24},
+                headerTitleAlign: 'center', 
+                headerTransparent: true
+            }}/>
+            <Stack.Screen name='progress' component={progress} options={{
+                headerTitle: "Progress", 
                 headerTitleStyle: {fontSize: 24},
                 headerTitleAlign: 'center', 
                 headerTransparent: true
