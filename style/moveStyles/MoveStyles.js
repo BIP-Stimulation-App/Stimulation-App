@@ -1,4 +1,4 @@
-import { ImageBackground, StyleSheet } from 'react-native'
+import {StyleSheet} from 'react-native'
 
 const MoveStyles = StyleSheet.create({
     container:{
@@ -18,41 +18,43 @@ const MoveStyles = StyleSheet.create({
     },
     //Buttons
         strength:{
-            heigth: 100,
             width: 'auto',
             backgroundColor: '#F8AC59',
             marginBottom: 10,
             borderRadius: 5,
             marginRight: 2,
+            padding: 5,
+            
         },
         cardio:{
-            heigth: 100,
             width: 'auto',
             backgroundColor: '#5CC6C6',
             marginBottom: 10,
             borderRadius: 5,
-            marginRight: 2
+            marginRight: 2,
+            padding: 5
         },
         yoga:{
-            heigth: 100,
             width: 'auto',
             backgroundColor: '#ED5565',
             marginBottom: 10,
-            borderRadius: 5
+            borderRadius: 5,
+            padding: 5
         },
         coördination:{
             heigth: 100,
             width: 'auto',
-            backgroundColor: '#ACF200',
+            backgroundColor: '#00E278',
             marginBottom: 10,
-            borderRadius: 5
+            borderRadius: 5,
+            padding: 5
         },
         walking:{
-            heigth: 100,
             width: 'auto',
             backgroundColor: '#9C9CC9',
             marginBottom: 10,
-            borderRadius: 5
+            borderRadius: 5,
+            padding:5
         },
     text:{
         color:'white',
@@ -73,6 +75,7 @@ const MoveStyles = StyleSheet.create({
         backgroundColor: '#46A289',
         padding: 5,
         marginTop: 10,
+        height: 70
     },
     titleContainer:{
         flexDirection: 'row',
@@ -91,18 +94,35 @@ const MoveStyles = StyleSheet.create({
     textExercise:{
         color: 'white',
         fontSize: 15,
-        paddingRight: 2
+        paddingRight: 2,
+        paddingTop: 10
     },
     coin:{
         width: 20,
         height: 20,
-        borderRadius: 10
+        borderRadius: 10,
+        marginTop: 10
     },
     workout:{
         width: 100,
         height: 100,
         
     },
+    history:{
+        color: 'white',
+        fontSize: 15,
+        fontWeight: 'bold'
+    },
+    historyButton:{
+        width: 'auto',
+        height: 'auto',
+        backgroundColor: '#3BD80D',
+       //backgroundColor: '#46A289',
+        borderRadius: 5,
+        padding: 10,
+        marginTop: 50,
+        marginLeft: 50
+    }
 
 });
 export default MoveStyles;

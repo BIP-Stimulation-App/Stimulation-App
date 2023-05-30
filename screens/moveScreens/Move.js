@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ImageBackground,FlatList, Image  } from 'react-native';
+import { View, Text, ImageBackground,FlatList, Image } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
 import styles from '../../style/moveStyles/MoveStyles'
@@ -106,8 +106,8 @@ const Move = () => {
             <View style={styles.textContainer}>
                 <Text style={styles.textExercise}>Difficulty: {item.difficulty.toUpperCase()}</Text>
                 <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <Text style={styles.textExercise}>{item.reward}</Text>
-                <Image source={require('../../assets/coin.png')} style={styles.coin} />
+                    <Text style={styles.textExercise}>{item.reward}</Text>
+                    <Image source={require('../../assets/coin.png')} style={styles.coin} />
                 </View>
             </View>
             </TouchableOpacity>
@@ -154,12 +154,15 @@ const Move = () => {
                 showsVerticalScrollIndicator={true}
             />
             </View>
-        <View>
+        <View style={{flexDirection:'row', justifyContent:'space-evenly'}}>
             <Image source={require('../../assets/work-out.png')} style={styles.workout} />
+            <TouchableOpacity style={styles.historyButton} onPress={() => navigation.navigate('MoveNav', {screen:'progress'})}>
+                <Text style={styles.history}>View your progress</Text>
+            </TouchableOpacity>
         </View>
-        </View>
+    </View>
     
-        </ImageBackground>
+    </ImageBackground>
     )
 
 }
