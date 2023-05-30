@@ -1,7 +1,8 @@
 import { NewAccount } from "../Models/NewAccount";
 import { saveLoginCredentials, getLoginCredentials, saveApiToken, getApiToken, updatePassword } from '../DataContext';
+import { Settings } from "../AppSettings";
 export class LoginService {
-  static apiLoginlink:string = "http://stimulationapp.com:5000/api/Login"
+  static apiLoginlink:string = Settings.api +"/Login"
 
   static async Login(username:string, password:string):Promise<string>{
     if(username === "" || username === " "){
