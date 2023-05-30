@@ -1,9 +1,8 @@
-import { acc } from "react-native-reanimated";
-import Credential from "../auth/Models/Credentials"
-import { NewAccount } from "../auth/Models/NewAccount";
-
+import { NewAccount } from "../Models/NewAccount";
+import { saveLoginCredentials, getLoginCredentials, saveApiToken, getApiToken, updatePassword } from '../DataContext';
+import { Settings } from "../AppSettings";
 export class LoginService {
-  static apiLoginlink:string = "http://stimulationapp.com:5000/api/Login"
+  static apiLoginlink:string = Settings.api +"/Login"
 
   static async Login(username:string, password:string):Promise<string>{
     if(username === "" || username === " "){
@@ -12,7 +11,6 @@ export class LoginService {
     if(password === ""){
       return "Password can not be empty.";
     }
-  
     try {
       const response = await fetch(this.apiLoginlink, {
         method: 'POST',
@@ -25,10 +23,40 @@ export class LoginService {
         })
       });
       if (response.ok) {
-        Credential.username = username;
-        Credential.password = password;
-        const token = await response.text(); // Extract the response body as text
-        Credential.token = token;
+        console.debug("Logged in!")
+        saveLoginCredentials(username,password);
+        await response.json().then(async data => {
+           saveApiToken("Bearer " + data.token);
+        });
+        return '';
+      } else {
+        console.log("Error "+ response.status + ' ' + response.body);
+        return "Error "+ response.status + ' ' + response.body;
+      }
+    } catch (error) {
+      console.log(error);
+      return 'An error happened, please try again';
+    }
+    return "please wait";
+  }
+
+  static async ReLogIn(){    
+    try {
+      var login = await getLoginCredentials()
+      const response = await fetch(this.apiLoginlink, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: login.username,
+          password: login.password
+        })
+      });
+      if (response.ok) {
+        await response.json().then(data => {
+         saveApiToken("Bearer " + data.token);
+        }); // Extract the response body as text
         return '';
       } else {
         console.log(response.status + ' ' + response.statusText);
@@ -39,6 +67,7 @@ export class LoginService {
       return 'An error happened, please try again';
     }
   }
+  
 
   static async ValidateEmail(email:string):Promise<string>{
     if(!email.includes('@') ||!email.includes('.')){
@@ -83,23 +112,19 @@ export class LoginService {
       return e
     }
   }
-  static async UpdatePassword(newPassword: string, repeatPassword:string, email:string):Promise<string>{
-    if(newPassword != repeatPassword){
-      return "Passwords do not match";
-    }
-    else if(newPassword.length<8 ){
-      return "Password must be at least 8 characters long";
-    }
-
+  static async UpdatePassword(newPassword:string):Promise<string>{
+    
     try{
-      const response = await fetch(this.apiLoginlink+"/ChangePassword/"+ email,{
+      var token = await getApiToken();
+      const response = await fetch(this.apiLoginlink+"/ChangePassword",{
         method: 'POST',
           headers: {
               'password': newPassword,
-              'Authorization': "Bearer " + Credential.token
+              'Authorization': token
             },
       })
       if (response.ok) {
+        updatePassword(newPassword);
         return "";  
       }
       return response.statusText;
@@ -134,8 +159,6 @@ export class LoginService {
     }
     // Make API call to sign up user here
     let account = new NewAccount(object.username,object.firstname,object.lastname,object.email,object.password);
-
-
     try {
       const response = await fetch(this.apiLoginlink + "/Add", {
         method: 'POST',
@@ -155,5 +178,4 @@ export class LoginService {
       return 'An error happened, please try again';
     }
   }
-
 }

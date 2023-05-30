@@ -2,11 +2,10 @@ import { StyleSheet } from 'react-native'
 
 const restorePasswordStyles = StyleSheet.create({
     container:{
-        flex: 1,
         paddingLeft: 20,
         paddingRight:20,
         paddingBottom: 20,
-        paddingTop: 50,
+        paddingTop: 100,
         
     },
     input:{

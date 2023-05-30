@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import { block } from 'react-native-reanimated';
 
 const HomeStyles = StyleSheet.create({
     container:{
@@ -11,7 +10,6 @@ const HomeStyles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 24,
         marginBottom: 40,
-        display: 'block',
         marginTop: 20,
     },
     widebutton:{

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styles from "../style/SignupStyles";
-import { View, TextInput, Button, Text, TouchableOpacity,ImageBackground } from "react-native";
+import { View, TextInput, Text, TouchableOpacity,ImageBackground } from "react-native";
 import { LoginService } from "../Service/LoginService";
 import { UserService } from "../Service/UserService";
 
@@ -60,8 +60,7 @@ class SignUp extends Component {
     LoginService.AddLogin(this.state).then((result)=>{
       this.setState({ errorMessage: result });
       if (result === "") {
-        alert('Account created with succes!')
-        this.props.navigation.navigate("LogIn");
+        this.props.navigation.navigate("login");
       }
     });    
   };
@@ -78,12 +77,9 @@ class SignUp extends Component {
     } = this.state;
 
     return (
-      <ImageBackground source={require('../pictures/backgroundlogin.png')} style={{ flex: 1 }}>
+      <ImageBackground source={require('../assets/backgroundlogin.png')} style={{ flex: 1 }}>
 
       <View style={styles.container} >
-        <View style={styles.containerTitel}>
-          <Text style={styles.titel}>Who are you?</Text>
-        </View>
 
         <View style={styles.containerNames}>
           <TextInput

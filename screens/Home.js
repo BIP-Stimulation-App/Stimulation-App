@@ -1,39 +1,34 @@
-import React, { Component, useState, useEffect } from 'react';
-import { View, TextInput, Button, Alert, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import React, { Component, useEffect} from 'react';
+import { View,Text, TouchableOpacity, ImageBackground } from 'react-native';
 import styles from '../style/HomeStyles'
+import { UserService } from '../Service/UserService';
 
 
 
 class Home extends Component {
  
   state={
-    firstName: 'Bob',
+    firstName: 'Test',
   }
 
   /*useEffect(() => {
-      axios.get('https://my-api.com/user/1') //nog aan te passen
-        .then(response => {
-          setFirstName(response.data.name);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    }, []);*/
+    this.firstName = UserService.GetUserData().firstName;
+  })*/
 
 render(){
   const {firstName} = this.state;
   return(
-    <ImageBackground source={require('../pictures/background1.png')} style={{ flex: 1 }}>
+    <ImageBackground source={require('../assets/background1.png')} style={{ flex: 1 }}>
     <View style={styles.container}>
       <Text style={styles.hello}>Hello {firstName}!</Text>
 
       <TouchableOpacity style={styles.widebutton} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'Health'})}>
            <Text style={styles.textHealth}>My Health</Text>
       </TouchableOpacity>
-      <br></br>
+
       <View style={styles.containerSmall}>
 
-        <TouchableOpacity style={styles.smallbutton1} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'Medicine'})}>
+        <TouchableOpacity style={styles.smallbutton1} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'MedicineNav'})}>
             <Text style={styles.text}>Medicine</Text>
         </TouchableOpacity>
 
@@ -47,7 +42,7 @@ render(){
            <Text style={styles.text}>Compete</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.smallbutton4} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'Profile'})}>
+      <TouchableOpacity style={styles.smallbutton4} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'ProfileNav'})}>
            <Text style={styles.text}>Profile</Text>
       </TouchableOpacity>
       </View>

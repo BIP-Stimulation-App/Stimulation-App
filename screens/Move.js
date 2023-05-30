@@ -1,5 +1,5 @@
 import React, {  } from 'react';
-import { View, TextInput, Button, Alert, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 
 
 const Move = () => {
