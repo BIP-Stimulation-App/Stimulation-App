@@ -62,7 +62,7 @@ const PersonalSettings = () => {
         return setErrorMessage(
           "Please fill in your old password if you want to change it."
         );
-      if (oldPassword != (await getLoginCredentials).password)
+      if (oldPassword != (await getLoginCredentials()).password)
         return setErrorMessage("Your old password is incorrect");
       if (password.length < 6)
         return setErrorMessage("Password must be at 6 characters long!");

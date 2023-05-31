@@ -42,7 +42,6 @@ export class LoginService {
       console.log(error);
       return 'An error happened, please try again';
     }
-    return "please wait";
   }
 
   static async ReLogIn(){    
