@@ -1,8 +1,8 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, } from 'react-native'
 
 const PersonalSettingsStyles = StyleSheet.create({
     container:{
-        //flex:1,
+        flex:1,
         paddingLeft: 20,
         paddingRight: 20,
         //justifyContent: 'center',
@@ -13,6 +13,7 @@ const PersonalSettingsStyles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
         paddingBottom: 5,
+        paddingTop: 5
     },
     input:{
         height: 60,
@@ -52,9 +53,12 @@ const PersonalSettingsStyles = StyleSheet.create({
         backgroundColor: 'white',
         borderWidth: 2,
         borderColor: '#388C77',
-        padding: 10,
-        borderRadius: 5,
-        marginBottom: 20,
+        height: '20%'
+    },
+    picker: {
+        height: '100%',
+        width: '100%',
+        backgroundColor: '#fff',
     },
     inputReward:{
         width: '50%',
@@ -66,15 +70,7 @@ const PersonalSettingsStyles = StyleSheet.create({
         borderRadius: 5,
         marginBottom: 20
     },
-    
-    picker:{
-        backgroundColor: 'white',
-        borderWidth: 2,
-        borderColor: '#388C77',
-        padding: 10,
-        borderRadius: 5,
-        marginBottom: 20,
-    },
+   
     browse:{
         height: 30,
         width: 'auto',
@@ -86,10 +82,9 @@ const PersonalSettingsStyles = StyleSheet.create({
         padding: 20,
         borderRadius: 30,
         alignItems: 'center',
-        
         marginLeft: 'auto',
         marginRight: 'auto',
-    
+        marginTop: 10
     },
     textButton:{
         color: '#ffffff',

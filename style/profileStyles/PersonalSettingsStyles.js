@@ -22,13 +22,13 @@ const PersonalSettingsStyles = StyleSheet.create({
         borderRadius: 5,
         marginBottom: 20
     },
-    picker:{
-        backgroundColor: 'white',
-        borderWidth: 2,
-        borderColor: '#388C77',
-        padding: 10,
-        borderRadius: 5,
-        marginBottom: 20,
+    switch:{
+        flexDirection: 'row',
+        alignItems:'center',
+        marginBottom: 20
+    },
+    switchText:{
+        marginLeft: 10
     },
     button:{
         width: '90%',

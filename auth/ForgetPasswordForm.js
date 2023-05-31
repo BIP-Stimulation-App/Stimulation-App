@@ -34,13 +34,21 @@ const ForgetPasswordForm = () => {
   };
 
   const UpdatePassword = async () => {
-    LoginService.UpdatePassword(newPassword,repeatPassword,email).then((result)=>{
+    if(newPassword != repeatPassword){
+      return "Passwords do not match";
+    }
+    else if(newPassword.length<8 ){
+      return "Password must be at least 8 characters long";
+    }
+    LoginService.UpdatePassword(newPassword).then((result)=>{
       seterrorMessage(result);
       if(result === ""){      
         console.log("succes"); 
-        Credential.password = newPassword;    
+        Credential.password = newPassword;  
+        alert('Password reset with succes!');  
         this.props.navigation.navigate('LogIn');
       }
+      else return result;
     });    
   };
 

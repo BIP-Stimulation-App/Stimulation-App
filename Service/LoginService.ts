@@ -1,7 +1,8 @@
 import { NewAccount } from "../Models/NewAccount";
-import { saveLoginCredentials, getLoginCredentials, saveApiToken, getApiToken } from '../DataContext';
+import { saveLoginCredentials, getLoginCredentials, saveApiToken, getApiToken, updatePassword } from '../DataContext';
+import { Settings } from "../AppSettings";
 export class LoginService {
-  static apiLoginlink:string = "http://stimulationapp.com:5000/api/Login"
+  static apiLoginlink:string = Settings.api +"/Login"
 
   static async Login(username:string, password:string):Promise<string>{
     if(username === "" || username === " "){
@@ -22,19 +23,21 @@ export class LoginService {
         })
       });
       if (response.ok) {
+        console.debug("Logged in!")
         saveLoginCredentials(username,password);
         await response.json().then(async data => {
            saveApiToken("Bearer " + data.token);
         });
         return '';
       } else {
-        console.log(response.status + ' ' + response.statusText);
-        return response.statusText;
+        console.log("Error "+ response.status + ' ' + response.body);
+        return "Error "+ response.status + ' ' + response.body;
       }
     } catch (error) {
       console.log(error);
       return 'An error happened, please try again';
     }
+    return "please wait";
   }
 
   static async ReLogIn(){    
@@ -109,16 +112,11 @@ export class LoginService {
       return e
     }
   }
-  static async UpdatePassword(newPassword: string, repeatPassword:string, email:string):Promise<string>{
-    if(newPassword != repeatPassword){
-      return "Passwords do not match";
-    }
-    else if(newPassword.length<8 ){
-      return "Password must be at least 8 characters long";
-    }
+  static async UpdatePassword(newPassword:string):Promise<string>{
+    
     try{
       var token = await getApiToken();
-      const response = await fetch(this.apiLoginlink+"/ChangePassword/"+ email,{
+      const response = await fetch(this.apiLoginlink+"/ChangePassword",{
         method: 'POST',
           headers: {
               'password': newPassword,
@@ -126,6 +124,7 @@ export class LoginService {
             },
       })
       if (response.ok) {
+        updatePassword(newPassword);
         return "";  
       }
       return response.statusText;

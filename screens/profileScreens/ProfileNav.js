@@ -64,7 +64,6 @@ const ProfileNav = () => {
                 headerTitleAlign: 'center', 
                 headerBackTitleVisible: false
             }}/>
-
         </Stack.Navigator>   
     )
 

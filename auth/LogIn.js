@@ -25,9 +25,11 @@ class Login extends Component {
   login = async (username, password) => {
     this.setState({disableButton:true})
     LoginService.Login(username,password).then((result) =>{
+      console.debug("result: "+result);
     this.setState({errorMessage: result})
     console.log(result);
     if(result === ""){
+      console.debug(result);
       this.props.navigation.navigate('HomeNav');
     }
     this.setState({disableButton:false})
@@ -71,7 +73,7 @@ class Login extends Component {
           disabled = {this.disableButton}
           onPress={() => {
             this.login(this.state.username, this.state.password); 
-            this.props.navigation.navigate('HomeNav'); //to delete when login function is uncomment
+            //this.props.navigation.navigate('HomeNav'); //to delete when login function is uncomment
 
           }}
         >
