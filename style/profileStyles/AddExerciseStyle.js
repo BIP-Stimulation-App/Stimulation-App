@@ -6,8 +6,8 @@ const PersonalSettingsStyles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         //justifyContent: 'center',
-        paddingTop: 100,
-
+        paddingTop: 20,
+        paddingBottom: 20
     },
     text:{
         fontSize: 15,
@@ -16,7 +16,7 @@ const PersonalSettingsStyles = StyleSheet.create({
         paddingTop: 5
     },
     input:{
-        height: 40,
+        height: 60,
         padding: 10,
         borderWidth: 2,
         borderColor: '#388C77',
@@ -25,7 +25,7 @@ const PersonalSettingsStyles = StyleSheet.create({
         marginBottom: 20
     },
     description:{
-        height: 60,
+        height: 200,
         padding: 20,
         borderWidth: 2,
         borderColor: '#388C77',
@@ -34,7 +34,23 @@ const PersonalSettingsStyles = StyleSheet.create({
         marginBottom: 20
 
     },
-    pickerContainer:{
+    doubleText:{
+        flexDirection: 'row',
+    },
+    textReward:{
+        fontSize: 15,
+        fontWeight: 'bold',
+        paddingBottom: 5,
+        marginLeft: '35%'
+    },
+    
+    doubleInput:{
+        flexDirection: 'row',
+    },
+    difficultyPicker:{
+        width: '50%',
+        marginRight: 5,
+        backgroundColor: 'white',
         borderWidth: 2,
         borderColor: '#388C77',
         height: '20%'

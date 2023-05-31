@@ -5,7 +5,7 @@ container:{
     paddingLeft: 20,
     paddingRight: 20,
     //justifyContent: 'center',
-    paddingTop: 100
+    paddingTop: 20
 },
 picture:{
     width: 100,
@@ -19,7 +19,7 @@ text:{
     paddingBottom: 5
 },
 inputMedicineName:{
-    height: 40,
+    height: 60,
     padding: 20,
     borderWidth: 2,
     borderColor: '#388C77',
@@ -45,6 +45,7 @@ saveButton:{
     //marginTop: 5,
     marginLeft: 'auto',
     marginRight: 'auto',
+    marginBottom: 40
 },
 saveText:{
     color: '#ffffff',

@@ -16,13 +16,15 @@ const MedicineStyles = StyleSheet.create({
   fontWeight: 'bold',
   color: 'white',
   textAlign: 'center',
+  padding: 10
  },
  addButton:{
   backgroundColor: '#388C77',
-  borderRadius: 50,
-  width: 60,
-  height: 60,
+  borderRadius: 60,
+  width: 70,
+  height: 70,
   alignSelf: 'center',
+  justifyContent:'center'
  },
  buttonView:{
   height: '15%'

@@ -3,17 +3,18 @@ import { StyleSheet } from 'react-native'
 
 const SignupStyles = StyleSheet.create({
   container:{
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingBottom: 20,
     flex: 1,
-    justifyContent:'center',
+    paddingLeft: 25,
+    paddingRight: 20,
+    paddingTop: 100,
+    
+    //justifyContent:'center'
   },
     containerNames:{
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: '80%',
+        width: '82%',
     },
     containerLabels:{
         flexDirection: 'row',
@@ -25,7 +26,7 @@ const SignupStyles = StyleSheet.create({
       borderWidth: 1,
       borderColor: 'white',
       backgroundColor: 'white',
-      marginRight: 10,
+      //marginRight: 10,
       borderRadius: 5,
       
     },

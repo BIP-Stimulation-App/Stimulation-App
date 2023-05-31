@@ -5,7 +5,7 @@ import styles from '../../style/profileStyles/BluetoothStyles'
 import { ScrollView } from 'react-native-gesture-handler';
 //import {BleManager, Device } from 'react-native-ble-plx';
 const BluetoothConnection = () => {
-    
+
     const[device, setDevice] = useState('none'); //must be empty, just for testing frontend
     const[devices, setDevices] = useState<Array<Device>>([]);
     //const bleManager = new BleManager();
@@ -20,7 +20,7 @@ const BluetoothConnection = () => {
                 console.log('Device discovered:', device);
         });
         Bluetooth.scanDevices();
-        
+
 
         //set state variables with user data
         //setDevice(userData.device);
@@ -44,6 +44,19 @@ const BluetoothConnection = () => {
     //        })
     //    }
         
+    //}
+
+
+    //const startSearch =() =>{
+    //    if(!started){
+    //        bleManager.startDeviceScan(null,null, (error,data) =>{
+    //            if(error)console.log(error);
+    //            if(data /&& data.name?.includes("StimWatch")/){
+    //                setDevices((prevState) => !checkDupe(prevState,data)?[...prevState,data]:prevState);
+    //            }
+    //        })
+    //    }
+
     //}
 
 
@@ -89,7 +102,7 @@ const BluetoothConnection = () => {
                         </TouchableOpacity>
                     </View>
                 )}
-            
+
             </View>
         </ImageBackground>
     )

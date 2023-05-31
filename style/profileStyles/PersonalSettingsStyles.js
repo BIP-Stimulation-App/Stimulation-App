@@ -5,7 +5,8 @@ const PersonalSettingsStyles = StyleSheet.create({
         flex:1,
         paddingLeft: 20,
         paddingRight: 20,
-        justifyContent: 'center',
+        //justifyContent: 'center',
+        paddingTop: 40
     },
     text:{
         fontSize: 15,
@@ -13,7 +14,7 @@ const PersonalSettingsStyles = StyleSheet.create({
         paddingBottom: 5
     },
     input:{
-        height: 40,
+        height: 60,
         padding: 20,
         borderWidth: 2,
         borderColor: '#388C77',
@@ -38,6 +39,7 @@ const PersonalSettingsStyles = StyleSheet.create({
         marginTop: 10,
         marginLeft: 'auto',
         marginRight: 'auto',
+        marginBottom: 30
     
     },
     textButton:{

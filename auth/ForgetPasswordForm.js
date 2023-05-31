@@ -44,7 +44,8 @@ const ForgetPasswordForm = () => {
       seterrorMessage(result);
       if(result === ""){      
         console.log("succes"); 
-        Credential.password = newPassword;    
+        Credential.password = newPassword;  
+        alert('Password reset with succes!');  
         this.props.navigation.navigate('LogIn');
       }
       else return result;

@@ -2,8 +2,9 @@ import { useContext } from "react";
 import Medication from "../Models/Medication";
 import { LoginService } from "./LoginService";
 import { getApiToken } from '../DataContext';
+import { Settings } from "../AppSettings";
 export class MedicationService{
-    static api = "http://stimulationapp.com:8080/api/Medication"
+    static api = Settings.api + "/Medication"
     static reAttempt = false;
     
     /**

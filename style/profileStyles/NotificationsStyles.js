@@ -5,7 +5,8 @@ const NotificationsStyles = StyleSheet.create({
         flex:1,
         paddingLeft: 20,
         paddingRight: 20,
-        justifyContent: 'center',
+        //justifyContent: 'center',
+        paddingTop: 40
     },
     text:{
         fontSize: 15,
@@ -46,6 +47,7 @@ const NotificationsStyles = StyleSheet.create({
         marginTop: 10,
         marginLeft: 'auto',
         marginRight: 'auto',
+        marginBottom: 30
     
     },
     textButton:{
