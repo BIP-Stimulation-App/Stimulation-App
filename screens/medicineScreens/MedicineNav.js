@@ -21,8 +21,7 @@ const MedicineNav = () => {
                 headerTitle: 'Add Medicine',
                 headerTitleStyle: {fontSize: 24},
                 headerTitleAlign: 'center', 
-                headerTransparent: true,
-                headerStyle: {marginTop: 5}
+                headerBackTitleVisible: false
             }}/>
         </Stack.Navigator>
     )

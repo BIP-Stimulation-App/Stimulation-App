@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   Image,
+  ScrollView
 } from "react-native";
 import {Picker} from '@react-native-picker/picker';
 import { useNavigation } from "@react-navigation/native";
@@ -70,7 +71,8 @@ const AddMedicine = () => {
       source={require("../../assets/background2.png")}
       style={{ flex: 1 }}
     >
-      <ScrollView style={styles.container}>
+      <ScrollView>
+        <View style={styles.container}>
         <Image
           source={require("../../assets/medicine.png")}
           style={styles.picture}
@@ -180,6 +182,7 @@ const AddMedicine = () => {
         <TouchableOpacity onPress={handleSave} style={styles.saveButton}>
           <Text style={styles.saveText}>SAVE</Text>
         </TouchableOpacity>
+        </View>
       </ScrollView>
     </ImageBackground>
   );
