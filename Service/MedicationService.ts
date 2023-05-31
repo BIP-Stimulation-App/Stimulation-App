@@ -84,6 +84,7 @@ export class MedicationService{
         if(medication.name === ""){
             return "Name can not be empty";
         }
+        console.log(JSON.stringify(medication));
         var token = await getApiToken();
         const response = await fetch(MedicationService.api,{
             method:"POST",
