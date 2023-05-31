@@ -26,7 +26,7 @@ export class ExerciseService{
         }
         else return "Error: " + response.status + response.body;
     }
-    public static async getExercises():Promise<Exercise[]|string>{
+    public static async getExercises(category=""):Promise<Exercise[]|string>{
         var token = await getApiToken();
         const response = await fetch(this.route,{
             method: 'GET',
@@ -39,8 +39,12 @@ export class ExerciseService{
             var body =  (await response.json());
             console.log(body);
             const exercises:Exercise[] =  body.map(((excercise: Exercise) => excercise));
-            
-            return exercises;
+            var filteredExercises = exercises;
+            if(category != "") {
+                console.log(category);
+                return filteredExercises = exercises.filter(exercise => exercise.category == Category[category]);
+            }
+            return filteredExercises;
         }
         else return "Error: " + response.status + response.body;
     }
@@ -70,7 +74,6 @@ export class ExerciseService{
     }
 
     public static async addExcercise(exercise:Exercise):Promise<string> {
-        console.log("object: " + exercise.toString());
         if(exercise.name === ""){
             return "Name can not be empty!";
         }
@@ -109,5 +112,48 @@ export class ExerciseService{
             return "";
         }
         else return response.status.toString() + await response.json();
+    }
+
+    public static async updateExercise(exercise:Exercise):Promise<string>{
+        if(exercise.name === ""){
+            return "Name can not be empty!";
+        }
+        if(exercise.reward === 0){
+            return "Reward can't be 0";        
+        }
+        if(exercise.description === ""){
+            return "Description can not be empty!";
+        }
+        if(exercise.duration === "00:00:00"){
+            return "duration can not be less than 1 seconds long!";
+        }
+        var token = await getApiToken();
+        
+        const response = await fetch(this.route,{
+            method:"PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+            body: JSON.stringify(exercise.toApiPayload())
+        }) 
+        console.log("Error:" +response.status);
+        if(response.status == 401 ){
+            if(this.reAttempt){
+                this.reAttempt = false;
+                return "Can not log in.";
+            }
+            this.reAttempt = true;
+            LoginService.ReLogIn().then(()=>{return this.addExcercise(exercise)});            
+        }
+        if(response.status == 400) {
+            console.log("json: "+ JSON.stringify(exercise));
+            return "Error 400. see logs";
+        }
+        if(response.status == 200){
+            return "";
+        }
+        console.log("Error:" +response.status);
+        return "Error " + response.status + await response.json();
     }
 }

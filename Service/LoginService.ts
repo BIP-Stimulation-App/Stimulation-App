@@ -1,5 +1,5 @@
-import { NewAccount } from "../Models/NewAccount";
 import { saveLoginCredentials, getLoginCredentials, saveApiToken, getApiToken, updatePassword } from '../DataContext';
+import { NewAccount } from '../Models/NewAccount';
 import { Settings } from "../AppSettings";
 export class LoginService {
   static apiLoginlink:string = Settings.api +"/Login"

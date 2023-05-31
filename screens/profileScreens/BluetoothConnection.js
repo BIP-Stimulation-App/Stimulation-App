@@ -10,7 +10,7 @@ const BluetoothConnection = () => {
     const[devices, setDevices] = useState<Array<Device>>([]);
     //const bleManager = new BleManager();
     //var started = false;
-    //useEffect(() => {
+     /*useEffect(() => {
         //fetch user data from database
         //const userData = getUserData(userId);
         var Bluetooth = BluetoothConnector.instance;
@@ -25,13 +25,26 @@ const BluetoothConnection = () => {
         //set state variables with user data
         //setDevice(userData.device);
         //maybe try catch or if else when there is no device connected yet, the value will be 'none' otherwise the name of the device
-        //})/
+        })*/ 
    // const checkDupe = (newDevice) => devices.findIndex(existingDevice => existingDevice.id === newDevice.id);
 
     const getUserData = () => {
         //add logic to retrieve user data
-
+        
     }
+    
+
+    //const startSearch =() =>{
+    //    if(!started){
+    //        bleManager.startDeviceScan(null,null, (error,data) =>{
+    //            if(error)console.log(error);
+    //            if(data /*&& data.name?.includes("StimWatch")*/){
+    //                setDevices((prevState) => !checkDupe(prevState,data)?[...prevState,data]:prevState);                    
+    //            }
+    //        })
+    //    }
+        
+    //}
 
 
     //const startSearch =() =>{

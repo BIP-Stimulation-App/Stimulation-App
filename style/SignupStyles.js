@@ -47,13 +47,7 @@ const SignupStyles = StyleSheet.create({
         marginRight: 95,
         fontWeight:500,
     },
-    titel:{
-      textAlign: 'left',
-      paddingBottom: 10,
-      color: 'white',
-      fontWeight: 700,
-      fontSize: 30,
-    },
+   
     button:{
         width: '90%',
       backgroundColor: '#388C77',
