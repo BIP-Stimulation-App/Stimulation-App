@@ -14,4 +14,7 @@ export default class Medication{
         this.time = time;
         this.frequency = frequency        
     }
+    toString(){
+        return `name ${this.name}. time ${this.time.toISOString()}`
+    }
 }

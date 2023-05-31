@@ -22,13 +22,18 @@ export class LoginService {
         })
       });
       if (response.ok) {
-        console.debug("Logged in!")
+        
         saveLoginCredentials(username,password);
         await response.json().then(async data => {
+          console.log(data);
            saveApiToken("Bearer " + data.token);
         });
         return '';
-      } else {
+      }
+      else if(response.status === 404){
+        return "User not found";
+      }
+      else {
         console.log("Error "+ response.status + ' ' + response.body);
         return "Error "+ response.status + ' ' + response.body;
       }
