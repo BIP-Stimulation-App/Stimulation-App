@@ -6,9 +6,7 @@ export default class Medication{
     description:string;
     time:Date;
     frequency:Frequency;
-    /**
-     *
-     */
+    
     constructor(id:number,name:string, description:string|null, time:Date, frequency:Frequency) {
         this.id = id
         this.name = name;

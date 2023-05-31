@@ -55,7 +55,8 @@ const ShowExercises = () => {
     <View style={styles.listComponent}>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("ProfileNav", { screen: "changeExercise" });
+          navigation.navigate("ProfileNav", { screen: "changeExercise",
+          params:{ exercise:item} });
         }}
       >
         <Text style={styles.titel}>{item.nameExercise}</Text>
@@ -86,7 +87,7 @@ const ShowExercises = () => {
       <View style={styles.container}>
         <View style={styles.listContainer}>
           <FlatList
-            data={exercises} //to be replaced with exercises list
+            data={exercises}
             renderItem={renderItem}
             ListEmptyComponent={renderEmpty}
             keyExtractor={(item) => item.id.toString()}

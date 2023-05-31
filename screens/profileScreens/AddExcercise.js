@@ -71,7 +71,7 @@ const AddExercise = () => {
   };
 
   const handleSave = async () => {
-    var exercise = new Exercise(
+    let exercise = new Exercise(
       0,
       name,
       description,
@@ -81,7 +81,7 @@ const AddExercise = () => {
       category
     );
     console.log(`adding exercise ${exercise.toString()}`);
-    var result = await ExerciseService.addExcercise(exercise);
+    let result = await ExerciseService.addExcercise(exercise);
     if (result === "") {
       alert("Exercise added with succes");
       navigation.navigate("ProfileNav", { screen: "adminAdd" });
