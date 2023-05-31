@@ -8,10 +8,12 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
+import { saveApiToken } from "../DataContext";
 import { LoginService } from "../Service/LoginService";
 import restorePasswordStyles from "../style/RestorePasswordStyles";
-
+import { useNavigation } from "@react-navigation/native";
 const ForgetPasswordForm = () => {
+  const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -35,7 +37,7 @@ const ForgetPasswordForm = () => {
       if (result === "") {
         setShowTokenField(false);
         setShowPasswordFields(true);
-        Credential.token = request.response;
+        saveApiToken(request.response);
       }
     });
   };
@@ -51,7 +53,7 @@ const ForgetPasswordForm = () => {
       if (result === "") {
         console.log("succes");
         setNewPassword(newPassword);
-        navigation.navigate("LogIn");
+        navigation.navigate("Login");
       } else return result;
     });
   };

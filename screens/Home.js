@@ -27,7 +27,7 @@ const Home = () => {
 
         <TouchableOpacity
           style={styles.widebutton}
-          onPress={() => navigation.navigate("HomeNav", { screen: "Health" })}
+          onPress={() => navigation.navigate("HealthNav", { screen: "Health" })}
         >
           <Text style={styles.textHealth}>My Health</Text>
         </TouchableOpacity>
@@ -36,7 +36,7 @@ const Home = () => {
           <TouchableOpacity
             style={styles.smallbutton1}
             onPress={() =>
-              navigation.navigate("HomeNav", { screen: "MedicineNav" })
+              navigation.navigate("MedicineNav", { screen: "Medicine" })
             }
           >
             <Text style={styles.text}>Medicine</Text>
@@ -55,7 +55,7 @@ const Home = () => {
           <TouchableOpacity
             style={styles.smallbutton3}
             onPress={() =>
-              navigation.navigate("HomeNav", { screen: "LeaderBoard" })
+              navigation.navigate("LeaderboardNav", { screen: "Leaderboard" })
             }
           >
             <Text style={styles.text}>Compete</Text>
