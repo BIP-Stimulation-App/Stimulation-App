@@ -25,13 +25,13 @@ const  AddExerciseStyles = StyleSheet.create({
     },
     description:{
         height: 200,
-        padding: 20,
+        paddingLeft:5,
+        paddingBottom: 5,
         borderWidth: 2,
         borderColor: '#388C77',
         backgroundColor: 'white',
         borderRadius: 5,
-        marginBottom: 20
-
+        marginBottom: 20,
     },
     doubleText:{
         flexDirection: 'row',

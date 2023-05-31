@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   View,
   Text,
@@ -16,7 +16,7 @@ import Medication from "../../Models/Medication";
 
 const AddMedicine = () => {
   const navigation = useNavigation();
-
+  const scrollViewRef = useRef(null);
   const [nameMedicine, setNameMedicine] = useState("");
   const [timestamp, setTimestamp] = useState("12:00 AM");
   const [frequency, setFrequency] = useState(0);
@@ -78,7 +78,7 @@ const AddMedicine = () => {
       source={require("../../assets/background2.png")}
       style={{ flex: 1 }}
     >
-      <ScrollView>
+      <ScrollView ref={scrollViewRef}>
         <View style={styles.container}>
           <Image
             source={require("../../assets/medicine.png")}
@@ -90,6 +90,10 @@ const AddMedicine = () => {
             style={styles.inputMedicineName}
             placeholder="name"
             placeholderTextColor="grey"
+            returnKeyType="next"
+            onSubmitEditing={() => {
+              this.descriptionInput.focus();
+            }}
           ></TextInput>
 
           <Text style={styles.text}>Description:</Text>
@@ -98,6 +102,12 @@ const AddMedicine = () => {
             style={styles.inputMedicineName}
             placeholder="amount of pills - example"
             placeholderTextColor="grey"
+            ref={(input) => {
+              this.descriptionInput = input;
+            }}
+            onSubmitEditing={() => {
+              scrollViewRef.current.scrollTo({ y: 300, animated: true });
+            }}
           ></TextInput>
 
           <Text style={styles.text}>time: </Text>
