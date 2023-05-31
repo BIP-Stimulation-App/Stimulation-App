@@ -3,33 +3,35 @@ import { StyleSheet } from 'react-native'
 
 const SignupStyles = StyleSheet.create({
   container:{
-    paddingLeft: 20,
+    flex: 1,
+    paddingLeft: 25,
     paddingRight: 20,
-    paddingBottom: 20,
-    paddingTop: 100
+    paddingTop: 100,
+    
+    //justifyContent:'center'
   },
     containerNames:{
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: '80%',
+        width: '82%',
     },
     containerLabels:{
         flexDirection: 'row',
     },
     input:{
-      height: 40,
+      height: 60,
       marginVertical: 10,
       padding: 20,
       borderWidth: 1,
       borderColor: 'white',
       backgroundColor: 'white',
-      marginRight: 10,
+      //marginRight: 10,
       borderRadius: 5,
       
     },
     inputnames:{
-      height: 40,
+      height: 60,
       width: '59%',
       marginVertical: 10,
       padding: 20,
@@ -41,7 +43,7 @@ const SignupStyles = StyleSheet.create({
     },
     label:{
         textAlign: 'left',
-        fontSize: 12,
+        fontSize: 15,
         marginRight: 95,
         fontWeight:500,
     },
