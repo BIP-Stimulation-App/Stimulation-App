@@ -45,7 +45,7 @@ const Move = () => {
 
   const renderItem = ({ item }) => (
     <View style={styles.listComponent}>
-      <TouchableOpacity onPress={handleNavigation}>
+      <TouchableOpacity onPress={() => handleNavigation(item)}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{item.name}</Text>
           <Text style={styles.textExercise}>{item.duration}</Text>
@@ -69,8 +69,13 @@ const Move = () => {
     </View>
   );
 
-  const handleNavigation = () => {
-    navigation.navigate("MoveNav", { screen: "Exercise" });
+  const handleNavigation = (item) => {
+    navigation.navigate("MoveNav", {
+      screen: "exercisePage",
+      params: {
+        exercise: item,
+      },
+    });
   };
 
   return (
