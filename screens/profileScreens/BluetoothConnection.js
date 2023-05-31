@@ -7,7 +7,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 const BluetoothConnection = () => {
 
     const[device, setDevice] = useState('none'); //must be empty, just for testing frontend
-    const[devices, setDevices] = useState<Array<Device>>([]);
+    const [username, setUsername] = useState('none')
+    //const[devices, setDevices] = useState<Array<Device>>([]);
     //const bleManager = new BleManager();
     //var started = false;
      /*useEffect(() => {
@@ -34,31 +35,6 @@ const BluetoothConnection = () => {
     }
     
 
-    //const startSearch =() =>{
-    //    if(!started){
-    //        bleManager.startDeviceScan(null,null, (error,data) =>{
-    //            if(error)console.log(error);
-    //            if(data /*&& data.name?.includes("StimWatch")*/){
-    //                setDevices((prevState) => !checkDupe(prevState,data)?[...prevState,data]:prevState);                    
-    //            }
-    //        })
-    //    }
-        
-    //}
-
-
-    //const startSearch =() =>{
-    //    if(!started){
-    //        bleManager.startDeviceScan(null,null, (error,data) =>{
-    //            if(error)console.log(error);
-    //            if(data /&& data.name?.includes("StimWatch")/){
-    //                setDevices((prevState) => !checkDupe(prevState,data)?[...prevState,data]:prevState);
-    //            }
-    //        })
-    //    }
-
-    //}
-
 
     const updateUserData = () => {
         //add logic to update the user data in database
@@ -67,7 +43,7 @@ const BluetoothConnection = () => {
 
     const handleConnect = () => {
         //add logic
-        bleManager.startDeviceScan();
+       // bleManager.startDeviceScan();
         setDevice('testNameDevice') //to be replaced
         updateUserData(username, {device})
                 //add logic to update the user data in database
@@ -89,7 +65,7 @@ const BluetoothConnection = () => {
                     <View>
                         <Text style={styles.text}>Start searching: </Text>
                         <ScrollView style={styles.scroll}>
-                            {startSearch()}
+                           
                         </ScrollView>
                         <TouchableOpacity style={styles.button} onPress={handleConnect}>
                             <Text style={styles.textButton}>CONNECT</Text>

@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { useNavigation } from "@react-navigation/native";
-import styles from "../../style/profileStyles/AddExerciseStyle";
+import styles from "../../style/profileStyles/AddExerciseStyles";
 import { ExerciseService } from "../../Service/ExerciseService";
 import { Exercise } from "../../Models/Excercise";
 
@@ -127,7 +127,7 @@ const AddExercise = () => {
           <Text style={styles.text}>difficulty:</Text>
           <View style={styles.pickerContainer}>
             <Picker
-              mode={Platform.OS === "ios" ? "dropdown" : undefined} //doesn't work in IOS, keeps being a wheel
+              //mode={Platform.OS === "ios" ? "dropdown" : undefined} //doesn't work in IOS, keeps being a wheel
               style={styles.picker}
               selectedValue={difficulty}
               onValueChange={handleDifficultyChange}

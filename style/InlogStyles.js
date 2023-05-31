@@ -63,9 +63,9 @@ const InlogStyles = StyleSheet.create({
     },
     passwordlink:{
       textAlign: 'center',
-      fontSize: 13,
+      fontSize: 15,
       textDecorationLine: 'underline',
-      marginTop: 5,
+      marginTop: 20,
       marginBottom: 10,
     },
     errorMessageText:{

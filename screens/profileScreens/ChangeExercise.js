@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { useNavigation } from "@react-navigation/native";
-import styles from "../../style/profileStyles/AddExerciseStyle";
+import styles from "../../style/profileStyles/AddExerciseStyles";
 import { Category, Difficulty } from "../../Models/Excercise";
 import { ExerciseService } from "../../Service/ExerciseService";
 import { Exercise } from "../../Models/Excercise";
