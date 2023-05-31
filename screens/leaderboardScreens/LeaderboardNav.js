@@ -1,10 +1,9 @@
-import React, {  } from 'react';
+import React, {} from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-
 const Stack = createStackNavigator();
 
 //screens
-import leaderboard from './LeaderBoard';
+import leaderboard from './Leaderboard';
 
 const LeaderboardNav = () => {
 
@@ -14,7 +13,7 @@ const LeaderboardNav = () => {
                 headerTitle: "Leaderboard",
                 headerTitleStyle: {fontSize: 24},
                 headerTitleAlign: 'center', 
-                //headerTransparent: true,
+                headerTransparent: true,
                
             }}/>
             
