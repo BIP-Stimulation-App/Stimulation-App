@@ -2,10 +2,8 @@ import { StyleSheet } from 'react-native'
 
 const ProfileStyles = StyleSheet.create({ 
 container:{
-    flex: 1,
-    paddingLeft:20,
-    paddingRight: 20,
-    justifyContent: 'center',
+    padding:20,
+    marginTop: 100,
 },
 
 button:{

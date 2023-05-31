@@ -16,7 +16,7 @@ const MoveNav = () => {
                 headerTitle: "Let's Move!",
                 headerTitleStyle: {fontSize: 24},
                 headerTitleAlign: 'center', 
-                headerTransparent: true
+                headerTransparent: true,
             }}/>
             <Stack.Screen name='exercisePage' component={exercisePage} options={{
                 headerTitle: "Exercise", 

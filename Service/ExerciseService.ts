@@ -1,3 +1,4 @@
+import { Settings } from '../AppSettings';
 import {getApiToken } from '../DataContext';
 import { Category, Difficulty, Exercise } from '../Models/Excercise';
 import { LoginService } from './LoginService';
@@ -5,7 +6,7 @@ import { LoginService } from './LoginService';
 
 
 export class ExerciseService{
-    public static route = "http://stimulationapp.com:8080/api/Exercise";
+    public static route = Settings.api +"/Exercise";
     static reAttempt = false;
     
     public static async getExercise(id:number):Promise<Exercise|string>{
