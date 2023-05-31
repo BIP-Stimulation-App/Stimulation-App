@@ -22,7 +22,7 @@ render(){
     <View style={styles.container}>
       <Text style={styles.hello}>Hello {firstName}!</Text>
 
-      <TouchableOpacity style={styles.widebutton} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'Health'})}>
+      <TouchableOpacity style={styles.widebutton} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'HealthNav'})}>
            <Text style={styles.textHealth}>My Health</Text>
       </TouchableOpacity>
 
@@ -32,13 +32,13 @@ render(){
             <Text style={styles.text}>Medicine</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.smallbutton2} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'Move'})}>
+        <TouchableOpacity style={styles.smallbutton2} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'MoveNav'})}>
            <Text style={styles.text}>Let's Move!</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.containerSmall}>
 
-      <TouchableOpacity style={styles.smallbutton3} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'LeaderBoard'})}>
+      <TouchableOpacity style={styles.smallbutton3} onPress={() => this.props.navigation.navigate('HomeNav',{screen:'LeaderboardNav'})}>
            <Text style={styles.text}>Compete</Text>
       </TouchableOpacity>
 

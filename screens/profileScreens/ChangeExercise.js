@@ -60,7 +60,6 @@ const ChangeExercise = () => {
 
     return(
         <ImageBackground source={require('../../assets/background3.png')} style={{ flex: 1 }}>
-            
             <ScrollView>
             <View style={styles.container}>
                 <Text style={styles.text}>name:</Text>

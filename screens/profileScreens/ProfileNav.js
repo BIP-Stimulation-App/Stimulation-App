@@ -20,44 +20,49 @@ const ProfileNav = () => {
                 headerTitle: 'Profile',
                 headerTitleStyle: {fontSize: 24},
                 headerTitleAlign: 'center', 
-                headerTransparent: true
+                headerTransparent: true,
                 
             }}/>
             <Stack.Screen name='personalSettings' component={personalSettings} options={{
                 headerTitle: 'Settings',
                 headerTitleStyle: {fontSize: 24},
                 headerTitleAlign: 'center', 
-                headerTransparent: true
+                headerBackTitleVisible: false
+
             }} />
             <Stack.Screen name='notifications' component={notifications} options={{
                 headerTitle: 'Notifications',
                 headerTitleStyle: {fontSize: 24},
                 headerTitleAlign: 'center', 
-                 headerTransparent: true
+                headerBackTitleVisible: false
+
             }}/>
             <Stack.Screen name='bluetooth' component={bluetooth} options={{
                 headerTitle: 'Bluetooth',
                 headerTitleStyle: {fontSize: 24},
                 headerTitleAlign: 'center', 
-                 headerTransparent: true
+                 headerTransparent: true,
+                 headerBackTitleVisible: false
+
             }}/>
             <Stack.Screen name='adminAdd' component={addExercise} options={{
                 headerTitle: 'Add Exercise',
                 headerTitleStyle: {fontSize: 24},
-                headerTitleAlign: 'center', 
-                 headerTransparent: true
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false
+ 
             }}/>
             <Stack.Screen name='showExercises' component={showExercises} options={{
                 headerTitle: 'Overview Exercises',
                 headerTitleStyle: {fontSize: 24},
                 headerTitleAlign: 'center', 
-                 headerTransparent: true
+                headerBackTitleVisible: false
             }}/>
             <Stack.Screen name='changeExercise' component={changeExercise} options={{
                 headerTitle: 'Change Exercise',
                 headerTitleStyle: {fontSize: 24},
                 headerTitleAlign: 'center', 
-                 headerTransparent: true
+                headerBackTitleVisible: false
             }}/>
         </Stack.Navigator>   
     )

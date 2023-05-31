@@ -63,6 +63,7 @@ const Notifications = ({username}) => {
 
     return(
         <ImageBackground source={require('../../assets/background3.png')} style={{ flex: 1 }}>
+            <ScrollView>
             <View style={styles.container}>
             <Text style={styles.text}>Receive notification for medicine?</Text>
             <View style={styles.switch}>
@@ -131,8 +132,7 @@ const Notifications = ({username}) => {
                     handleSave();
                 }}>
                     <Text style={styles.textButton}>SAVE</Text>
-                </TouchableOpacity>
-            
+                </TouchableOpacity>            
             </View>
         </ImageBackground>
     )
