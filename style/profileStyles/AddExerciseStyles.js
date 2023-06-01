@@ -1,13 +1,12 @@
 import { StyleSheet, } from 'react-native'
 
-const PersonalSettingsStyles = StyleSheet.create({
+const  AddExerciseStyles = StyleSheet.create({
     container:{
-        flex:1,
         paddingLeft: 20,
         paddingRight: 20,
         //justifyContent: 'center',
         paddingTop: 20,
-        paddingBottom: 20
+        marginBottom: 50  
     },
     text:{
         fontSize: 15,
@@ -26,13 +25,13 @@ const PersonalSettingsStyles = StyleSheet.create({
     },
     description:{
         height: 200,
-        padding: 20,
+        paddingLeft:5,
+        paddingBottom: 5,
         borderWidth: 2,
         borderColor: '#388C77',
         backgroundColor: 'white',
         borderRadius: 5,
-        marginBottom: 20
-
+        marginBottom: 20,
     },
     doubleText:{
         flexDirection: 'row',
@@ -47,13 +46,15 @@ const PersonalSettingsStyles = StyleSheet.create({
     doubleInput:{
         flexDirection: 'row',
     },
-    difficultyPicker:{
-        width: '50%',
+    pickerContainer:{
+        width: '100%',
         marginRight: 5,
         backgroundColor: 'white',
         borderWidth: 2,
         borderColor: '#388C77',
-        height: '20%'
+        height: '20%',
+        borderRadius: 5,
+        marginBottom: 10
     },
     picker: {
         height: '100%',
@@ -62,7 +63,7 @@ const PersonalSettingsStyles = StyleSheet.create({
     },
     inputReward:{
         width: '50%',
-        height: 30,
+        height: 60,
         padding: 20,
         borderWidth: 2,
         borderColor: '#388C77',
@@ -84,7 +85,7 @@ const PersonalSettingsStyles = StyleSheet.create({
         alignItems: 'center',
         marginLeft: 'auto',
         marginRight: 'auto',
-        marginTop: 10
+        marginTop: 10, 
     },
     textButton:{
         color: '#ffffff',
@@ -100,4 +101,4 @@ const PersonalSettingsStyles = StyleSheet.create({
         marginBottom: 5,
     }
 });
-export default PersonalSettingsStyles;
+export default AddExerciseStyles;

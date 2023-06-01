@@ -1,5 +1,5 @@
-import { NewAccount } from "../Models/NewAccount";
 import { saveLoginCredentials, getLoginCredentials, saveApiToken, getApiToken, updatePassword } from '../DataContext';
+import { NewAccount } from '../Models/NewAccount';
 import { Settings } from "../AppSettings";
 export class LoginService {
   static apiLoginlink:string = Settings.api +"/Login"
@@ -23,13 +23,18 @@ export class LoginService {
         })
       });
       if (response.ok) {
-        console.debug("Logged in!")
+        
         saveLoginCredentials(username,password);
         await response.json().then(async data => {
+          console.log(data);
            saveApiToken("Bearer " + data.token);
         });
         return '';
-      } else {
+      }
+      else if(response.status === 404){
+        return "User not found";
+      }
+      else {
         console.log("Error "+ response.status + ' ' + response.body);
         return "Error "+ response.status + ' ' + response.body;
       }
@@ -37,7 +42,6 @@ export class LoginService {
       console.log(error);
       return 'An error happened, please try again';
     }
-    return "please wait";
   }
 
   static async ReLogIn(){    

@@ -4,7 +4,6 @@ const restorePasswordStyles = StyleSheet.create({
     container:{
         paddingLeft: 20,
         paddingRight:20,
-        paddingBottom: 20,
         paddingTop: 100,
         
     },
@@ -33,16 +32,9 @@ const restorePasswordStyles = StyleSheet.create({
         fontWeight: '700',
         fontSize: 20
     },
-    title:{
-        textAlign: 'left',
-         paddingBottom: 40,
-         color: 'white',
-         fontWeight: 700,
-         fontSize: 30,
-         paddingTop: 0,
-    },
+    
     Text:{
-        fontSize: 12,
+        fontSize: 15,
         fontWeight: 500,
         marginLeft: 10,
         marginBottom: 5,

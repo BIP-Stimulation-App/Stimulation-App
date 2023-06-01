@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, ImageBackground,Switch} from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground,Switch, ScrollView} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../style/profileStyles/NotificationsStyles';
 import { getNotificationSettings, saveNotificationSettings } from '../../DataContext';
@@ -134,6 +134,7 @@ const Notifications = ({username}) => {
                     <Text style={styles.textButton}>SAVE</Text>
                 </TouchableOpacity>            
             </View>
+            </ScrollView>
         </ImageBackground>
     )
 }
