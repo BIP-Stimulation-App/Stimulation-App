@@ -40,7 +40,7 @@ class Login extends Component {
     });
   };
   handleReturnKeyPress = () => {
-    this.login();
+    this.login(this.state.username, this.state.password);
   };
 
   render() {
