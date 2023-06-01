@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   TextInput,
   Platform,
   ScrollView,
+  Keyboard,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { useNavigation } from "@react-navigation/native";
@@ -16,7 +17,7 @@ import { Exercise } from "../../Models/Excercise";
 
 const AddExercise = () => {
   const navigation = useNavigation();
-
+  const scrollViewRef = useRef(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [duration, setDuration] = useState("00:01:00");
@@ -24,11 +25,10 @@ const AddExercise = () => {
   const [reward, setReward] = useState("0");
   const [category, setCategory] = useState("Strength");
   const [errorMessage, setErrorMessage] = useState("");
-
+  const [keyboardOffset, setKeyboardOffset] = useState(0);
   const handleName = (text) => {
     setName(text);
   };
-
   const handleDescription = (text) => {
     setDescription(text);
   };
@@ -98,19 +98,37 @@ const AddExercise = () => {
       source={require("../../assets/background3.png")}
       style={{ flex: 1 }}
     >
-      <ScrollView>
+      <ScrollView
+        ref={scrollViewRef}
+        contentContainerStyle={[
+          styles.container,
+          { paddingBottom: keyboardOffset },
+        ]}
+        keyboardShouldPersistTaps="handled"
+      >
         <View style={styles.container}>
           <Text style={styles.text}>name:</Text>
           <TextInput
             style={styles.input}
             value={name}
             onChangeText={handleName}
+            returnKeyType="next"
+            onSubmitEditing={() => {
+              this.descriptionInput.focus();
+            }}
           />
           <Text style={styles.text}>description:</Text>
           <TextInput
             style={styles.description}
             value={description}
             onChangeText={handleDescription}
+            returnKeyType="next"
+            onSubmitEditing={() => {
+              this.durationInput.focus();
+            }}
+            ref={(input) => {
+              this.descriptionInput = input;
+            }}
           />
 
           <Text style={styles.text}>duration (HH:mm:ss):</Text>
@@ -121,6 +139,14 @@ const AddExercise = () => {
             onEndEditing={(e) => {
               if (!validateTime(e.nativeEvent.text)) {
               }
+            }}
+            returnKeyType="next"
+            onSubmitEditing={() => {
+              this.rewardInput.focus();
+            }}
+            ref={(input) => {
+              this.durationInput = input;
+              //scrollViewRef.current.scrollTo({ y: 300, animated: true });
             }}
           />
 
@@ -143,6 +169,9 @@ const AddExercise = () => {
             style={styles.inputReward}
             value={reward}
             onChangeText={handleReward}
+            ref={(input) => {
+              this.rewardInput = input;
+            }}
           />
 
           <Text style={styles.text}>category:</Text>
