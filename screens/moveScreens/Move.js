@@ -145,11 +145,14 @@ const Move = () => {
             showsVerticalScrollIndicator={true}
           />
         </View>
-        <View>
+        <View style={{flexDirection:'row', justifyContent:'space-evenly'}}>
           <Image
             source={require("../../assets/work-out.png")}
             style={styles.workout}
           />
+          <TouchableOpacity style={styles.historyButton} onPress={()=>navigation.navigate('MoveNav', {screen:'progress'})}>
+            <Text style={styles.history}>View your progress</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ImageBackground>
