@@ -18,7 +18,21 @@ const ExercisePage = () => {
   const handleComplete = () => {
     //logic to handle when the exercise is completed
   };
-
+  const getImage = () => {
+    if (exercise.name.toLowerCase().includes("situp")) {
+      return require("../../assets/situp.gif");
+    }
+    if (exercise.name.toLowerCase().includes("rope")) {
+      return require("../../assets/ropeSkipping.gif");
+    }
+    if (exercise.name.toLowerCase().includes("leg")) {
+      return require("../../assets/SINGLE_LEG_STAND.webp");
+    }
+    if (exercise.category == Category.Walking) {
+      return require("../../assets/walking.gif");
+    }
+    return require("../../assets/work-out.png");
+  };
   const startTimer = () => {
     if (!isRunning) {
       const timerDuration = new Date(`1970-01-01T${timeLeft}Z`).getTime();
@@ -70,7 +84,7 @@ const ExercisePage = () => {
     >
       <View style={styles.container}>
         <Image
-          source={exercise.image}
+          source={getImage()}
           style={styles.photo}
           resizeMode="contain"
           animationDuration={2000}
